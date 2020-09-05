@@ -1,0 +1,33 @@
+{
+    "name": "ongkir",
+    "version": "1.0.0",
+    "description": "Indonesia shipping cost and delivery tracking Wordpress plugin powered by RajaOngkir API.",
+    "main": "index.js",
+    "domain": "sd_ongkir",
+    "scripts": {
+        "start": "gulp",
+        "build": "gulp build --prod",
+        "bundle": "gulp bundle --prod"
+    },
+    "author": "Kasmin",
+    "license": "GPL2.0+",
+    "devDependencies": {
+        "@babel/core": "^7.9.0",
+        "@babel/preset-env": "^7.9.0",
+        "@babel/register": "^7.9.0",
+        "babel-loader": "^8.1.0",
+        "del": "^5.1.0",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-if": "^3.0.0",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-replace": "^1.0.0",
+        "gulp-sass": "^4.1.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-wp-pot": "^2.4.3",
+        "gulp-zip": "^5.0.1",
+        "vinyl-named": "^1.1.0",
+        "webpack-stream": "^5.2.1",
+        "yargs": "^15.4.1"
+    }
+}
