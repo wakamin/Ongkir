@@ -40,7 +40,15 @@
     justify-content: stretch;
     width: 100%;
 
+    @media only screen and(max-width: 576px) {
+        display: block;
+    }
+
     .sdokr-form-field:not(:last-child) .select2-selection--single {
         border-right: none;
+
+        @media only screen and(max-width: 576px) {
+            border-right: 1px solid #b8b8b8;
+        }
     }
 }

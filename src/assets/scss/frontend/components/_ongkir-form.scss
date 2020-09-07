@@ -29,6 +29,10 @@
             color: #969696;
             transition: all .25s ease;
 
+            @media only screen and(max-width: 576px) {
+                padding: 12px 14px;
+            }
+
             &:hover {
                 color: inherit !important;
             }
@@ -54,22 +58,42 @@
             &.sdokr-origin,
             &.sdokr-destination {
                 width: 35%;
+
+                @media only screen and(max-width: 576px) {
+                    width: 100%;
+                }
             }
 
             &.sdokr-weight {
                 width: 30%;
+
+                @media only screen and(max-width: 576px) {
+                    width: 100%;
+                }
             }
 
             &.sdokr-tracking-number {
                 width: 70%;
 
+                @media only screen and(max-width: 576px) {
+                    width: 100%;
+                }
+
                 #sdokr-tracking-number {
                     border-right: none;
+
+                    @media only screen and(max-width: 576px) {
+                        border-right: 1px solid #b8b8b8;
+                    }
                 }
             }
 
             &.sdokr-courier {
                 width: 30%;
+
+                @media only screen and(max-width: 576px) {
+                    width: 100%;
+                }
             }
         }
     }
