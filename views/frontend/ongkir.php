@@ -33,14 +33,12 @@
                             <option value="test4">Test4</option>
                         </select>
                     </div>
-                    <div class="sdokr-form-field sdokr-courier">
-                        <label for="sdokr-courier"><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
-                        <select name="sdokr-courier" id="sdokr-courier" class="sdokr-form-control select2">
-                            <option value="test">Test</option>
-                            <option value="test2">Test2</option>
-                            <option value="test3">Test3</option>
-                            <option value="test4">Test4</option>
-                        </select>
+                    <div class="sdokr-form-field sdokr-weight">
+                        <label for="sdokr-weight"><?php esc_html_e('Weight', 'sd_ongkir') ?></label>
+                        <div class="sdokr-input-group">
+                            <input name="sdokr-weight" id="sdokr-weight" class="sdokr-form-control" />
+                            <div class="sdokr-input-append">Gram</div>
+                        </div>
                     </div>
                 </div>
 

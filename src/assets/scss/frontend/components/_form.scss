@@ -7,6 +7,31 @@
         margin-bottom: 5px;
         font-weight: 600;
     }
+
+    .sdokr-form-control {
+        background-color: #fff;
+        border: 1px solid #b8b8b8;
+        border-radius: 0;
+        height: 45px;
+        line-height: 45px;
+        width: 100%;
+    }
+
+    .sdokr-input-group {
+        position: relative;
+
+        .sdokr-input-append {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 45px;
+            line-height: 45px;
+            background-color: #d8d8d8;
+            border: 1px solid #b8b8b8;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+    }
 }
 
 .sdokr-form-inline {
