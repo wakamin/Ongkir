@@ -59,6 +59,18 @@
             &.sdokr-weight {
                 width: 30%;
             }
+
+            &.sdokr-tracking-number {
+                width: 70%;
+
+                #sdokr-tracking-number {
+                    border-right: none;
+                }
+            }
+
+            &.sdokr-courier {
+                width: 30%;
+            }
         }
     }
 }

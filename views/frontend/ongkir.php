@@ -36,7 +36,7 @@
                     <div class="sdokr-form-field sdokr-weight">
                         <label for="sdokr-weight"><?php esc_html_e('Weight', 'sd_ongkir') ?></label>
                         <div class="sdokr-input-group">
-                            <input name="sdokr-weight" id="sdokr-weight" class="sdokr-form-control" />
+                            <input name="sdokr-weight" id="sdokr-weight" class="sdokr-form-control" placeholder="<?php esc_html_e('Weight', 'sd_ongkir') ?>" />
                             <div class="sdokr-input-append">Gram</div>
                         </div>
                     </div>
@@ -46,7 +46,25 @@
             </form>
         </div>
         <div id="sdokr-shipping-tracking-form" class="sdokr-form__content">
-            <p>Shipping tracking form</p>
+            <form class="sdokr-shortcode" name="sdokr-shipping-tracking-form">
+                <div class="sdokr-form-inline">
+                    <div class="sdokr-form-field sdokr-tracking-number">
+                        <label for="sdokr-tracking-number"><?php esc_html_e('Tracking Number', 'sd_ongkir') ?></label>
+                        <input name="sdokr-tracking-number" id="sdokr-tracking-number" class="sdokr-form-control" placeholder="<?php esc_html_e('Tracking Number', 'sd_ongkir') ?>" />
+                    </div>
+                    <div class="sdokr-form-field sdokr-courier">
+                        <label for="sdokr-courier"><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
+                        <select name="sdokr-courier" id="sdokr-courier" class="sdokr-form-control select2">
+                            <option value="test">Test</option>
+                            <option value="test2">Test2</option>
+                            <option value="test3">Test3</option>
+                            <option value="test4">Test4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="sdokr-form-btn"><?php esc_html_e('Track Shipment', 'sd_ongkir') ?></button>
+            </form>
         </div>
     </div>
 </div>

@@ -1,3 +1,18 @@
+.select2 {
+    width: 100% !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+    border-radius: 0;
+    height: 35px;
+    line-height: 35px;
+}
+
+.select2-results__option {
+    padding: 4px;
+    margin-bottom: 0;
+}
+
 .select2-container--default .select2-selection--single {
     background-color: #fff;
     border: 1px solid #b8b8b8;
