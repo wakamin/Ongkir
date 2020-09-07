@@ -1,0 +1,64 @@
+.sdokr-form {
+    width: 100%;
+
+    &__tabs {
+        display: flex;
+        margin-bottom: -1px;
+    }
+
+    &__tab {
+        background-color: #ececec;
+        border: 1px solid #ececec;
+
+        &--active {
+            background-color: #ffffff;
+            border-bottom: none;
+            border-right: 1px solid #d6d6d6;
+
+            a {
+                color: inherit !important;
+            }
+        }
+
+        a {
+            padding: 15px 30px;
+            display: block;
+            text-decoration: none;
+            border-bottom: none;
+            font-weight: 600;
+            color: #969696;
+            transition: all .25s ease;
+
+            &:hover {
+                color: inherit !important;
+            }
+        }
+    }
+
+    &__tab-content {
+        background-color: #ffffff;
+        padding: 25px;
+        border: 1px solid #ececec;
+        box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.08);
+    }
+
+    &__content {
+        display: none;
+
+        &--active {
+            display: block;
+        }
+
+        .sdokr-form-field {
+
+            &.sdokr-origin,
+            &.sdokr-destination {
+                width: 35%;
+            }
+
+            &.sdokr-courier {
+                width: 30%;
+            }
+        }
+    }
+}

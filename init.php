@@ -13,3 +13,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir
 
 // Setting
 include_once SDONGKIR_PLUGIN_PATH . 'includes/admin/class-sdongkir-settings.php';
+
+// Shortcode
+include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-shortcode.php';
+
+// Shortcode
+include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-frontend-scripts.php';

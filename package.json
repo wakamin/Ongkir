@@ -29,5 +29,8 @@
         "vinyl-named": "^1.1.0",
         "webpack-stream": "^5.2.1",
         "yargs": "^15.4.1"
+    },
+    "dependencies": {
+        "select2": "^4.0.13"
     }
 }

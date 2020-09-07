@@ -7,5 +7,12 @@
 415px
 */
 
-@import "frontend/abstracts/variables";
-@import "frontend/abstracts/mixins";
+@import '../../../node_modules/select2/src/scss/core.scss';
+
+@import 'frontend/abstracts/variables';
+@import 'frontend/abstracts/mixins';
+
+@import 'frontend/components/button';
+@import 'frontend/components/form';
+@import 'frontend/components/ongkir-form';
+@import 'frontend/components/select2';

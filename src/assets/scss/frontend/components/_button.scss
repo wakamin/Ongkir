@@ -1,0 +1,19 @@
+.sdokr-form-btn {
+    width: 100%;
+    border-radius: 0;
+    padding: 15px 20px;
+    background-color: #0f7bf6;
+    color: #ffffff;
+    font-size: 17px;
+    border: none;
+    transition: all .25 ease;
+    text-transform: uppercase;
+
+    &:hover {
+        background-color: darken(#0f7bf6, 10);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
