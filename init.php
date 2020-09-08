@@ -5,6 +5,9 @@ if (!defined('ABSPATH')) {
     exit();
 }
 
+// DB setup on activation
+include_once SDONGKIR_PLUGIN_PATH . 'includes/install/class-sdongkir-db-setup.php';
+
 // Translation
 include_once SDONGKIR_PLUGIN_PATH . 'includes/translation/class-sdongkir-translation.php';
 
