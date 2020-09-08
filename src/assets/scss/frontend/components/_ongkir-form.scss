@@ -78,14 +78,6 @@
                 @media only screen and(max-width: 576px) {
                     width: 100%;
                 }
-
-                #sdokr-tracking-number {
-                    border-right: none;
-
-                    @media only screen and(max-width: 576px) {
-                        border-right: 1px solid #b8b8b8;
-                    }
-                }
             }
 
             &.sdokr-courier {
