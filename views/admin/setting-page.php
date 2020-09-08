@@ -4,6 +4,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$defaultTab = 'main_config';
+$tab = isset($_GET['tab']) ? $_GET['tab'] : $defaultTab;
+
 ?>
 
 

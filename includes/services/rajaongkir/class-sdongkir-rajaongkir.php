@@ -19,6 +19,16 @@ if (!class_exists('SDONGKIR_Rajaongkir')) {
         {
             return get_option('sdokr_rajaongkir_api_key');
         }
+
+        /**
+         * Get rajaongkir account type
+         *
+         * @return String
+         */
+        public static function account_type()
+        {
+            return get_option('sdokr_rajaongkir_account_type', 'starter');
+        }
     }
     
     $SDONGKIR_Rajaongkir = new SDONGKIR_Rajaongkir();

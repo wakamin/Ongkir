@@ -31,6 +31,7 @@ if (!class_exists('SDONGKIR_Settings')) {
         public function register_settings()
         {
             add_option('sdokr_rajaongkir_api_key', '');
+            add_option('sdokr_rajaongkir_account_type', 'starter'); // starter, basic, pro
 
             $args = array(
                 'type' => 'string',
@@ -38,6 +39,7 @@ if (!class_exists('SDONGKIR_Settings')) {
             );
 
             register_setting('sdokr_options_group', 'sdokr_rajaongkir_api_key', $args);
+            register_setting('sdokr_options_group', 'sdokr_rajaongkir_account_type', $args);
         }
 
         /**
@@ -63,14 +65,6 @@ if (!class_exists('SDONGKIR_Settings')) {
          */
         public function setting_page()
         {
-            $defaultTab = 'main_config';
-            $tab = isset($_GET['tab']) ? $_GET['tab'] : $defaultTab;
-
-            if ($tab == 'main_config') {
-                $apiKey = SDONGKIR_Rajaongkir::api_key();
-            } else {
-            }
-
             include SDONGKIR_PLUGIN_PATH . '/views/admin/setting-page.php';
         }
 
