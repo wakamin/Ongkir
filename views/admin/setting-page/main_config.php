@@ -4,8 +4,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$apiKey = SDONGKIR_Rajaongkir::api_key();
-$accountType = SDONGKIR_Rajaongkir::account_type();
+$apiKey = sdongkir_api_key();
+$accountType = sdongkir_account_type();
 
 ?>
 
@@ -37,6 +37,22 @@ $accountType = SDONGKIR_Rajaongkir::account_type();
                     </select>
                 </td>
             </tr>
+            <?php if ($apiKey != ''): ?>
+                <tr>
+                    <th scope="row">
+                        <label><?php esc_html_e('Get Location Data', 'sd_ongkir') ?></label>
+                    </th>
+                    <td>
+                        <button type="button" id="sdokr-get-location" class="button"><?php esc_html_e('Get Location Data', 'sd_ongkir') ?></button>
+                        <div class="sdokr-loading sdokr-hide">
+                            <div class="sdokr-loading__img">
+                                <img src="<?php echo esc_url(sdongkir_loading_image_url()) ?>" alt="<?php esc_html_e('Loading...', 'sd_ongkir')?>">
+                            </div>
+                            <div class="sdokr-loading__text"><?php esc_html_e('Loading...', 'sd_ongkir')?></div>
+                        </div>
+                    </td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
 

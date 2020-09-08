@@ -1,0 +1,15 @@
+.sdokr-loading {
+    width: 100%;
+    padding: 15px;
+    @include flexCenter;
+    flex-direction: column;
+
+    &__img {
+        width: 100px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
