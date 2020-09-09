@@ -41,7 +41,7 @@ if (!class_exists('SDONGKIR_Db_Setup')) {
             if ($installed_ver != $sdongkir_db_version) {
                 $sqlProvince = "CREATE TABLE $tableProvince (
                     id int(10) NOT NULL AUTO_INCREMENT,
-                    provnce_id int(10) NOT NULL,
+                    province_id int(10) NOT NULL,
                     name varchar(255) NOT NULL,
                     UNIQUE KEY id (id)
                 ) $charset_collate;";
@@ -51,7 +51,7 @@ if (!class_exists('SDONGKIR_Db_Setup')) {
                     city_id int(10) NOT NULL,
                     type char(20) NOT NULL,
                     name varchar(255) NOT NULL,
-                    provnce_id int(10) NOT NULL,
+                    province_id int(10) NOT NULL,
                     province_name varchar(255) NOT NULL,
                     postal_code char(10) NOT NULL,
                     UNIQUE KEY id (id)
@@ -64,7 +64,7 @@ if (!class_exists('SDONGKIR_Db_Setup')) {
                     city_id int(10) NOT NULL,
                     city_type char(20) NOT NULL,
                     city_name varchar(255) NOT NULL,
-                    provnce_id int(10) NOT NULL,
+                    province_id int(10) NOT NULL,
                     province_name varchar(255) NOT NULL,
                     UNIQUE KEY id (id)
                 ) $charset_collate;";
@@ -72,9 +72,9 @@ if (!class_exists('SDONGKIR_Db_Setup')) {
                 $sqlIntlOrigin = "CREATE TABLE $tableIntlOrigin (
                     id int(20) NOT NULL AUTO_INCREMENT,
                     city_id int(10) NOT NULL,
-                    city_type char(20) NOT NULL,
-                    city_name varchar(255) NOT NULL,
-                    provnce_id int(10) NOT NULL,
+                    type char(20) NOT NULL,
+                    name varchar(255) NOT NULL,
+                    province_id int(10) NOT NULL,
                     province_name varchar(255) NOT NULL,
                     postal_code char(10) NOT NULL,
                     UNIQUE KEY id (id)

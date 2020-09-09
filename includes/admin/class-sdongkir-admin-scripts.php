@@ -56,7 +56,9 @@ if (!class_exists('SDONGKIR_Admin_Scripts')) {
                     'loading_text' => __('Loading...', 'sd_ongkir'),
                     'get_province_text' => __('Getting provinces data', 'sd_ongkir'),
                     'get_city_text' => __('Getting cities data', 'sd_ongkir'),
-                    'get_subdistrict_text' => __('Getting subdistricts data', 'sd_ongkir')
+                    'get_subdistrict_text' => __('Getting subdistricts data', 'sd_ongkir'),
+                    'get_intl_origin_text' => __('Getting international origin data', 'sd_ongkir'),
+                    'get_intl_destination_text' => __('Getting international destination data', 'sd_ongkir'),
                 )
             );
             wp_enqueue_script('ongkir-script');

@@ -43,18 +43,24 @@ $accountType = sdongkir_account_type();
                         <label><?php esc_html_e('Get Location Data', 'sd_ongkir') ?></label>
                     </th>
                     <td>
-                        <button type="button" id="sdokr-get-location" class="button"><?php esc_html_e('Get Location Data', 'sd_ongkir') ?></button>
-                        <div class="sdokr-loading sdokr-hide">
-                            <div class="sdokr-loading__img">
-                                <img src="<?php echo esc_url(sdongkir_loading_image_url()) ?>" alt="<?php esc_html_e('Loading...', 'sd_ongkir')?>">
-                            </div>
-                            <div class="sdokr-loading__text"><?php esc_html_e('Loading...', 'sd_ongkir')?></div>
-                        </div>
+                        <button type="button" id="sdokr-get-location" class="button">
+                            <?php esc_html_e('Get Location Data', 'sd_ongkir') ?>
+                            <span class="spinner is-active sdokr-hide"></span>
+                        </button>
+                        <span class="sdokr-get-location-msg sdokr-hide"><?php esc_html_e('All done!', 'sd_ongkir') ?></span>
                     </td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
+
+    <div class="sdokr-loading sdokr-hide">
+        <div class="sdokr-loading__img">
+            <img src="<?php echo esc_url(sdongkir_loading_image_url()) ?>" alt="<?php esc_html_e('Loading...', 'sd_ongkir')?>">
+        </div>
+        <div class="sdokr-loading__text"><?php esc_html_e('Loading...', 'sd_ongkir')?></div>
+        <div class="sdokr-loading__text-static"><?php esc_html_e('Don\'t close or refresh window until finish!', 'sd_ongkir')?></div>
+    </div>
 
     <?php submit_button(); ?>
 </form>

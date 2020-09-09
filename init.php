@@ -11,6 +11,12 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/install/class-sdongkir-db-setup.ph
 // Translation
 include_once SDONGKIR_PLUGIN_PATH . 'includes/translation/class-sdongkir-translation.php';
 
+// Database interaction
+include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-db.php';
+
+// RajaOngkir remote request
+include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-remote.php';
+
 // General functions
 include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/general.php';
 
