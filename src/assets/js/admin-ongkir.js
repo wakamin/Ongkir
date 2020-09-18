@@ -5,6 +5,8 @@ $(document).ready(function () {
 
     // Setting page
     let sdokr_setting_els = {
+        setting_form: $("#sdokr_setting_form"),
+        account_type: $("#sdokr_rajaongkir_account_type"),
         get_location_btn: $("#sdokr-get-location"),
         loading_block: $(".sdokr-loading"),
         loading_text: $(".sdokr-loading__text"),
@@ -17,22 +19,19 @@ $(document).ready(function () {
             sdokr_setting_els.get_location_btn.attr("disabled", true);
             sdokr_setting_els.loading_block.removeClass("sdokr-hide");
             sdokr_setting_els.get_location_spinner.removeClass("sdokr-hide");
+            sdokr_setting_els.get_location_msg.addClass("sdokr-hide");
             sdokr_setting_func
                 .get_province()
                 .then((res) => {
-                    console.log(res);
                     return sdokr_setting_func.get_city();
                 })
                 .then((res) => {
-                    console.log(res);
                     return sdokr_setting_func.get_intl_origin();
                 })
                 .then((res) => {
-                    console.log(res);
                     return sdokr_setting_func.get_intl_destination();
                 })
                 .then((res) => {
-                    console.log(res);
                     sdokr_setting_func.get_all_subdistricts();
                 })
                 .catch((err) => {
@@ -188,7 +187,13 @@ $(document).ready(function () {
         },
     };
 
+    // On click get location button
     sdokr_setting_els.get_location_btn.on("click", function () {
         sdokr_setting_func.get_location();
+    });
+
+    // On change account type
+    sdokr_setting_els.account_type.on("change", function () {
+        $("input#submit").trigger("click");
     });
 });

@@ -11,10 +11,18 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
     class SDONGKIR_Admin_Ajax extends SDONGKIR_Ajax
     {
         /**
+         * RajaOngkir Account Type
+         *
+         * @var String
+         */
+        public $accountType;
+
+        /**
          * Class constructor
          */
         public function __construct()
         {
+            $this->accountType = sdongkir_account_type();
             add_action('wp_ajax_ongkir_get_province', array($this, 'get_province'));
             add_action('wp_ajax_ongkir_get_city', array($this, 'get_city'));
             add_action('wp_ajax_ongkir_get_subdistrict', array($this, 'get_subdistrict'));
@@ -49,14 +57,18 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
             $db = new SDONGKIR_Db();
             $tableName = $db->tables()['province'];
             $cityTableName = $db->tables()['city'];
-            $subdistrictName = $db->tables()['subdistrict'];
+            $subdistrictTableName = $db->tables()['subdistrict'];
+            $intlOriginTableName = $db->tables()['intl_origin'];
+            $intlDestinationTableName = $db->tables()['intl_destination'];
             
             global $wpdb;
 
             // Remove all records
             $wpdb->query("TRUNCATE TABLE $tableName");
             $wpdb->query("TRUNCATE TABLE $cityTableName");
-            $wpdb->query("TRUNCATE TABLE $subdistrictName");
+            $wpdb->query("TRUNCATE TABLE $subdistrictTableName");
+            $wpdb->query("TRUNCATE TABLE $intlOriginTableName");
+            $wpdb->query("TRUNCATE TABLE $intlDestinationTableName");
                 
             try {
                 $db->insert_many($tableName, $rows);
@@ -118,6 +130,13 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
 
             if (!isset($_POST['last_city_id'])) {
                 return $this->ajax_error(__('Bad params', 'sd_ongkir'));
+            }
+
+            if ($this->accountType != 'pro') {
+                return $this->ajax_success(__('Must use Pro account.', 'gending_kedis'), [
+                    'done' => true,
+                    'city_id' => 0,
+                ]);
             }
 
             global $wpdb;
@@ -186,6 +205,10 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
         {
             check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
 
+            if ($this->accountType == 'starter') {
+                return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
+            }
+
             $remote = new SDONGKIR_Remote();
             try {
                 $cities = $remote->remote_request('/v2/internationalOrigin', 'GET');
@@ -225,6 +248,10 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
         {
             check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
 
+            if ($this->accountType == 'starter') {
+                return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
+            }
+            
             $remote = new SDONGKIR_Remote();
             try {
                 $countries = $remote->remote_request('/v2/internationalDestination', 'GET');

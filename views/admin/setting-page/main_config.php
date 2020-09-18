@@ -9,7 +9,7 @@ $accountType = sdongkir_account_type();
 
 ?>
 
-<form method="post" action="options.php">
+<form method="post" action="options.php" id="sdokr_setting_form">
     <?php settings_fields('sdokr_options_group'); ?>
 
     <table class="form-table" role="presentation">
