@@ -115,7 +115,6 @@ $(document).ready(function () {
                     let data = res.data;
 
                     if (!data.done) {
-                        console.log(data);
                         sdokr_setting_func.get_all_subdistricts(data.city_id);
                     } else {
                         sdokr_setting_els.get_location_btn.attr(
@@ -129,6 +128,7 @@ $(document).ready(function () {
                             "sdokr-hide",
                         );
                         sdokr_setting_els.loading_block.addClass("sdokr-hide");
+                        window.location.reload();
                     }
                 })
                 .catch((err) => {

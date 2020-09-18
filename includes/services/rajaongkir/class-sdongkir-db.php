@@ -73,6 +73,66 @@ if (!class_exists('SDONGKIR_Db')) {
                 throw new \Exception("Error saving many records into database", 400);
             }
         }
+
+        /**
+         * Count stored provinces
+         *
+         * @return Int
+         */
+        public function count_stored_provinces()
+        {
+            global $wpdb;
+            $tableName = $this->tables()['province'];
+            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+        }
+
+        /**
+         * Count stored city
+         *
+         * @return Int
+         */
+        public function count_stored_cities()
+        {
+            global $wpdb;
+            $tableName = $this->tables()['city'];
+            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+        }
+
+        /**
+         * Count stored subdistricts
+         *
+         * @return Int
+         */
+        public function count_stored_subdistricts()
+        {
+            global $wpdb;
+            $tableName = $this->tables()['subdistrict'];
+            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+        }
+
+        /**
+         * Count stored intl_origin
+         *
+         * @return Int
+         */
+        public function count_stored_intl_origins()
+        {
+            global $wpdb;
+            $tableName = $this->tables()['intl_origin'];
+            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+        }
+
+        /**
+         * Count stored intl_destination
+         *
+         * @return Int
+         */
+        public function count_stored_intl_destinations()
+        {
+            global $wpdb;
+            $tableName = $this->tables()['intl_destination'];
+            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+        }
     }
     
     $SDONGKIR_Db = new SDONGKIR_Db();
