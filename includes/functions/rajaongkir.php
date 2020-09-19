@@ -51,7 +51,7 @@ if (!function_exists('sdongkir_count_location_data')) {
         }
 
         if ($type == 'intl_destination') {
-            return ['intl_destination' => sdongkir_account_type() != 'starter' ? $rajaOngkirDb->count_stored_intl_destinations(): 0];
+            return ['intl_destination' => sdongkir_account_type() != 'starter' ? $rajaOngkirDb->count_stored_intl_destinations() : 0];
         }
 
         if ($type == 'all') {
@@ -63,5 +63,13 @@ if (!function_exists('sdongkir_count_location_data')) {
                 'intl_destination' => sdongkir_account_type() != 'starter' ? $rajaOngkirDb->count_stored_intl_destinations() : 0,
             ];
         }
+    }
+}
+
+if (!function_exists('sdongkir_get_locations')) {
+    function sdongkir_get_locations()
+    {
+        $rajaOngkirDb = new SDONGKIR_Db();
+        return $rajaOngkirDb->get_locations();
     }
 }

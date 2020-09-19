@@ -18,19 +18,19 @@
                     <div class="sdokr-form-field sdokr-origin">
                         <label for="sdokr-origin"><?php esc_html_e('Origin', 'sd_ongkir') ?></label>
                         <select name="sdokr-origin" id="sdokr-origin" class="sdokr-form-control select2">
-                            <option value="test">Test</option>
-                            <option value="test2">Test2</option>
-                            <option value="test3">Test3</option>
-                            <option value="test4">Test4</option>
+                            <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
+                            <?php foreach ($locations as $location) : ?>
+                                <option value="<?php echo esc_attr($location['id']) ?>"><?php echo esc_attr($location['name']) ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="sdokr-form-field sdokr-destination">
                         <label for="sdokr-destination"><?php esc_html_e('Destination', 'sd_ongkir') ?></label>
                         <select name="sdokr-destination" id="sdokr-destination" class="sdokr-form-control select2">
-                            <option value="test">Test</option>
-                            <option value="test2">Test2</option>
-                            <option value="test3">Test3</option>
-                            <option value="test4">Test4</option>
+                            <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
+                            <?php foreach ($locations as $location) : ?>
+                                <option value="<?php echo esc_attr($location['id']) ?>"><?php echo esc_attr($location['name']) ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="sdokr-form-field sdokr-weight">
