@@ -40,3 +40,6 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-shortcode.
 
 // Frontend scripts
 include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-frontend-scripts.php';
+
+// Frontend ajax
+include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-frontend-ajax.php';

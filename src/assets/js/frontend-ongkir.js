@@ -17,5 +17,28 @@ $(document).ready(function () {
     });
 
     // Select2
-    $(".sdokr-form-control.select2").select2();
+    $(".sdokr-select2").select2();
+
+    $(".sdokr-location-select2").select2({
+        minimumInputLength: 3,
+        ajax: {
+            url: sdongkir_lcz.ajaxurl,
+            delay: 250,
+            dataType: "json",
+            cache: true,
+            method: "POST",
+            data: function (params) {
+                return {
+                    q: params.term, // search query
+                    action: "ongkir_get_location", // AJAX action for admin-ajax.php,
+                    nonce_ajax: sdongkir_lcz.nonce,
+                };
+            },
+            processResults: function (data) {
+                return {
+                    results: data.data.data,
+                };
+            },
+        },
+    });
 });
