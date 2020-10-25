@@ -83,7 +83,7 @@ if (!class_exists('SDONGKIR_Db')) {
         {
             global $wpdb;
             $tableName = $this->tables()['province'];
-            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+            return $wpdb->get_var("SELECT COUNT(*) FROM $tableName");
         }
 
         /**
@@ -95,7 +95,7 @@ if (!class_exists('SDONGKIR_Db')) {
         {
             global $wpdb;
             $tableName = $this->tables()['city'];
-            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+            return $wpdb->get_var("SELECT COUNT(*) FROM $tableName");
         }
 
         /**
@@ -107,7 +107,7 @@ if (!class_exists('SDONGKIR_Db')) {
         {
             global $wpdb;
             $tableName = $this->tables()['subdistrict'];
-            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+            return $wpdb->get_var("SELECT COUNT(*) FROM $tableName");
         }
 
         /**
@@ -119,7 +119,7 @@ if (!class_exists('SDONGKIR_Db')) {
         {
             global $wpdb;
             $tableName = $this->tables()['intl_origin'];
-            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+            return $wpdb->get_var("SELECT COUNT(*) FROM $tableName");
         }
 
         /**
@@ -131,54 +131,44 @@ if (!class_exists('SDONGKIR_Db')) {
         {
             global $wpdb;
             $tableName = $this->tables()['intl_destination'];
-            return $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $tableName"));
+            return $wpdb->get_var("SELECT COUNT(*) FROM $tableName");
         }
 
-        public function get_locations()
+        /**
+         * Search for location
+         *
+         * @param String $keyword
+         * @return Array
+         */
+        public function search_location($keyword)
         {
             global $wpdb;
             $accountType = sdongkir_account_type();
-
-            $transient = get_transient('sdongkir_locations');
-            $results = [];
-            if ($transient && $transient['account_type'] == $accountType) {
-                $results = $transient['data'];
-            } elseif (!$transient || $transient['account_type'] != $accountType) {
-                if ($accountType == 'pro') {
-                    $tableName = $this->tables()['subdistrict'];
-                    $subdistricts = $wpdb->get_results(
-                        $wpdb->prepare("SELECT * FROM $tableName")
-                    );
-
-                    foreach ($subdistricts as $subdistrict) {
-                        $results[] = [
-                            'id' => $subdistrict->subdistrict_id,
-                            'name' => "$subdistrict->name - $subdistrict->city_type $subdistrict->city_name"
-                        ];
-                    }
-                } else {
-                    $tableName = $this->tables()['city'];
-                    $cities = $wpdb->get_results(
-                        $wpdb->prepare("SELECT * FROM $tableName")
-                    );
-
-                    foreach ($cities as $city) {
-                        $results[] = [
-                            'id' => $city->city_id,
-                            'name' => "$city->type $city->name"
-                        ];
-                    }
-                }
-
-                // Set cache transient data for 2 days
-                set_transient(
-                    'sdongkir_locations',
-                    [
-                        'account_type' => $accountType,
-                        'data' => $results
-                    ],
-                    172800
+            $results = array();
+            if ($accountType == 'pro') {
+                $tableName = $this->tables()['subdistrict'];
+                $subdistricts = $wpdb->get_results(
+                    $wpdb->prepare("SELECT * FROM $tableName WHERE name LIKE %s OR city_name LIKE %s", "%$keyword%", "%$keyword%")
                 );
+
+                foreach ($subdistricts as $subdistrict) {
+                    $results[] = [
+                        'id' => $subdistrict->subdistrict_id,
+                        'name' => "$subdistrict->name - $subdistrict->city_type $subdistrict->city_name"
+                    ];
+                }
+            } else {
+                $tableName = $this->tables()['city'];
+                $cities = $wpdb->get_results(
+                    $wpdb->prepare("SELECT * FROM $tableName WHERE name LIKE  %s", "%$keyword%")
+                );
+
+                foreach ($cities as $city) {
+                    $results[] = [
+                        'id' => $city->city_id,
+                        'name' => "$city->type $city->name"
+                    ];
+                }
             }
 
             return $results;

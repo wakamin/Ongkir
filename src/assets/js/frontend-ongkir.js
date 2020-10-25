@@ -30,7 +30,7 @@ $(document).ready(function () {
             data: function (params) {
                 return {
                     q: params.term, // search query
-                    action: "ongkir_get_location", // AJAX action for admin-ajax.php,
+                    action: "ongkir_search_location", // AJAX action for admin-ajax.php,
                     nonce_ajax: sdongkir_lcz.nonce,
                 };
             },

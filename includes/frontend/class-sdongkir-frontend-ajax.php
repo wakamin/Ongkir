@@ -22,16 +22,16 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
          */
         public function __construct()
         {
-            add_action('wp_ajax_ongkir_get_location', array($this, 'get_location'));
-            add_action('wp_ajax_nopriv_ongkir_get_location', array($this, 'get_location'));
+            add_action('wp_ajax_ongkir_search_location', array($this, 'search_location'));
+            add_action('wp_ajax_nopriv_ongkir_search_location', array($this, 'search_location'));
         }
 
         /**
-         * Get location ajax action
+         * Search location ajax action
          *
          * @return Json response
          */
-        public function get_location()
+        public function search_location()
         {
             check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
@@ -40,7 +40,8 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
             }
 
             $data = array();
-            foreach (sdongkir_get_locations() as $location) {
+            $locations = sdongkir_search_location($_POST['q']);
+            foreach ($locations as $location) {
                 if (stripos($location['name'], $_POST['q']) !==false) {
                     $data[] = [
                         'id' => $location['id'],

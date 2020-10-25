@@ -66,10 +66,10 @@ if (!function_exists('sdongkir_count_location_data')) {
     }
 }
 
-if (!function_exists('sdongkir_get_locations')) {
-    function sdongkir_get_locations()
+if (!function_exists('sdongkir_search_location')) {
+    function sdongkir_search_location($keyword)
     {
         $rajaOngkirDb = new SDONGKIR_Db();
-        return $rajaOngkirDb->get_locations();
+        return $rajaOngkirDb->search_location($keyword);
     }
 }
