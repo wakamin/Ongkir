@@ -58,7 +58,7 @@ if (!class_exists('SDONGKIR_Remote')) {
             );
 
             if ($requestMethod == 'POST') {
-                $args['postfields'] = json_encode($data);
+                $args['body'] = wp_json_encode($data);
                 $response = wp_remote_post($remoteUrl, $args);
             } elseif ($requestMethod == 'GET') {
                 $response = wp_remote_get($remoteUrl, $args);

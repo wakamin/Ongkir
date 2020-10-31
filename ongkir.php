@@ -34,8 +34,16 @@ add_action('rest_api_init', function () {
 
 function ongkir_test_api()
 {
-    $request = new SDONGKIR_Request_Location();
-    $get_international_destination = $request->get_international_destination();
+    $request = new SDONGKIR_Request_Cost();
+    $data = array(
+        'origin' => 2095,
+        'originType' => 'subdistrict',
+        'destination' => 2087,
+        'destinationType' => 'subdistrict',
+        'weight' => 200,
+        'courier' => 'jne:jnt:sicepat:ninja:tiki:pos'
+    );
+    $get_shipping_cost = $request->get_shipping_cost($data);
 
-    wp_send_json_success($get_international_destination);
+    wp_send_json_success($get_shipping_cost);
 }

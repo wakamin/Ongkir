@@ -5,10 +5,10 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Request location class
+ * Request cost class
  */
-if (!class_exists('SDONGKIR_Request_Location')) {
-    class SDONGKIR_Request_Location
+if (!class_exists('SDONGKIR_Request_Cost')) {
+    class SDONGKIR_Request_Cost
     {
         public $remote;
 
@@ -25,8 +25,9 @@ if (!class_exists('SDONGKIR_Request_Location')) {
          *
          * @return Mixed Array or WP_Error
          */
-        public function get_shipping_cost()
+        public function get_shipping_cost($data)
         {
+            return $this->remote->remote_request('/cost', 'POST', $data);
         }
     }
 }
