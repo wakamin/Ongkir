@@ -193,7 +193,7 @@ $(document).ready(function () {
     });
 
     // On change account type
-    sdokr_setting_els.account_type.on("change", function () {
-        $("input#submit").trigger("click");
-    });
+    // sdokr_setting_els.account_type.on("change", function () {
+    //     $("input#submit").trigger("click");
+    // });
 });
