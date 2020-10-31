@@ -43,11 +43,6 @@ $(document).ready(function () {
         },
     });
 
-    // Modal
-    $(".sdokr-close-modal").on("click", function () {
-        $(this).closest(".sdokr-modal").removeClass("show");
-    });
-
     // Error modal
     var error_modal = new tingle.modal({
         footer: true,

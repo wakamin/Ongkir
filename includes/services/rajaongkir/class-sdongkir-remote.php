@@ -44,41 +44,36 @@ if (!class_exists('SDONGKIR_Remote')) {
          *
          * @return Array
          */
-        public function remote_request(String $urlPath, String $requestMethod)
+        public function remote_request($urlPath, $requestMethod)
         {
-            $curl = curl_init();
-            $remoteUrl = $this->_remote_url();
+            $remoteUrl = $this->_remote_url().$urlPath;
             $apiKey = sdongkir_api_key();
-
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => $remoteUrl.$urlPath,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => $requestMethod,
-                CURLOPT_HTTPHEADER => array(
-                    "key: $apiKey",
-                    "Content-Type: application/json",
-                    "Accept: application/json"
+            $args = array(
+                'headers'     => array(
+                    'key' => $apiKey,
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'
                 ),
-            ));
+            );
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-
-            curl_close($curl);
-
-            if ($err) {
-                throw new \Exception("RajaOngkir remote call error #: $err");
+            if ($requestMethod == 'POST') {
+                $response = wp_remote_post($remoteUrl, $args);
+            } elseif ($requestMethod == 'GET') {
+                $response = wp_remote_get($remoteUrl, $args);
             } else {
-                $response = json_decode($response, true);
-                $rajaongkir = $response['rajaongkir'];
+                return null;
+            }
+
+            if (is_wp_error($response)) {
+                return new WP_Error('broke', printf(__('RajaOngkir remote call error #: %s', 'sd_ongkir'), $response->get_error_message()));
+            } else {
+                $rajaongkir = json_decode($response['body'], true);
+                $rajaongkir = $rajaongkir['rajaongkir'];
+
                 if ($rajaongkir['status']['code'] != 200) {
-                    throw new \Exception($rajaongkir['status']['description'], $rajaongkir['status']['code']);
+                    return new WP_Error('broke', $rajaongkir['status']['description']);
                 }
+
                 return $rajaongkir['results'];
             }
         }

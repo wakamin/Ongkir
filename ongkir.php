@@ -23,3 +23,19 @@ define('SDONGKIR_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 // Initialize
 require_once SDONGKIR_PLUGIN_PATH . 'init.php';
+
+// Test API
+add_action('rest_api_init', function () {
+    register_rest_route('ongkir/v1', '/test', [
+        'method' => 'GET',
+        'callback' => 'ongkir_test_api'
+    ]);
+});
+
+function ongkir_test_api()
+{
+    $remote = new SDONGKIR_Remote();
+    $data = $remote->remote_request('/province', 'GET');
+
+    wp_send_json_success($data);
+}
