@@ -39,7 +39,8 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
                     'nonce' => wp_create_nonce('sdongkir-script-nonce'),
                     'loading_gif' => SDONGKIR_PLUGIN_URL . 'assets/images/loading.gif',
                     'submit_text' => __('Submit', 'sd_ongkir'),
-                    'processing_text' => __('Processing...', 'sd_ongkir')
+                    'processing_text' => __('Processing...', 'sd_ongkir'),
+                    'close_label' => __('Close', 'sd_ongkir')
                 )
             );
             wp_enqueue_script('sdongkir-frontend-script');

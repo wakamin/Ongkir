@@ -31,6 +31,7 @@
         "yargs": "^15.4.1"
     },
     "dependencies": {
-        "select2": "^4.0.13"
+        "select2": "^4.0.13",
+        "tingle.js": "^0.15.3"
     }
 }

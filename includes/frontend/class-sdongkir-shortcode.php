@@ -25,8 +25,6 @@ if (!class_exists('SDONGKIR_Shortcode')) {
          */
         public function ongkir($atts, $content, $shortcode_tag)
         {
-            $shippingCostIcon = apply_filters('sdongkir_shipping_cost_icon', '<span class="dashicons dashicons-money-alt"></span>');
-            $shippingTrackingIcon = apply_filters('sdongkir_shipping_cost_icon', '<span class="dashicons dashicons-location"></span>');
             ob_start();
 
             include SDONGKIR_PLUGIN_PATH . 'views/frontend/ongkir.php';

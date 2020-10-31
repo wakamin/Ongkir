@@ -1,5 +1,10 @@
 <?php
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit();
+}
+
 if (!function_exists('sdongkir_loading_image_url')) {
     /**
      * Get loading image url
