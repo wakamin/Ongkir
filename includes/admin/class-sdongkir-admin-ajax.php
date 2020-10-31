@@ -39,11 +39,11 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
         {
             check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
 
-            $remote = new SDONGKIR_Remote();
-            try {
-                $provinces = $remote->remote_request('/province', 'GET');
-            } catch (\Throwable $th) {
-                $this->ajax_error($th->getMessage());
+            $request = new SDONGKIR_Location_Request();
+            $provinces = $request->get_provinces();
+
+            if (is_wp_error($provinces)) {
+                $this->ajax_error($provinces->get_error_message());
             }
             
             $rows = [];
@@ -88,14 +88,13 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
         {
             check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
 
-            $remote = new SDONGKIR_Remote();
-            try {
-                $cities = $remote->remote_request('/city', 'GET');
-            } catch (\Throwable $th) {
-                $this->ajax_error($th->getMessage());
+            $request = new SDONGKIR_Location_Request();
+            $cities = $request->get_cities();
+
+            if (is_wp_error($cities)) {
+                $this->ajax_error($cities->get_error_message());
             }
 
-            
             $rows = [];
             foreach ($cities as $city) {
                 $rows[] = [
@@ -141,7 +140,6 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
 
             global $wpdb;
 
-            $remote = new SDONGKIR_Remote();
             $db = new SDONGKIR_Db();
 
             $lastCityId = $_POST['last_city_id'];
@@ -157,12 +155,13 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
             } else {
                 $cityId = $city->city_id;
 
-                try {
-                    $subdistricts = $remote->remote_request("/subdistrict?city=$cityId", 'GET');
-                } catch (\Throwable $th) {
-                    $this->ajax_error($th->getMessage());
+                $request = new SDONGKIR_Location_Request();
+                $subdistricts = $request->get_subdistricts($cityId);
+
+                if (is_wp_error($subdistricts)) {
+                    $this->ajax_error($subdistricts->get_error_message());
                 }
-            
+
                 $rows = [];
                 foreach ($subdistricts as $subdistricts) {
                     $rows[] = [
@@ -209,13 +208,13 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
                 return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
             }
 
-            $remote = new SDONGKIR_Remote();
-            try {
-                $cities = $remote->remote_request('/v2/internationalOrigin', 'GET');
-            } catch (\Throwable $th) {
-                $this->ajax_error($th->getMessage());
+            $request = new SDONGKIR_Location_Request();
+            $cities = $request->get_international_origin();
+
+            if (is_wp_error($cities)) {
+                $this->ajax_error($cities->get_error_message());
             }
-            
+
             $rows = [];
             foreach ($cities as $city) {
                 $rows[] = [
@@ -251,12 +250,12 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
             if ($this->accountType == 'starter') {
                 return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
             }
-            
-            $remote = new SDONGKIR_Remote();
-            try {
-                $countries = $remote->remote_request('/v2/internationalDestination', 'GET');
-            } catch (\Throwable $th) {
-                $this->ajax_error($th->getMessage());
+
+            $request = new SDONGKIR_Location_Request();
+            $countries = $request->get_international_destination();
+
+            if (is_wp_error($countries)) {
+                $this->ajax_error($countries->get_error_message());
             }
             
             $rows = [];

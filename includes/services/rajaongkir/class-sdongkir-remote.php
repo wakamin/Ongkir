@@ -41,10 +41,11 @@ if (!class_exists('SDONGKIR_Remote')) {
          *
          * @param String $urlPath
          * @param String $requestMethod
+         * @param Array $data
          *
          * @return Array
          */
-        public function remote_request($urlPath, $requestMethod)
+        public function remote_request($urlPath, $requestMethod, $data = array())
         {
             $remoteUrl = $this->_remote_url().$urlPath;
             $apiKey = sdongkir_api_key();
@@ -57,6 +58,7 @@ if (!class_exists('SDONGKIR_Remote')) {
             );
 
             if ($requestMethod == 'POST') {
+                $args['postfields'] = json_encode($data);
                 $response = wp_remote_post($remoteUrl, $args);
             } elseif ($requestMethod == 'GET') {
                 $response = wp_remote_get($remoteUrl, $args);

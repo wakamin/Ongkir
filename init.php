@@ -14,6 +14,12 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/translation/class-sdongkir-transla
 // Database interaction
 include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-db.php';
 
+// RajaOngkir request location
+include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-request-location.php';
+
+// RajaOngkir request cost
+include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-request-cost.php';
+
 // RajaOngkir remote request
 include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-remote.php';
 

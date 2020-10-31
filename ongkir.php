@@ -34,8 +34,8 @@ add_action('rest_api_init', function () {
 
 function ongkir_test_api()
 {
-    $remote = new SDONGKIR_Remote();
-    $data = $remote->remote_request('/province', 'GET');
+    $request = new SDONGKIR_Request_Location();
+    $get_international_destination = $request->get_international_destination();
 
-    wp_send_json_success($data);
+    wp_send_json_success($get_international_destination);
 }
