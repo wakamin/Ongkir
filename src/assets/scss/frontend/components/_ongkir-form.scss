@@ -54,24 +54,6 @@
         }
 
         .sdokr-form-field {
-
-            &.sdokr-origin,
-            &.sdokr-destination {
-                width: 35%;
-
-                @media only screen and(max-width: 576px) {
-                    width: 100%;
-                }
-            }
-
-            &.sdokr-weight {
-                width: 30%;
-
-                @media only screen and(max-width: 576px) {
-                    width: 100%;
-                }
-            }
-
             &.sdokr-tracking-number {
                 width: 70%;
 

@@ -14,25 +14,23 @@
     <div class="sdokr-form__tab-content">
         <div id="sdokr-shipping-cost-form" class="sdokr-form__content sdokr-form__content--active">
             <form class="sdokr-shortcode" name="sdokr-shipping-cost-form">
-                <div class="sdokr-form-inline">
-                    <div class="sdokr-form-field sdokr-origin">
-                        <label for="sdokr-origin"><?php esc_html_e('Origin', 'sd_ongkir') ?></label>
-                        <select name="sdokr-origin" id="sdokr-origin" class="sdokr-form-control sdokr-location-select2">
-                            <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
-                        </select>
-                    </div>
-                    <div class="sdokr-form-field sdokr-destination">
-                        <label for="sdokr-destination"><?php esc_html_e('Destination', 'sd_ongkir') ?></label>
-                        <select name="sdokr-destination" id="sdokr-destination" class="sdokr-form-control sdokr-location-select2">
-                            <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
-                        </select>
-                    </div>
-                    <div class="sdokr-form-field sdokr-weight">
-                        <label for="sdokr-weight"><?php esc_html_e('Weight', 'sd_ongkir') ?></label>
-                        <div class="sdokr-input-group">
-                            <input name="sdokr-weight" id="sdokr-weight" class="sdokr-form-control" placeholder="<?php esc_html_e('Weight', 'sd_ongkir') ?>" />
-                            <div class="sdokr-input-append">Gram</div>
-                        </div>
+                <div class="sdokr-form-field sdokr-origin">
+                    <label for="sdokr-origin"><?php esc_html_e('Origin', 'sd_ongkir') ?></label>
+                    <select name="sdokr-origin" id="sdokr-origin" class="sdokr-form-control sdokr-location-select2">
+                        <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
+                    </select>
+                </div>
+                <div class="sdokr-form-field sdokr-destination">
+                    <label for="sdokr-destination"><?php esc_html_e('Destination', 'sd_ongkir') ?></label>
+                    <select name="sdokr-destination" id="sdokr-destination" class="sdokr-form-control sdokr-location-select2">
+                        <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
+                    </select>
+                </div>
+                <div class="sdokr-form-field sdokr-weight">
+                    <label for="sdokr-weight"><?php esc_html_e('Weight', 'sd_ongkir') ?></label>
+                    <div class="sdokr-input-group">
+                        <input name="sdokr-weight" id="sdokr-weight" class="sdokr-form-control" placeholder="<?php esc_html_e('Weight', 'sd_ongkir') ?>" />
+                        <div class="sdokr-input-append">Gram</div>
                     </div>
                 </div>
 
