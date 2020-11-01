@@ -48,6 +48,13 @@ if (!class_exists('SDONGKIR_Settings')) {
                 'type' => 'array',
                 'sanitize_callback' => 'sdokr_sanitize_couriers',
             ));
+
+            // Tracking
+            add_option('sdokr_tracking_couriers', array());
+            register_setting('sdokr_tracking_couriers_options_group', 'sdokr_tracking_couriers', array(
+                'type' => 'array',
+                'sanitize_callback' => 'sdokr_sanitize_couriers',
+            ));
         }
 
         /**
