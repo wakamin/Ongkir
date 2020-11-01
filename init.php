@@ -32,6 +32,12 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/rajaongkir.php';
 // Icon functions
 include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/icons.php';
 
+// Sanitize functions
+include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/sanitize.php';
+
+// Options functions
+include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/options.php';
+
 // Ajax abstract class
 include_once SDONGKIR_PLUGIN_PATH . 'includes/abstracts/class-sdongkir-ajax.php';
 

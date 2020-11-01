@@ -5,30 +5,6 @@ if (!defined('ABSPATH')) {
     exit();
 }
 
-if (!function_exists('sdongkir_api_key')) {
-    /**
-     * Get rajaongkir api key
-     *
-     * @return String
-     */
-    function sdongkir_api_key()
-    {
-        return get_option('sdokr_rajaongkir_api_key');
-    }
-}
-
-if (!function_exists('sdongkir_account_type')) {
-    /**
-     * Get rajaongkir account type
-     *
-     * @return String
-     */
-    function sdongkir_account_type()
-    {
-        return get_option('sdokr_rajaongkir_account_type', 'starter');
-    }
-}
-
 if (!function_exists('sdongkir_count_location_data')) {
     /**
      * Get stored location count
@@ -125,7 +101,7 @@ if (!function_exists('sdokr_starter_couriers')) {
 
         return [
             'jne' => $couriers['jne'],
-            'pos' => $couriers['post'],
+            'pos' => $couriers['pos'],
             'tiki' => $couriers['tiki'],
         ];
     }
@@ -143,7 +119,7 @@ if (!function_exists('sdokr_basic_couriers')) {
 
         return [
             'jne' => $couriers['jne'],
-            'pos' => $couriers['post'],
+            'pos' => $couriers['pos'],
             'tiki' => $couriers['tiki'],
             'rpx' => $couriers['rpx'],
             'esl' => $couriers['esl'],
@@ -259,6 +235,14 @@ if (!function_exists('sdokr_all_couriers')) {
             'sentral' => [
                 'name' => 'Sentral Cargo',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/sentral.png',
+            ],
+            'esl' => [
+                'name' => 'Eka Sari Lorena (ESL)',
+                'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/esl.png',
+            ],
+            'pcp' => [
+                'name' => 'Priority Cargo and Package (PCP)',
+                'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/pcp.png',
             ]
         ];
     }

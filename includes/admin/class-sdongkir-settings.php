@@ -30,6 +30,7 @@ if (!class_exists('SDONGKIR_Settings')) {
          */
         public function register_settings()
         {
+            // Main configuration
             add_option('sdokr_rajaongkir_api_key', '');
             add_option('sdokr_rajaongkir_account_type', 'starter'); // starter, basic, pro
 
@@ -40,6 +41,13 @@ if (!class_exists('SDONGKIR_Settings')) {
 
             register_setting('sdokr_options_group', 'sdokr_rajaongkir_api_key', $args);
             register_setting('sdokr_options_group', 'sdokr_rajaongkir_account_type', $args);
+
+            // Shipping cost
+            add_option('sdokr_shipping_cost_couriers', array());
+            register_setting('sdokr_shipping_cost_couriers_options_group', 'sdokr_shipping_cost_couriers', array(
+                'type' => 'array',
+                'sanitize_callback' => 'sdokr_sanitize_couriers',
+            ));
         }
 
         /**
@@ -79,22 +87,6 @@ if (!class_exists('SDONGKIR_Settings')) {
             $settings_link = '<a href="options-general.php?page=ongkir">Settings</a>';
             array_push($links, $settings_link);
             return $links;
-        }
-
-        /**
-         * Admin notice on error import mahasiswa
-         *
-         * @return Html
-         */
-        public function error_import_mahasiswa()
-        {
-            if (isset($_GET['error-import-mahasiswa'])) {
-                ?>
-                    <div class="notice notice-warning is-dismissible">
-                        <p><?php echo esc_attr($_GET['error-import-mahasiswa']) ?></p>
-                    </div>
-                <?php
-            }
         }
     }
     
