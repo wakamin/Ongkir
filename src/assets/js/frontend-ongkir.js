@@ -79,6 +79,11 @@ $(document).ready(function () {
             },
         );
 
+        var couriers = [];
+        $(".sdokr-couriers-cb:checked").each(function () {
+            couriers.push($(this).attr("value"));
+        });
+
         $.ajax({
             url: sdongkir_lcz.ajaxurl,
             type: "POST",
@@ -87,6 +92,8 @@ $(document).ready(function () {
                 nonce_ajax: sdongkir_lcz.nonce,
                 origin: $("#sdokr-origin").val(),
                 dest: $("#sdokr-destination").val(),
+                weight: $("#sdokr-weight").val(),
+                couriers: couriers,
             },
             success: function (res) {
                 console.log(res);

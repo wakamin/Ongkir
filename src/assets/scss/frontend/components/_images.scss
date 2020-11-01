@@ -1,0 +1,16 @@
+.sdokr-courier-logo {
+    width: 100px;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #e2e2e2;
+    background-color: #ffffff;
+    border-radius: 3px;
+    overflow: hidden;
+    @include flexCenter;
+    transition: all .2s ease-in-out;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}

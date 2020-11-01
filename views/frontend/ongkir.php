@@ -33,12 +33,20 @@
                         <div class="sdokr-input-append">Gram</div>
                     </div>
                 </div>
-                <div class="sdokr-form-field sdokr-courier">
+                <div class="sdokr-form-field">
                     <label><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
-                    <div class="sdokr-input-group">
-                        <input type="checkbox" name="sdokr-courier" id="sdokr-courier-jne" value="jne" />
-                        <label for="sdokr-courier-jne">JNE</label>
-                    </div>
+                    <ul class="sdokr-courier-selections">
+                        <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
+                            <li>
+                                <label for="sdokr_shipping_cost_courier_<?php echo esc_attr($code) ?>" class="sdokr-cb-hide">
+                                    <input type="checkbox" id="sdokr_shipping_cost_courier_<?php echo esc_attr($code) ?>" class="sdokr-couriers-cb" value="<?php echo esc_attr($code) ?>">
+                                    <div class="sdokr-courier-logo">
+                                        <img src="<?php echo esc_url($courier['logo']) ?>" alt="<?php echo esc_attr($courier['name']) ?>">
+                                    </div>
+                                </label>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
 
 

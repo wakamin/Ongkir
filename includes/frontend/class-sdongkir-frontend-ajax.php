@@ -66,13 +66,21 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
         {
             check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
-            if (!isset($_POST['origin']) || $_POST['origin'] == '') {
-                return $this->ajax_error(__('Please select shipping origin!', 'sd_ongkir'));
-            }
+            // if (!isset($_POST['origin']) || $_POST['origin'] == '') {
+            //     return $this->ajax_error(__('Please select shipping origin!', 'sd_ongkir'));
+            // }
 
-            if (!isset($_POST['dest']) || $_POST['dest'] == '') {
-                return $this->ajax_error(__('Please select shipping destination!', 'sd_ongkir'));
-            }
+            // if (!isset($_POST['dest']) || $_POST['dest'] == '') {
+            //     return $this->ajax_error(__('Please select shipping destination!', 'sd_ongkir'));
+            // }
+
+            // if (!isset($_POST['weight']) || $_POST['weight'] == '') {
+            //     return $this->ajax_error(__('Please input weight!', 'sd_ongkir'));
+            // }
+
+            // if (!isset($_POST['couriers']) || $_POST['couriers'] == '') {
+            //     return $this->ajax_error(__('Please select couriers!', 'sd_ongkir'));
+            // }
 
             ob_start();
             require_once SDONGKIR_PLUGIN_PATH . 'views/frontend/shipping-cost-result.php';

@@ -1,0 +1,26 @@
+.sdokr-list-grid-3 {
+    columns: 3;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin: 0;
+    }
+}
+
+.sdokr-courier-selections {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        margin: 10px;
+
+        .sdokr-courier-logo {
+            cursor: pointer;
+        }
+    }
+}

@@ -99,11 +99,15 @@ if (!function_exists('sdokr_starter_couriers')) {
     {
         $couriers = sdokr_all_couriers();
 
-        return [
+        $starter = [
             'jne' => $couriers['jne'],
             'pos' => $couriers['pos'],
             'tiki' => $couriers['tiki'],
         ];
+
+        ksort($starter);
+        
+        return $starter;
     }
 }
 
@@ -117,7 +121,7 @@ if (!function_exists('sdokr_basic_couriers')) {
     {
         $couriers = sdokr_all_couriers();
 
-        return [
+        $basic = [
             'jne' => $couriers['jne'],
             'pos' => $couriers['pos'],
             'tiki' => $couriers['tiki'],
@@ -125,6 +129,10 @@ if (!function_exists('sdokr_basic_couriers')) {
             'esl' => $couriers['esl'],
             'pcp' => $couriers['pcp']
         ];
+
+        ksort($basic);
+        
+        return $basic;
     }
 }
 
@@ -143,13 +151,13 @@ if (!function_exists('sdokr_pro_couriers')) {
 if (!function_exists('sdokr_all_couriers')) {
     function sdokr_all_couriers()
     {
-        return [
+        $couriers = [
             'jne' => [
                 'name' => 'JNE',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/jne.png',
             ],
             'pos' => [
-                'name' => 'POS Indonesia',
+                'name' => 'POS',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/pos.png',
             ],
             'tiki' => [
@@ -161,7 +169,7 @@ if (!function_exists('sdokr_all_couriers')) {
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/rpx.png',
             ],
             'pandu' => [
-                'name' => 'Pandu Logistic',
+                'name' => 'Pandu',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/pandu.png',
             ],
             'wahana' => [
@@ -177,19 +185,19 @@ if (!function_exists('sdokr_all_couriers')) {
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/jnt.png',
             ],
             'pahala' => [
-                'name' => 'Pahala Express',
+                'name' => 'Pahala',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/pahala.png',
             ],
             'sap' => [
-                'name' => 'SAP Express',
+                'name' => 'SAP',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/sap.png',
             ],
             'jet' => [
-                'name' => 'JET Express',
+                'name' => 'JET',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/jet.png',
             ],
             'indah' => [
-                'name' => 'Indah Logistic',
+                'name' => 'Indah',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/indah.png',
             ],
             'dse' => [
@@ -205,7 +213,7 @@ if (!function_exists('sdokr_all_couriers')) {
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/first.png',
             ],
             'ncs' => [
-                'name' => 'Nusantara Card Semesta',
+                'name' => 'NCS',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/ncs.png',
             ],
             'star' => [
@@ -221,7 +229,7 @@ if (!function_exists('sdokr_all_couriers')) {
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/lion.png',
             ],
             'idl' => [
-                'name' => 'Indotama Domestik Lestari',
+                'name' => 'IDL',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/idl.png',
             ],
             'rex' => [
@@ -233,17 +241,21 @@ if (!function_exists('sdokr_all_couriers')) {
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/ide.png',
             ],
             'sentral' => [
-                'name' => 'Sentral Cargo',
+                'name' => 'Sentral',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/sentral.png',
             ],
             'esl' => [
-                'name' => 'Eka Sari Lorena (ESL)',
+                'name' => 'ESL',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/esl.png',
             ],
             'pcp' => [
-                'name' => 'Priority Cargo and Package (PCP)',
+                'name' => 'PCP',
                 'logo' => SDONGKIR_PLUGIN_URL . 'assets/images/couriers/pcp.png',
             ]
         ];
+
+        ksort($couriers);
+
+        return $couriers;
     }
 }
