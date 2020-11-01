@@ -132,4 +132,8 @@ $(document).ready(function () {
         // open modal
         modal.open();
     });
+
+    $("body").on("click", ".sdokr-red", function () {
+        alert("test");
+    });
 });

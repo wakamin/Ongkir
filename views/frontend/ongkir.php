@@ -33,6 +33,14 @@
                         <div class="sdokr-input-append">Gram</div>
                     </div>
                 </div>
+                <div class="sdokr-form-field sdokr-courier">
+                    <label><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
+                    <div class="sdokr-input-group">
+                        <input type="checkbox" name="sdokr-courier" id="sdokr-courier-jne" value="jne" />
+                        <label for="sdokr-courier-jne">JNE</label>
+                    </div>
+                </div>
+
 
                 <button type="submit" class="sdokr-form-btn"><?php esc_html_e('Get Shipping Costs', 'sd_ongkir') ?></button>
             </form>
