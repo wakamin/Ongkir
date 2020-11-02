@@ -16,21 +16,17 @@
 .select2-container--default .select2-selection--single {
     background-color: #fff;
     border: 1px solid #b8b8b8;
-    border-radius: 0;
+    border-radius: $border-radius-form;
 }
 
 .select2-container .select2-selection--single {
     height: 45px;
 }
 
-.select2-container--default
-    .select2-selection--single
-    .select2-selection__rendered {
+.select2-container--default .select2-selection--single .select2-selection__rendered {
     line-height: 45px;
 }
 
-.select2-container--default
-    .select2-selection--single
-    .select2-selection__arrow {
+.select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 43px;
 }

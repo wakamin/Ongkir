@@ -1,19 +1,54 @@
-.sdokr-form-btn {
-    width: 100%;
+.sdokr-btn {
     border-radius: 0;
-    padding: 15px 20px;
-    background-color: #0f7bf6;
-    color: #ffffff;
-    font-size: 17px;
+    padding: 10px 15px;
+    color: #4c4c4c;
+    font-size: 15px;
     border: none;
-    transition: all .25 ease;
-    text-transform: uppercase;
-
-    &:hover {
-        background-color: darken(#0f7bf6, 10);
-    }
+    border-radius: $border-radius-form;
+    font-weight: normal;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.28);
+    transition: all .25s ease;
 
     &:focus {
         outline: none;
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+
+    &--block {
+        width: 100%;
+    }
+
+    &--lg {
+        padding: 15px 20px;
+    }
+
+    &--primary {
+        background-color: $color-primary;
+        color: #ffffff;
+
+        &:hover,
+        &:focus {
+            background-color: darken($color-primary, 10);
+        }
+    }
+
+    &-outline {
+        background-color: #efefef;
+
+        &:hover,
+        &:focus {
+            background-color: #efefef;
+        }
+
+        &--primary {
+            border: 1px solid $color-primary;
+        }
+
+        &--secondary {
+            border: 1px solid #c9c9c9;
+        }
     }
 }

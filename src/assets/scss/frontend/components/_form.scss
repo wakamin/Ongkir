@@ -11,7 +11,7 @@
     .sdokr-form-control {
         background-color: #fff;
         border: 1px solid #b8b8b8;
-        border-radius: 0;
+        border-radius: $border-radius-form;
         height: 45px;
         line-height: 45px;
         width: 100%;
@@ -29,8 +29,9 @@
             line-height: 45px;
             background-color: #d8d8d8;
             border: 1px solid #b8b8b8;
+            border-radius: 0 $border-radius-form $border-radius-form 0;
             font-size: 14px;
-            padding: 0 10px;
+            padding: 0 15px;
         }
     }
 }

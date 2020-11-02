@@ -1,7 +1,21 @@
+.sdokr-hide {
+    display: none;
+}
+
 .sdokr-flex {
     display: flex;
 }
 
 .sdokr-justify-end {
     justify-content: flex-end;
+}
+
+@for $i from 1 to 4 {
+    .sdokr-mt-#{$i} {
+        margin-top: 5px * $i;
+    }
+
+    .sdokr-mb-#{$i} {
+        margin-bottom: 5px * $i;
+    }
 }

@@ -112,6 +112,27 @@ $(document).ready(function () {
         });
     });
 
+    // Courier selection type
+    let courier_selection_type = "single";
+    $(".sdokr-selection-type").on("click", function () {
+        courier_selection_type =
+            courier_selection_type == "single" ? "multiple" : "single";
+        console.log(courier_selection_type);
+        if (courier_selection_type == "single") {
+            $(".sdokr-single-courier-selection").removeClass("sdokr-hide");
+            $(".sdokr-couriers-wrapper").addClass("sdokr-hide");
+            $(".sdokr-select-all").addClass("sdokr-hide");
+            $(".sdokr-unselect-all").addClass("sdokr-hide");
+            $(this).html(sdongkir_lcz.multiple_selection);
+        } else {
+            $(".sdokr-single-courier-selection").addClass("sdokr-hide");
+            $(".sdokr-couriers-wrapper").removeClass("sdokr-hide");
+            $(".sdokr-select-all").removeClass("sdokr-hide");
+            $(".sdokr-unselect-all").removeClass("sdokr-hide");
+            $(this).html(sdongkir_lcz.single_selection);
+        }
+    });
+
     // Shipping cost
     $("#sdokr-shipping-tracking-form").submit(function (e) {
         e.preventDefault();
@@ -142,5 +163,13 @@ $(document).ready(function () {
 
     $("body").on("click", ".sdokr-red", function () {
         alert("test");
+    });
+
+    $(".sdokr-select-all").on("click", function () {
+        $($(this).data("target")).prop("checked", true);
+    });
+
+    $(".sdokr-unselect-all").on("click", function () {
+        $($(this).data("target")).prop("checked", false);
     });
 });
