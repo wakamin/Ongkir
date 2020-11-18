@@ -1,3 +1,104 @@
 .sdokr-red {
     color: red;
 }
+
+.sdokr-sh-res {
+    &__filter {}
+
+    &__block {}
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border: 1px solid $grey;
+        margin-bottom: 10px;
+    }
+
+    &__header-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        color: $black;
+        font-size: 20px;
+        background-color: lighten($grey, 3);
+        transition: all .25s ease-in-out;
+
+        &--sort {
+            cursor: pointer;
+
+            &:hover {
+                background-color: $grey;
+            }
+        }
+
+        &.logo {
+            width: 25%;
+        }
+
+        &.service {
+            width: 50%;
+        }
+
+        &.cost {
+            width: 25%;
+        }
+
+        .text {
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        .icon {
+            line-height: 1;
+        }
+    }
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            border: 1px solid $grey;
+            padding: 5px 10px;
+            margin-bottom: 5px;
+        }
+    }
+
+    &__logo {
+        width: 25%;
+        line-height: 1;
+
+        img {
+            width: auto;
+            height: 30px;
+        }
+    }
+
+    &__service-etd {
+        width: 50%;
+        text-align: center;
+
+        .service {
+            font-size: 18px;
+            color: $black;
+            margin-right: 5px;
+        }
+
+        .etd {
+            font-size: 15px;
+            color: $color-muted;
+        }
+    }
+
+    &__cost {
+        width: 25%;
+        color: $black;
+        font-size: 18px;
+        text-align: right;
+    }
+}

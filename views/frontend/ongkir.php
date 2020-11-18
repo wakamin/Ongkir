@@ -41,7 +41,7 @@
                     <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-unselect-all sdokr-mb-3 sdokr-hide" data-target=".sdokr-couriers-cb"><?php esc_html_e('Unselect all', 'sd_ongkir') ?></button>
 
                     <div class="sdokr-single-courier-selection">
-                        <select name="sdokr-courier" class="sdokr-form-control sdokr-select2">
+                        <select id="sdokr-cost-courier" name="sdokr-courier" class="sdokr-form-control sdokr-select2">
                             <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
                             <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
                                 <option value="<?php echo esc_attr($code) ?>"><?php echo esc_attr($courier['name']) ?></option>

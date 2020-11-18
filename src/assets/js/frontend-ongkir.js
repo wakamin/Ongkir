@@ -58,6 +58,26 @@ $(document).ready(function () {
         },
     );
 
+    // Courier selection type
+    let courier_selection_type = "single";
+    $(".sdokr-selection-type").on("click", function () {
+        courier_selection_type =
+            courier_selection_type == "single" ? "multiple" : "single";
+        if (courier_selection_type == "single") {
+            $(".sdokr-single-courier-selection").removeClass("sdokr-hide");
+            $(".sdokr-couriers-wrapper").addClass("sdokr-hide");
+            $(".sdokr-select-all").addClass("sdokr-hide");
+            $(".sdokr-unselect-all").addClass("sdokr-hide");
+            $(this).html(sdongkir_lcz.multiple_selection);
+        } else {
+            $(".sdokr-single-courier-selection").addClass("sdokr-hide");
+            $(".sdokr-couriers-wrapper").removeClass("sdokr-hide");
+            $(".sdokr-select-all").removeClass("sdokr-hide");
+            $(".sdokr-unselect-all").removeClass("sdokr-hide");
+            $(this).html(sdongkir_lcz.single_selection);
+        }
+    });
+
     // Get shipping cost
     $("#sdokr-shipping-cost-form").submit(function (e) {
         e.preventDefault();
@@ -80,9 +100,14 @@ $(document).ready(function () {
         );
 
         var couriers = [];
-        $(".sdokr-couriers-cb:checked").each(function () {
-            couriers.push($(this).attr("value"));
-        });
+
+        if (courier_selection_type == "single") {
+            couriers.push($("#sdokr-cost-courier").val());
+        } else {
+            $(".sdokr-couriers-cb:checked").each(function () {
+                couriers.push($(this).attr("value"));
+            });
+        }
 
         $.ajax({
             url: sdongkir_lcz.ajaxurl,
@@ -110,27 +135,6 @@ $(document).ready(function () {
                 error_modal.open();
             },
         });
-    });
-
-    // Courier selection type
-    let courier_selection_type = "single";
-    $(".sdokr-selection-type").on("click", function () {
-        courier_selection_type =
-            courier_selection_type == "single" ? "multiple" : "single";
-        console.log(courier_selection_type);
-        if (courier_selection_type == "single") {
-            $(".sdokr-single-courier-selection").removeClass("sdokr-hide");
-            $(".sdokr-couriers-wrapper").addClass("sdokr-hide");
-            $(".sdokr-select-all").addClass("sdokr-hide");
-            $(".sdokr-unselect-all").addClass("sdokr-hide");
-            $(this).html(sdongkir_lcz.multiple_selection);
-        } else {
-            $(".sdokr-single-courier-selection").addClass("sdokr-hide");
-            $(".sdokr-couriers-wrapper").removeClass("sdokr-hide");
-            $(".sdokr-select-all").removeClass("sdokr-hide");
-            $(".sdokr-unselect-all").removeClass("sdokr-hide");
-            $(this).html(sdongkir_lcz.single_selection);
-        }
     });
 
     // Shipping cost
