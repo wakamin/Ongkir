@@ -15,27 +15,35 @@
             border-bottom: none;
             border-right: 1px solid #d6d6d6;
 
-            a {
-                color: inherit !important;
+            .sdokr-form__tab-nav {
+                color: #535353;
             }
         }
+    }
 
-        a {
-            padding: 15px 30px;
-            display: block;
-            text-decoration: none;
-            border-bottom: none;
-            font-weight: 600;
-            color: #969696;
-            transition: all .25s ease;
+    &__tab-nav {
+        padding: 15px 30px;
+        font-weight: 600;
+        color: #848484;
+        line-height: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        cursor: pointer;
+        transition: all .25s ease;
 
-            @media only screen and(max-width: 576px) {
-                padding: 12px 14px;
-            }
+        @media only screen and(max-width: 576px) {
+            padding: 12px 14px;
+        }
 
-            &:hover {
-                color: inherit !important;
-            }
+        &:hover {
+            color: #535353;
+        }
+
+        .text {
+            margin-left: 5px;
         }
     }
 
@@ -51,24 +59,6 @@
 
         &--active {
             display: block;
-        }
-
-        .sdokr-form-field {
-            &.sdokr-tracking-number {
-                width: 70%;
-
-                @media only screen and(max-width: 576px) {
-                    width: 100%;
-                }
-            }
-
-            &.sdokr-courier {
-                width: 30%;
-
-                @media only screen and(max-width: 576px) {
-                    width: 100%;
-                }
-            }
         }
     }
 }

@@ -6,7 +6,7 @@ $(document).ready(function () {
     "use strict";
 
     // Ongkir form
-    $(".sdokr-form__tab a").on("click", function (e) {
+    $(".sdokr-form__tab-nav").on("click", function (e) {
         e.preventDefault();
         let target = $(this).data("target");
 

@@ -1,14 +1,14 @@
 <div id="sdokr-form-wrapper" class="sdokr-form">
     <div class="sdokr-form__tabs">
         <div class="sdokr-form__tab sdokr-form__tab--active">
-            <a href="#" title="<?php esc_html_e('Shipping Cost', 'sd_ongkir') ?>" data-target="#sdokr-shipping-cost">
-                <?php echo sdongkir_shipping_cost_icon() ?> <?php esc_html_e('Shipping Cost', 'sd_ongkir') ?>
-            </a>
+            <div class="sdokr-form__tab-nav" title="<?php esc_html_e('Shipping Cost', 'sd_ongkir') ?>" data-target="#sdokr-shipping-cost">
+                <?php echo sdongkir_shipping_cost_icon() ?> <span class="text"><?php esc_html_e('Shipping Cost', 'sd_ongkir') ?></span>
+            </div>
         </div>
         <div class="sdokr-form__tab">
-            <a href="#" title="<?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?>" data-target="#sdokr-shipping-tracking">
-                <?php echo sdongkir_shipping_track_icon() ?> <?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?>
-            </a>
+            <div class="sdokr-form__tab-nav" title="<?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?>" data-target="#sdokr-shipping-tracking">
+                <?php echo sdongkir_shipping_track_icon() ?> <span class="text"><?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?></span>
+            </div>
         </div>
     </div>
     <div class="sdokr-form__tab-content">
@@ -70,23 +70,21 @@
         </div>
         <div id="sdokr-shipping-tracking" class="sdokr-form__content">
             <form class="sdokr-shortcode" id="sdokr-shipping-tracking-form" method="POST" action="<?php echo esc_url(get_permalink()) ?>">
-                <div class="sdokr-form-inline">
-                    <div class="sdokr-form-field sdokr-tracking-number">
-                        <label for="sdokr-tracking-number"><?php esc_html_e('Tracking Number', 'sd_ongkir') ?></label>
-                        <input name="sdokr-tracking-number" id="sdokr-tracking-number" class="sdokr-form-control" placeholder="<?php esc_html_e('Tracking Number', 'sd_ongkir') ?>" />
-                    </div>
-                    <div class="sdokr-form-field sdokr-courier">
-                        <label for="sdokr-courier"><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
-                        <select name="sdokr-courier" id="sdokr-courier" class="sdokr-form-control sdokr-select2">
-                            <option value="test">Test</option>
-                            <option value="test2">Test2</option>
-                            <option value="test3">Test3</option>
-                            <option value="test4">Test4</option>
-                        </select>
-                    </div>
+                <div class="sdokr-form-field">
+                    <label for="sdokr-tracking-number"><?php esc_html_e('Tracking Number', 'sd_ongkir') ?></label>
+                    <input name="sdokr-tracking-number" id="sdokr-tracking-number" class="sdokr-form-control" placeholder="<?php esc_html_e('Tracking Number', 'sd_ongkir') ?>" />
+                </div>
+                <div class="sdokr-form-field sdokr-courier">
+                    <label for="sdokr-courier"><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
+                    <select id="sdokr-track-courier" name="sdokr-courier" class="sdokr-form-control sdokr-select2">
+                        <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
+                        <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
+                            <option value="<?php echo esc_attr($code) ?>"><?php echo esc_attr($courier['name']) ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
-                <button type="submit" class="sdokr-form-btn"><?php esc_html_e('Track Shipment', 'sd_ongkir') ?></button>
+                <button type="submit" class="sdokr-strack-btn sdokr-btn sdokr-btn--primary sdokr-btn--lg sdokr-btn--block"><?php esc_html_e('Track Shipment', 'sd_ongkir') ?></button>
             </form>
         </div>
     </div>
