@@ -55,6 +55,7 @@ if (!class_exists('SDONGKIR_Remote')) {
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json'
                 ),
+                'timeout' => 45
             );
 
             if ($requestMethod == 'POST') {

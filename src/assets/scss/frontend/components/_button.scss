@@ -33,6 +33,10 @@
         &:focus {
             background-color: darken($color-primary, 10);
         }
+
+        &:disabled {
+            background-color: lighten($color-primary, 15);
+        }
     }
 
     &-outline {

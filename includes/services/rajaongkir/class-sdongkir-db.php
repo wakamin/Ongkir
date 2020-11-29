@@ -173,6 +173,57 @@ if (!class_exists('SDONGKIR_Db')) {
 
             return $results;
         }
+
+        /**
+         * Get province by id
+         *
+         * @param Int $id
+         * @return Object
+         */
+        public function get_province_by_id($id)
+        {
+            global $wpdb;
+            $tableName = $this->tables()['province'];
+            $province = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
+            );
+
+            return $province;
+        }
+
+        /**
+         * Get city by id
+         *
+         * @param Int $id
+         * @return Object
+         */
+        public function get_city_by_id($id)
+        {
+            global $wpdb;
+            $tableName = $this->tables()['city'];
+            $city = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
+            );
+
+            return $city;
+        }
+
+        /**
+         * Get subdistrict by id
+         *
+         * @param Int $id
+         * @return Object
+         */
+        public function get_subdistrict_by_id($id)
+        {
+            global $wpdb;
+            $tableName = $this->tables()['subdistrict'];
+            $subdistrict = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
+            );
+
+            return $subdistrict;
+        }
     }
 
     $SDONGKIR_Db = new SDONGKIR_Db();

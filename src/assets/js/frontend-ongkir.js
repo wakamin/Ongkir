@@ -82,6 +82,9 @@ $(document).ready(function () {
     $("#sdokr-shipping-cost-form").submit(function (e) {
         e.preventDefault();
 
+        $(".sdokr-scost-btn").attr("disabled", true);
+        $(".sdokr-scost-btn").html(sdongkir_lcz.processing_text);
+
         // instanciate new modal
         var modal = new tingle.modal({
             footer: true,
@@ -121,23 +124,27 @@ $(document).ready(function () {
                 couriers: couriers,
             },
             success: function (res) {
-                console.log(res);
                 let html = res.data.data.html;
                 // set content
                 modal.setContent(html);
 
-                // // open modal
+                // open modal
                 modal.open();
+
+                $(".sdokr-scost-btn").attr("disabled", false);
+                $(".sdokr-scost-btn").html(sdongkir_lcz.get_shipping_cost_text);
             },
             error: function (err) {
                 console.log(err);
                 error_modal.setContent(err.responseJSON.data.message);
                 error_modal.open();
+                $(".sdokr-scost-btn").attr("disabled", false);
+                $(".sdokr-scost-btn").html(sdongkir_lcz.get_shipping_cost_text);
             },
         });
     });
 
-    // Shipping cost
+    // Shipping tracking
     $("#sdokr-shipping-tracking-form").submit(function (e) {
         e.preventDefault();
 

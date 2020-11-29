@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="sdokr-btn sdokr-btn--primary sdokr-btn--lg sdokr-btn--block"><?php esc_html_e('Get Shipping Costs', 'sd_ongkir') ?></button>
+                <button type="submit" class="sdokr-scost-btn sdokr-btn sdokr-btn--primary sdokr-btn--lg sdokr-btn--block"><?php esc_html_e('Get Shipping Costs', 'sd_ongkir') ?></button>
             </form>
         </div>
         <div id="sdokr-shipping-tracking" class="sdokr-form__content">
