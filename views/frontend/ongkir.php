@@ -5,11 +5,13 @@
                 <?php echo sdongkir_shipping_cost_icon() ?> <span class="text"><?php esc_html_e('Shipping Cost', 'sd_ongkir') ?></span>
             </div>
         </div>
-        <div class="sdokr-form__tab">
-            <div class="sdokr-form__tab-nav" title="<?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?>" data-target="#sdokr-shipping-tracking">
-                <?php echo sdongkir_shipping_track_icon() ?> <span class="text"><?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?></span>
+        <?php if (sdongkir_account_type() != 'starter' && count(sdongkir_active_trackable_couriers()) > 0): ?>
+            <div class="sdokr-form__tab">
+                <div class="sdokr-form__tab-nav" title="<?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?>" data-target="#sdokr-shipping-tracking">
+                    <?php echo sdongkir_shipping_track_icon() ?> <span class="text"><?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?></span>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
     <div class="sdokr-form__tab-content">
         <div id="sdokr-shipping-cost" class="sdokr-form__content sdokr-form__content--active">
@@ -43,7 +45,7 @@
                     <div class="sdokr-single-courier-selection">
                         <select id="sdokr-cost-courier" name="sdokr-courier" class="sdokr-form-control sdokr-select2">
                             <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
-                            <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
+                            <?php foreach (sdongkir_active_cost_couriers() as $code => $courier): ?>
                                 <option value="<?php echo esc_attr($code) ?>"><?php echo esc_attr($courier['name']) ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -51,7 +53,7 @@
 
                     <div class="sdokr-couriers-wrapper sdokr-hide">
                         <ul class="sdokr-courier-selections">
-                            <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
+                            <?php foreach (sdongkir_active_cost_couriers() as $code => $courier): ?>
                                 <li>
                                     <label for="sdokr_shipping_cost_courier_<?php echo esc_attr($code) ?>" class="sdokr-cb-hide">
                                         <input type="checkbox" id="sdokr_shipping_cost_courier_<?php echo esc_attr($code) ?>" class="sdokr-couriers-cb" value="<?php echo esc_attr($code) ?>">
@@ -68,24 +70,26 @@
                 <button type="submit" class="sdokr-scost-btn sdokr-btn sdokr-btn--primary sdokr-btn--lg sdokr-btn--block"><?php esc_html_e('Get Shipping Costs', 'sd_ongkir') ?></button>
             </form>
         </div>
-        <div id="sdokr-shipping-tracking" class="sdokr-form__content">
-            <form class="sdokr-shortcode" id="sdokr-shipping-tracking-form" method="POST" action="<?php echo esc_url(get_permalink()) ?>">
-                <div class="sdokr-form-field">
-                    <label for="sdokr-tracking-number"><?php esc_html_e('Tracking Number', 'sd_ongkir') ?></label>
-                    <input name="sdokr-tracking-number" id="sdokr-tracking-number" class="sdokr-form-control" placeholder="<?php esc_html_e('Tracking Number', 'sd_ongkir') ?>" />
-                </div>
-                <div class="sdokr-form-field sdokr-courier">
-                    <label for="sdokr-courier"><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
-                    <select id="sdokr-track-courier" name="sdokr-courier" class="sdokr-form-control sdokr-select2">
-                        <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
-                        <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
-                            <option value="<?php echo esc_attr($code) ?>"><?php echo esc_attr($courier['name']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+        <?php if (sdongkir_account_type() != 'starter' && count(sdongkir_active_trackable_couriers()) > 0): ?>
+            <div id="sdokr-shipping-tracking" class="sdokr-form__content">
+                <form class="sdokr-shortcode" id="sdokr-shipping-tracking-form" method="POST" action="<?php echo esc_url(get_permalink()) ?>">
+                    <div class="sdokr-form-field">
+                        <label for="sdokr-tracking-number"><?php esc_html_e('Tracking Number', 'sd_ongkir') ?></label>
+                        <input name="sdokr-tracking-number" id="sdokr-tracking-number" class="sdokr-form-control" placeholder="<?php esc_html_e('Tracking Number', 'sd_ongkir') ?>" />
+                    </div>
+                    <div class="sdokr-form-field sdokr-courier">
+                        <label for="sdokr-courier"><?php esc_html_e('Courier', 'sd_ongkir') ?></label>
+                        <select id="sdokr-track-courier" name="sdokr-courier" class="sdokr-form-control sdokr-select2">
+                            <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
+                            <?php foreach (sdongkir_active_trackable_couriers() as $code => $courier): ?>
+                                <option value="<?php echo esc_attr($code) ?>"><?php echo esc_attr($courier['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
 
-                <button type="submit" class="sdokr-strack-btn sdokr-btn sdokr-btn--primary sdokr-btn--lg sdokr-btn--block"><?php esc_html_e('Track Shipment', 'sd_ongkir') ?></button>
-            </form>
-        </div>
+                    <button type="submit" class="sdokr-strack-btn sdokr-btn sdokr-btn--primary sdokr-btn--lg sdokr-btn--block"><?php esc_html_e('Track Shipment', 'sd_ongkir') ?></button>
+                </form>
+            </div>
+        <?php endif; ?>
     </div>
 </div>

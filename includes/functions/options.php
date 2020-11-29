@@ -29,25 +29,25 @@ if (!function_exists('sdongkir_account_type')) {
     }
 }
 
-if (!function_exists('sdokr_shipping_cost_couriers')) {
+if (!function_exists('sdongkir_shipping_cost_couriers')) {
     /**
      * Get shipping cost active couriers
      *
      * @return Array
      */
-    function sdokr_shipping_cost_couriers()
+    function sdongkir_shipping_cost_couriers()
     {
         return get_option('sdokr_shipping_cost_couriers', array());
     }
 }
 
-if (!function_exists('sdokr_tracking_couriers')) {
+if (!function_exists('sdongkir_tracking_couriers')) {
     /**
      * Get tracking active couriers
      *
      * @return Array
      */
-    function sdokr_tracking_couriers()
+    function sdongkir_tracking_couriers()
     {
         return get_option('sdokr_tracking_couriers', array());
     }

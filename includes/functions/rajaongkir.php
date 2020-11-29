@@ -61,24 +61,24 @@ if (!function_exists('sdongkir_search_location')) {
     }
 }
 
-if (!function_exists('sdokr_available_couriers')) {
+if (!function_exists('sdongkir_available_couriers')) {
     /**
      * Get available couriers
      *
      * @return Array
      */
-    function sdokr_available_couriers()
+    function sdongkir_available_couriers()
     {
         $accountType = sdongkir_account_type();
         switch ($accountType) {
             case 'starter':
-                $couriers = sdokr_starter_couriers();
+                $couriers = sdongkir_starter_couriers();
                 break;
             case 'basic':
-                $couriers = sdokr_basic_couriers();
+                $couriers = sdongkir_basic_couriers();
                 break;
             case 'pro':
-                $couriers = sdokr_pro_couriers();
+                $couriers = sdongkir_pro_couriers();
                 break;
             default:
                 $couriers = [];
@@ -89,15 +89,37 @@ if (!function_exists('sdokr_available_couriers')) {
     }
 }
 
-if (!function_exists('sdokr_starter_couriers')) {
+if (!function_exists('sdongkir_active_cost_couriers')) {
+    /**
+     * Get active shipping cost couriers
+     *
+     * @return Array
+     */
+    function sdongkir_active_cost_couriers()
+    {
+        $courierCodes = sdongkir_shipping_cost_couriers();
+        $available = sdongkir_available_couriers();
+
+        $results = array();
+        foreach ($courierCodes as $code) {
+            if (array_key_exists($code, $available)) {
+                $results[$code] = $available[$code];
+            }
+        }
+
+        return $results;
+    }
+}
+
+if (!function_exists('sdongkir_starter_couriers')) {
     /**
      * Get couriers for starter account
      *
      * @return Array
      */
-    function sdokr_starter_couriers()
+    function sdongkir_starter_couriers()
     {
-        $couriers = sdokr_all_couriers();
+        $couriers = sdongkir_all_couriers();
 
         $starter = [
             'jne' => $couriers['jne'],
@@ -111,15 +133,15 @@ if (!function_exists('sdokr_starter_couriers')) {
     }
 }
 
-if (!function_exists('sdokr_basic_couriers')) {
+if (!function_exists('sdongkir_basic_couriers')) {
     /**
      * Get couriers for basic account
      *
      * @return Array
      */
-    function sdokr_basic_couriers()
+    function sdongkir_basic_couriers()
     {
-        $couriers = sdokr_all_couriers();
+        $couriers = sdongkir_all_couriers();
 
         $basic = [
             'jne' => $couriers['jne'],
@@ -136,20 +158,20 @@ if (!function_exists('sdokr_basic_couriers')) {
     }
 }
 
-if (!function_exists('sdokr_pro_couriers')) {
+if (!function_exists('sdongkir_pro_couriers')) {
     /**
      * Get couriers for pro account
      *
      * @return Array
      */
-    function sdokr_pro_couriers()
+    function sdongkir_pro_couriers()
     {
-        return sdokr_all_couriers();
+        return sdongkir_all_couriers();
     }
 }
 
-if (!function_exists('sdokr_all_couriers')) {
-    function sdokr_all_couriers()
+if (!function_exists('sdongkir_all_couriers')) {
+    function sdongkir_all_couriers()
     {
         $couriers = [
             'jne' => [
@@ -257,5 +279,107 @@ if (!function_exists('sdokr_all_couriers')) {
         ksort($couriers);
 
         return $couriers;
+    }
+
+    if (!function_exists('sdongkir_basic_trackable_couriers')) {
+        /**
+         * Get trackable couriers for basic account
+         *
+         * @return Array
+         */
+        function sdongkir_basic_trackable_couriers()
+        {
+            $couriers = sdongkir_all_couriers();
+
+            $trackable = [
+                'jne' => $couriers['jne'],
+            ];
+
+            ksort($trackable);
+            
+            return $trackable;
+        }
+    }
+
+    if (!function_exists('sdongkir_pro_trackable_couriers')) {
+        /**
+         * Get trackable couriers for pro account
+         *
+         * @return Array
+         */
+        function sdongkir_pro_trackable_couriers()
+        {
+            $couriers = sdongkir_all_couriers();
+
+            $trackable = [
+                'jne' => $couriers['jne'],
+                'pos' => $couriers['pos'],
+                'wahana' => $couriers['wahana'],
+                'jnt' => $couriers['jnt'],
+                'sap' => $couriers['sap'],
+                'sicepat' => $couriers['sicepat'],
+                'jet' => $couriers['jet'],
+                'dse' => $couriers['dse'],
+                'first' => $couriers['first'],
+                'ninja' => $couriers['ninja'],
+                'lion' => $couriers['lion'],
+                'idl' => $couriers['idl'],
+                'rex' => $couriers['rex'],
+                'ide' => $couriers['ide'],
+                'sentral' => $couriers['sentral']
+            ];
+
+            ksort($trackable);
+            
+            return $trackable;
+        }
+    }
+
+    if (!function_exists('sdongkir_trackable_couriers')) {
+        /**
+         * Get trackable couriers
+         *
+         * @return Array
+         */
+        function sdongkir_trackable_couriers()
+        {
+            $accountType = sdongkir_account_type();
+
+            switch ($accountType) {
+                case 'basic':
+                    $couriers = sdongkir_basic_trackable_couriers();
+                    break;
+                case 'pro':
+                    $couriers = sdongkir_pro_trackable_couriers();
+                    break;
+                default:
+                    $couriers = [];
+                    break;
+            }
+
+            return $couriers;
+        }
+    }
+
+    if (!function_exists('sdongkir_active_trackable_couriers')) {
+        /**
+         * Get active shipping trackable couriers
+         *
+         * @return Array
+         */
+        function sdongkir_active_trackable_couriers()
+        {
+            $courierCodes = sdongkir_tracking_couriers();
+            $available = sdongkir_trackable_couriers();
+    
+            $results = array();
+            foreach ($courierCodes as $code) {
+                if (array_key_exists($code, $available)) {
+                    $results[$code] = $available[$code];
+                }
+            }
+    
+            return $results;
+        }
     }
 }

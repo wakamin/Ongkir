@@ -2,7 +2,7 @@
     $isSingle = count($_POST['couriers']) === 1 ? true : false;
     $requestCost = new SDONGKIR_Request_Cost();
     $shippingCost = $requestCost->get_shipping_cost($_POST['origin'], $_POST['dest'], $_POST['weight'], $_POST['couriers']);
-    $allCouriers = sdokr_all_couriers();
+    $allCouriers = sdongkir_all_couriers();
 
     if (sdongkir_account_type() == 'pro') {
         $originData = sdongkir_subdistrict_by_id($_POST['origin']);

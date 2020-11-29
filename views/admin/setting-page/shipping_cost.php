@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$activeCouriers = sdokr_shipping_cost_couriers();
+$activeCouriers = sdongkir_shipping_cost_couriers();
 
 ?>
 
@@ -24,7 +24,7 @@ $activeCouriers = sdokr_shipping_cost_couriers();
                     <br>
                     <fieldset>
                         <legend class="screen-reader-text"><span><?php esc_html_e('Available Couriers', 'sd_ongkir') ?></span></legend>
-                        <?php foreach (sdokr_available_couriers() as $code => $courier): ?>
+                        <?php foreach (sdongkir_available_couriers() as $code => $courier): ?>
                             <label for="sdokr_shipping_cost_courier_<?php echo esc_attr($code) ?>">
                                 <input type="checkbox" id="sdokr_shipping_cost_courier_<?php echo esc_attr($code) ?>" class="sdokr-couriers" name="sdokr_shipping_cost_couriers[]" value="<?php echo esc_attr($code) ?>" <?php checked(in_array($code, $activeCouriers)) ?>>
                                 <?php echo esc_attr($courier['name']) ?>
