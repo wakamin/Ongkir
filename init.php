@@ -20,6 +20,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir
 // RajaOngkir request cost
 include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-request-cost.php';
 
+// RajaOngkir request tracking
+include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-request-tracking.php';
+
 // RajaOngkir remote request
 include_once SDONGKIR_PLUGIN_PATH . 'includes/services/rajaongkir/class-sdongkir-remote.php';
 

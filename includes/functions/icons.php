@@ -31,12 +31,24 @@ if (!function_exists('sdongkir_shipping_track_icon')) {
 
 if (!function_exists('sdongkir_close_icon')) {
     /**
-     * Get shipping track icon
+     * Get close icon
      *
      * @return String
      */
     function sdongkir_close_icon()
     {
         return apply_filters('sdongkir_close_icon', '<span class="dashicons dashicons-no-alt"></span>');
+    }
+}
+
+if (!function_exists('sdongkir_shipping_track_result_icon')) {
+    /**
+     * Get shipping track result icon
+     *
+     * @return String
+     */
+    function sdongkir_shipping_track_result_icon()
+    {
+        return apply_filters('sdongkir_shipping_track_result_icon', '<span class="dashicons dashicons-location"></span>');
     }
 }

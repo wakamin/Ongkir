@@ -27,6 +27,9 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
 
             add_action('wp_ajax_ongkir_shipping_cost', array($this, 'shipping_cost'));
             add_action('wp_ajax_nopriv_ongkir_shipping_cost', array($this, 'shipping_cost'));
+
+            add_action('wp_ajax_ongkir_shipping_track', array($this, 'shipping_track'));
+            add_action('wp_ajax_nopriv_ongkir_shipping_track', array($this, 'shipping_track'));
         }
 
         /**
@@ -87,6 +90,30 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
             $html = ob_get_contents();
             ob_end_clean();
             return $this->ajax_success(__('Shipping cost', 'sd_ongkir'), array('html' => $html));
+        }
+
+        /**
+         * Track shipment
+         *
+         * @return Json response
+         */
+        public function shipping_track()
+        {
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['tracking_number']) || $_POST['tracking_number'] == '') {
+                return $this->ajax_error(__('Please input the tracking number!', 'sd_ongkir'));
+            }
+
+            if (!isset($_POST['courier']) || $_POST['courier'] == '') {
+                return $this->ajax_error(__('Please select courier!', 'sd_ongkir'));
+            }
+
+            ob_start();
+            require_once SDONGKIR_PLUGIN_PATH . 'views/frontend/shipping-track-result.php';
+            $html = ob_get_contents();
+            ob_end_clean();
+            return $this->ajax_success(__('Shipping Tracking', 'sd_ongkir'), array('html' => $html));
         }
     }
     

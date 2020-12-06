@@ -34,7 +34,7 @@
                         <?php $shippingCode = $shipping['code'] == 'J&T' ? 'jnt' : $shipping['code']; ?>
                         <li>
                             <div class="sdokr-sh-res__logo">
-                                <img src="<?php echo $allCouriers[$shippingCode]['logo'] ?>" alt="<?php echo $allCouriers[$shipping['code']]['name'] ?>">
+                                <img src="<?php echo esc_url($allCouriers[$shippingCode]['logo']) ?>" alt="<?php echo esc_attr($allCouriers[$shipping['code']]['name']) ?>">
                             </div>
                             <div class="sdokr-sh-res__service-etd">
                                 <span class="service">

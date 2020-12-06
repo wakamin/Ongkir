@@ -77,7 +77,11 @@ if (!class_exists('SDONGKIR_Remote')) {
                     return new WP_Error('broke', $rajaongkir['status']['description']);
                 }
 
-                return $rajaongkir['results'];
+                if ($urlPath == '/waybill') {
+                    return $rajaongkir['result'];
+                } else {
+                    return $rajaongkir['results'];
+                }
             }
         }
     }

@@ -1,0 +1,199 @@
+.sdokr-sh-track {
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__status {
+        font-size: 16px;
+        flex: 1;
+
+        dl {
+            dt {
+                line-height: 1;
+            }
+
+            dd {
+                line-height: 1;
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    &__courier-logo {
+        width: 200px;
+
+        @media only screen and(max-width: 576px) {
+            width: 35%;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    &__origin-dest {
+        margin-top: 10px;
+        margin-bottom: 35px;
+        border-radius: 3px;
+        box-shadow: 0 0 5px 3px rgba(179, 179, 179, 0.37);
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    &__od-ilust {
+        display: flex;
+        align-items: center;
+    }
+
+    &__od-ilust-left {
+        width: 42%;
+        height: 2px;
+        background-color: $color-primary;
+        position: relative;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -3px;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: $color-primary;
+            border-radius: 50%;
+        }
+    }
+
+    &__od-ilust-icon {
+        flex: 1;
+        text-align: center;
+        color: $color-primary;
+        font-size: 23px;
+        line-height: 1;
+
+        .dashicons {
+            font-size: 23px;
+            line-height: 1;
+        }
+    }
+
+    &__od-ilust-right {
+        width: 42%;
+        height: 2px;
+        background-color: $color-primary;
+        position: relative;
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: -3px;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: $color-primary;
+            border-radius: 50%;
+        }
+    }
+
+    &__od-text {
+        display: flex;
+        font-size: 15px;
+        line-height: 1.4;
+
+        @media only screen and(max-width: 576px) {
+            font-size: 12px;
+            line-height: 1.7;
+        }
+    }
+
+    &__origin {
+        width: 50%;
+        padding-right: 10px;
+        font-weight: 500;
+    }
+
+    &__dest {
+        width: 50%;
+        padding-left: 10px;
+        font-weight: 500;
+        text-align: right;
+    }
+
+    &__positions {
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-left: 20px;
+                padding-bottom: 20px;
+                border-left: 2px solid $color-muted;
+                position: relative;
+
+                &:first-child {
+                    .sdokr-sh-track__pos-dot {
+                        background-color: $color-primary;
+
+                        &::before {
+                            content: '';
+                            width: 14px;
+                            height: 14px;
+                            position: absolute;
+                            top: -2px;
+                            left: -2px;
+                            border: 1px solid $color-primary;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .sdokr-sh-track__pos {
+                        color: $black;
+                    }
+
+                    .sdokr-sh-track__date-time {
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
+
+    &__pos-dot {
+        position: absolute;
+        top: 0;
+        left: -6px;
+        width: 10px;
+        height: 10px;
+        background-color: $color-muted;
+        border-radius: 50%;
+    }
+
+    &__pos {
+        color: $color-muted;
+        font-size: 15px;
+        line-height: 1.35;
+    }
+
+    &__date-time {
+        color: $color-muted;
+        font-size: 15px;
+    }
+}
+
+.sdokr-tingle-ship-tracking {
+    .tingle-modal-box {
+        width: 460px;
+
+        @media only screen and(max-width: 768px) {
+            width: inherit;
+        }
+    }
+}

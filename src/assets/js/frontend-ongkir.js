@@ -87,20 +87,20 @@ $(document).ready(function () {
 
         // instanciate new modal
         var modal = new tingle.modal({
-            footer: true,
-            stickyFooter: true,
+            // footer: true,
+            // stickyFooter: true,
             closeMethods: ["overlay", "button", "escape"],
             closeLabel: sdongkir_lcz.close_label,
         });
 
-        // add a button
-        modal.addFooterBtn(
-            "Ok",
-            "tingle-btn tingle-btn--primary tingle-btn--pull-right",
-            function () {
-                modal.close();
-            },
-        );
+        // // add a button
+        // modal.addFooterBtn(
+        //     "Ok",
+        //     "tingle-btn tingle-btn--primary tingle-btn--pull-right",
+        //     function () {
+        //         modal.close();
+        //     },
+        // );
 
         var couriers = [];
 
@@ -148,28 +148,59 @@ $(document).ready(function () {
     $("#sdokr-shipping-tracking-form").submit(function (e) {
         e.preventDefault();
 
+        $(".sdokr-strack-btn").attr("disabled", true);
+        $(".sdokr-strack-btn").html(sdongkir_lcz.processing_text);
+
         // instanciate new modal
         var modal = new tingle.modal({
-            footer: true,
-            stickyFooter: true,
+            // footer: true,
+            // stickyFooter: true,
             closeMethods: ["overlay", "button", "escape"],
             closeLabel: sdongkir_lcz.close_label,
+            cssClass: ["sdokr-tingle-ship-tracking"],
         });
 
-        // set content
-        modal.setContent("<h1>Shipping track</h1>");
+        // // add a button
+        // modal.addFooterBtn(
+        //     "Ok",
+        //     "tingle-btn tingle-btn--primary tingle-btn--pull-right",
+        //     function () {
+        //         modal.close();
+        //     },
+        // );
 
-        // add a button
-        modal.addFooterBtn(
-            "Ok",
-            "tingle-btn tingle-btn--primary tingle-btn--pull-right",
-            function () {
-                modal.close();
+        $.ajax({
+            url: sdongkir_lcz.ajaxurl,
+            type: "POST",
+            data: {
+                action: "ongkir_shipping_track",
+                nonce_ajax: sdongkir_lcz.nonce,
+                tracking_number: $("#sdokr-tracking-number").val(),
+                courier: $("#sdokr-track-courier").val(),
             },
-        );
+            success: function (res) {
+                let html = res.data.data.html;
+                // set content
+                modal.setContent(html);
 
-        // open modal
-        modal.open();
+                // open modal
+                modal.open();
+
+                $(".sdokr-strack-btn").attr("disabled", false);
+                $(".sdokr-strack-btn").html(
+                    sdongkir_lcz.get_shipping_cost_text,
+                );
+            },
+            error: function (err) {
+                console.log(err);
+                error_modal.setContent(err.responseJSON.data.message);
+                error_modal.open();
+                $(".sdokr-strack-btn").attr("disabled", false);
+                $(".sdokr-strack-btn").html(
+                    sdongkir_lcz.get_shipping_track_text,
+                );
+            },
+        });
     });
 
     $("body").on("click", ".sdokr-red", function () {

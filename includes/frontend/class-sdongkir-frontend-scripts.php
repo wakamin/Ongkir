@@ -41,6 +41,7 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
                     'submit_text' => __('Submit', 'sd_ongkir'),
                     'processing_text' => __('Processing...', 'sd_ongkir'),
                     'get_shipping_cost_text' => __('Get Shipping Costs', 'sd_ongkir'),
+                    'get_shipping_track_text' => __('Track Shipment', 'sd_ongkir'),
                     'close_label' => __('Close', 'sd_ongkir'),
                     'single_selection' => __('Single selection', 'sd_ongkir'),
                     'multiple_selection' => __('Multiple selection', 'sd_ongkir')
