@@ -1,6 +1,21 @@
 .sdokr-form {
     width: 100%;
 
+    &.small {
+        .sdokr-form__tab-nav {
+            padding: 12px 15px;
+            font-size: 14px;
+        }
+
+        .sdokr-form__tab-content {
+            padding: 15px;
+        }
+
+        .sdokr-form-field label {
+            font-size: 13px;
+        }
+    }
+
     &__tabs {
         display: flex;
         margin-bottom: -1px;

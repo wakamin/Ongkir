@@ -64,3 +64,6 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-frontend-s
 
 // Frontend ajax
 include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-frontend-ajax.php';
+
+// Widget ajax
+include_once SDONGKIR_PLUGIN_PATH . 'includes/widgets/class-sdongkir-widget.php';

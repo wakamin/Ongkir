@@ -27,6 +27,7 @@ if (!class_exists('SDONGKIR_Shortcode')) {
         {
             ob_start();
 
+            $style = 'wide';
             include SDONGKIR_PLUGIN_PATH . 'views/frontend/ongkir.php';
 
             $output = ob_get_contents();

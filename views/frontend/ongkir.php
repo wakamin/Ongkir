@@ -1,14 +1,14 @@
-<div id="sdokr-form-wrapper" class="sdokr-form">
+<div id="sdokr-form-wrapper" class="sdokr-form <?php echo esc_attr($style); ?>">
     <div class="sdokr-form__tabs">
         <div class="sdokr-form__tab sdokr-form__tab--active">
             <div class="sdokr-form__tab-nav" title="<?php esc_html_e('Shipping Cost', 'sd_ongkir') ?>" data-target="#sdokr-shipping-cost">
-                <?php echo sdongkir_shipping_cost_icon() ?> <span class="text"><?php esc_html_e('Shipping Cost', 'sd_ongkir') ?></span>
+                <?php echo sdongkir_shipping_cost_icon() ?> <span class="text"><?php $style == 'small' ? esc_html_e('Cost', 'sd_ongkir') : esc_html_e('Shipping Cost', 'sd_ongkir') ?></span>
             </div>
         </div>
         <?php if (sdongkir_account_type() != 'starter' && count(sdongkir_active_trackable_couriers()) > 0): ?>
             <div class="sdokr-form__tab">
                 <div class="sdokr-form__tab-nav" title="<?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?>" data-target="#sdokr-shipping-tracking">
-                    <?php echo sdongkir_shipping_track_icon() ?> <span class="text"><?php esc_html_e('Shipping Tracking', 'sd_ongkir') ?></span>
+                    <?php echo sdongkir_shipping_track_icon() ?> <span class="text"><?php $style == 'small' ? esc_html_e('Tracking', 'sd_ongkir') : esc_html_e('Shipping Tracking', 'sd_ongkir') ?></span>
                 </div>
             </div>
         <?php endif; ?>
