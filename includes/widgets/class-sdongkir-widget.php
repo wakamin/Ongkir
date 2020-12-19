@@ -69,6 +69,7 @@ if (!class_exists('SDONGKIR_Widget')) {
             }
 
             $style = $instance['style'];
+            $widget = true;
 
             include SDONGKIR_PLUGIN_PATH . 'views/frontend/ongkir.php';
 

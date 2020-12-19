@@ -10,10 +10,19 @@ $(document).ready(function () {
         e.preventDefault();
         let target = $(this).data("target");
 
-        $(".sdokr-form__tab").removeClass("sdokr-form__tab--active");
+        $(this)
+            .parent(".sdokr-form__tab")
+            .parent(".sdokr-form__tabs")
+            .find(".sdokr-form__tab")
+            .removeClass("sdokr-form__tab--active");
         $(this).parent(".sdokr-form__tab").addClass("sdokr-form__tab--active");
 
-        $(".sdokr-form__content").removeClass("sdokr-form__content--active");
+        $(this)
+            .parent(".sdokr-form__tab")
+            .parent(".sdokr-form__tabs")
+            .parent(".sdokr-form")
+            .find(".sdokr-form__content")
+            .removeClass("sdokr-form__content--active");
         $(target).addClass("sdokr-form__content--active");
     });
 
@@ -64,22 +73,28 @@ $(document).ready(function () {
         courier_selection_type =
             courier_selection_type == "single" ? "multiple" : "single";
         if (courier_selection_type == "single") {
-            $(".sdokr-single-courier-selection").removeClass("sdokr-hide");
-            $(".sdokr-couriers-wrapper").addClass("sdokr-hide");
-            $(".sdokr-select-all").addClass("sdokr-hide");
-            $(".sdokr-unselect-all").addClass("sdokr-hide");
+            $(this)
+                .siblings(".sdokr-single-courier-selection")
+                .removeClass("sdokr-hide");
+            $(this).siblings(".sdokr-couriers-wrapper").addClass("sdokr-hide");
+            $(this).siblings(".sdokr-select-all").addClass("sdokr-hide");
+            $(this).siblings(".sdokr-unselect-all").addClass("sdokr-hide");
             $(this).html(sdongkir_lcz.multiple_selection);
         } else {
-            $(".sdokr-single-courier-selection").addClass("sdokr-hide");
-            $(".sdokr-couriers-wrapper").removeClass("sdokr-hide");
-            $(".sdokr-select-all").removeClass("sdokr-hide");
-            $(".sdokr-unselect-all").removeClass("sdokr-hide");
+            $(this)
+                .siblings(".sdokr-single-courier-selection")
+                .addClass("sdokr-hide");
+            $(this)
+                .siblings(".sdokr-couriers-wrapper")
+                .removeClass("sdokr-hide");
+            $(this).siblings(".sdokr-select-all").removeClass("sdokr-hide");
+            $(this).siblings(".sdokr-unselect-all").removeClass("sdokr-hide");
             $(this).html(sdongkir_lcz.single_selection);
         }
     });
 
     // Get shipping cost
-    $("#sdokr-shipping-cost-form").submit(function (e) {
+    $(".sdokr-shipping-cost-form").submit(function (e) {
         e.preventDefault();
 
         $(".sdokr-scost-btn").attr("disabled", true);
@@ -105,11 +120,13 @@ $(document).ready(function () {
         var couriers = [];
 
         if (courier_selection_type == "single") {
-            couriers.push($("#sdokr-cost-courier").val());
+            couriers.push($(this).find(".sdokr-cost-courier").val());
         } else {
-            $(".sdokr-couriers-cb:checked").each(function () {
-                couriers.push($(this).attr("value"));
-            });
+            $(this)
+                .find(".sdokr-couriers-cb:checked")
+                .each(function () {
+                    couriers.push($(this).attr("value"));
+                });
         }
 
         $.ajax({
@@ -118,9 +135,9 @@ $(document).ready(function () {
             data: {
                 action: "ongkir_shipping_cost",
                 nonce_ajax: sdongkir_lcz.nonce,
-                origin: $("#sdokr-origin").val(),
-                dest: $("#sdokr-destination").val(),
-                weight: $("#sdokr-weight").val(),
+                origin: $(this).find(".sdokr-origin-input").val(),
+                dest: $(this).find(".sdokr-destination-input").val(),
+                weight: $(this).find(".sdokr-weight-input").val(),
                 couriers: couriers,
             },
             success: function (res) {
@@ -145,7 +162,7 @@ $(document).ready(function () {
     });
 
     // Shipping tracking
-    $("#sdokr-shipping-tracking-form").submit(function (e) {
+    $(".sdokr-shipping-tracking-form").submit(function (e) {
         e.preventDefault();
 
         $(".sdokr-strack-btn").attr("disabled", true);
@@ -175,8 +192,10 @@ $(document).ready(function () {
             data: {
                 action: "ongkir_shipping_track",
                 nonce_ajax: sdongkir_lcz.nonce,
-                tracking_number: $("#sdokr-tracking-number").val(),
-                courier: $("#sdokr-track-courier").val(),
+                tracking_number: $(this)
+                    .find(".sdokr-tracking-number-input")
+                    .val(),
+                courier: $(this).find(".sdokr-track-courier-input").val(),
             },
             success: function (res) {
                 let html = res.data.data.html;
