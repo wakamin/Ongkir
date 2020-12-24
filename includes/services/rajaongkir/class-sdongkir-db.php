@@ -175,15 +175,29 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get all provinces
+         *
+         * @return Array
+         */
+        public static function get_provinces()
+        {
+            global $wpdb;
+            $tableName = self::tables()['province'];
+            $provinces = $wpdb->get_results("SELECT * FROM $tableName");
+
+            return $provinces;
+        }
+
+        /**
          * Get province by id
          *
          * @param Int $id
          * @return Object
          */
-        public function get_province_by_id($id)
+        public static function get_province_by_id($id)
         {
             global $wpdb;
-            $tableName = $this->tables()['province'];
+            $tableName = self::tables()['province'];
             $province = $wpdb->get_row(
                 $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
             );
@@ -197,10 +211,10 @@ if (!class_exists('SDONGKIR_Db')) {
          * @param Int $id
          * @return Object
          */
-        public function get_city_by_id($id)
+        public static function get_city_by_id($id)
         {
             global $wpdb;
-            $tableName = $this->tables()['city'];
+            $tableName = self::tables()['city'];
             $city = $wpdb->get_row(
                 $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
             );
@@ -214,10 +228,10 @@ if (!class_exists('SDONGKIR_Db')) {
          * @param Int $id
          * @return Object
          */
-        public function get_subdistrict_by_id($id)
+        public static function get_subdistrict_by_id($id)
         {
             global $wpdb;
-            $tableName = $this->tables()['subdistrict'];
+            $tableName = self::tables()['subdistrict'];
             $subdistrict = $wpdb->get_row(
                 $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
             );

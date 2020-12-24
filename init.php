@@ -75,6 +75,9 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     // JNE Shipping
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/jne.php';
 
+    // Woocommerce address
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/address/class-sdongkir-woo-address.php';
+
     // Checkout fields
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/checkout/class-sdongkir-checkout-fields.php';
 }
