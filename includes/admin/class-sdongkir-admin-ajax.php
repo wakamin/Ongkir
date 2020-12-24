@@ -39,7 +39,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
         {
             check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
 
-            $request = new SDONGKIR_Location_Request();
+            $request = new SDONGKIR_Request_Location();
             $provinces = $request->get_provinces();
 
             if (is_wp_error($provinces)) {
@@ -88,7 +88,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
         {
             check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
 
-            $request = new SDONGKIR_Location_Request();
+            $request = new SDONGKIR_Request_Location();
             $cities = $request->get_cities();
 
             if (is_wp_error($cities)) {
@@ -155,7 +155,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
             } else {
                 $cityId = $city->city_id;
 
-                $request = new SDONGKIR_Location_Request();
+                $request = new SDONGKIR_Request_Location();
                 $subdistricts = $request->get_subdistricts($cityId);
 
                 if (is_wp_error($subdistricts)) {
@@ -208,7 +208,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
                 return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
             }
 
-            $request = new SDONGKIR_Location_Request();
+            $request = new SDONGKIR_Request_Location();
             $cities = $request->get_international_origin();
 
             if (is_wp_error($cities)) {
@@ -251,7 +251,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
                 return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
             }
 
-            $request = new SDONGKIR_Location_Request();
+            $request = new SDONGKIR_Request_Location();
             $countries = $request->get_international_destination();
 
             if (is_wp_error($countries)) {

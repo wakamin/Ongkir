@@ -74,4 +74,7 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/widgets/class-sdongkir-widget.php'
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     // JNE Shipping
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/jne.php';
+
+    // Checkout fields
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/checkout/class-sdongkir-checkout-fields.php';
 }
