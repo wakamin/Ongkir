@@ -30,7 +30,11 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
             wp_enqueue_style('sdongkir-frontend', SDONGKIR_PLUGIN_URL . 'assets/css/frontend-ongkir.css');
             
             wp_register_script('sdongkir-frontend-script', SDONGKIR_PLUGIN_URL . 'assets/js/frontend-ongkir.js', array('jquery'), '1.0.0', false);
-            
+            // Check if WooCommerce is active
+            if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+                wp_enqueue_script('sdongkir-checkout', SDONGKIR_PLUGIN_URL . 'assets/js/checkout.js', array('jquery'), '1.0.0', false);
+            }
+
             wp_localize_script(
                 'sdongkir-frontend-script',
                 'sdongkir_lcz',
@@ -44,7 +48,8 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
                     'get_shipping_track_text' => __('Track Shipment', 'sd_ongkir'),
                     'close_label' => __('Close', 'sd_ongkir'),
                     'single_selection' => __('Single selection', 'sd_ongkir'),
-                    'multiple_selection' => __('Multiple selection', 'sd_ongkir')
+                    'multiple_selection' => __('Multiple selection', 'sd_ongkir'),
+                    'subdistrict_text' => __('Subdistrict', 'sd_ongkir')
                 )
             );
             wp_enqueue_script('sdongkir-frontend-script');

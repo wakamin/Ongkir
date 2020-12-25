@@ -16,6 +16,9 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
         public function __construct()
         {
             add_filter('woocommerce_states', array($this, 'indonesia_states'));
+            add_filter('woocommerce_default_address_fields', array($this, 'subdistrict_field'));
+            add_action('woocommerce_checkout_fields', array($this, 'subdistrict_field_required_update'));
+            add_action('woocommerce_admin_order_data_after_shipping_address', 'display_subdistrict');
         }
 
         /**
@@ -35,6 +38,57 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             $states['ID'] = $indonesianStates;
 
             return $states;
+        }
+
+        /**
+         * Add subdistrict field
+         *
+         * @param Array $fields
+         * @return Array
+         */
+        public function subdistrict_field($fields)
+        {
+            $fields['subdistrict'] = [
+                'label' => __('Subdistrict', 'sd_ongkir'),
+                'required' => true,
+                'class' => ['form-row-wide'],
+                'priority' => 75,
+                'clear' => true,
+                'type' => 'select',
+                'options' => [
+                    '' => __('Please Select', 'sd_ongkir'),
+                ]
+            ];
+
+            return $fields;
+        }
+
+        public function subdistrict_field_required_update($fields)
+        {
+            $billingCountry = WC()->customer->get_billing_country();
+            if ($billingCountry != 'ID') {
+                $fields['billing']['billing_subdistrict']['required'] = false;
+            }
+
+            $shippingCountry = WC()->customer->get_shipping_country();
+            if ($shippingCountry != 'ID') {
+                $fields['shipping']['shipping_subdistrict']['required'] = false;
+            }
+
+            return $fields;
+        }
+
+        /**
+         * Display subdistrict in admin order data
+         *
+         * @param Object $order
+         * @return Html
+         */
+        public function display_subdistrict($order)
+        {
+            ?>
+            <p><strong><?php esc_html_e('Subdistrict', 'sd_ongkir') ?>:</strong><?php echo esc_attr(get_post_meta($order->get_id(), '_subdistrict', true)); ?></p>
+            <?php
         }
     }
 

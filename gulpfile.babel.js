@@ -30,6 +30,7 @@ const paths = {
         src: [
             "src/assets/js/admin-ongkir.js",
             "src/assets/js/frontend-ongkir.js",
+            "src/assets/js/checkout.js",
         ],
         dest: "assets/js",
     },

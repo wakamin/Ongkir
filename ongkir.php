@@ -28,16 +28,16 @@ define('SDONGKIR_PLUGIN_PATH', plugin_dir_path(__FILE__));
 require_once SDONGKIR_PLUGIN_PATH . 'init.php';
 
 // Test API
-add_action('rest_api_init', function () {
-    register_rest_route('ongkir/v1', '/test', [
-        'method' => 'GET',
-        'callback' => 'ongkir_test_api'
-    ]);
-});
+// add_action('rest_api_init', function () {
+//     register_rest_route('ongkir/v1', '/test', [
+//         'method' => 'GET',
+//         'callback' => 'ongkir_test_api'
+//     ]);
+// });
 
-function ongkir_test_api()
-{
-    $provinces = sdongkir_provinces();
+// function ongkir_test_api()
+// {
+//     $provinces = sdongkir_provinces();
 
-    wp_send_json_success($provinces);
-}
+//     wp_send_json_success($provinces);
+// }
