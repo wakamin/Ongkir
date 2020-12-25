@@ -30,6 +30,9 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
 
             add_action('wp_ajax_ongkir_shipping_track', array($this, 'shipping_track'));
             add_action('wp_ajax_nopriv_ongkir_shipping_track', array($this, 'shipping_track'));
+
+            add_action('wp_ajax_ongkir_get_cities_by_province_id', array($this, 'get_cities_by_province_id'));
+            add_action('wp_ajax_nopriv_ongkir_get_cities_by_province_id', array($this, 'get_cities_by_province_id'));
         }
 
         /**
@@ -114,6 +117,22 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
             $html = ob_get_contents();
             ob_end_clean();
             return $this->ajax_success(__('Shipping Tracking', 'sd_ongkir'), array('html' => $html));
+        }
+
+        /**
+         * Get cities by province id
+         *
+         * @return Json Response
+         */
+        public function get_cities_by_province_id()
+        {
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['province_id'])) {
+                return $this->ajax_error(__('Province is required', 'sd_ongkir'));
+            }
+
+            return $this->ajax_success(__('Cities', 'sd_ongkir'), sdongkir_cities_by_province_id($_POST['province_id']));
         }
     }
     

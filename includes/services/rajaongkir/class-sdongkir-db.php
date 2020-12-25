@@ -206,6 +206,23 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get cities by province id
+         *
+         * @param Int $provinceId
+         * @return Array
+         */
+        public static function get_cities_by_province_id($provinceId)
+        {
+            global $wpdb;
+            $tableName = self::tables()['city'];
+            $cities = $wpdb->get_results(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE province_id = %d", $provinceId)
+            );
+
+            return $cities;
+        }
+
+        /**
          * Get city by id
          *
          * @param Int $id

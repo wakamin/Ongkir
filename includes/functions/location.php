@@ -28,6 +28,19 @@ if (!function_exists('sdongkir_province_by_id')) {
     }
 }
 
+if (!function_exists('sdongkir_cities_by_province_id')) {
+    /**
+     * Get cities by province id
+     *
+     * @param Int $provinceId
+     * @return Array
+     */
+    function sdongkir_cities_by_province_id($provinceId)
+    {
+        return SDONGKIR_Db::get_cities_by_province_id($provinceId);
+    }
+}
+
 if (!function_exists('sdongkir_city_by_id')) {
     /**
      * Ge city by id
