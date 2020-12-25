@@ -49,7 +49,8 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
                     'close_label' => __('Close', 'sd_ongkir'),
                     'single_selection' => __('Single selection', 'sd_ongkir'),
                     'multiple_selection' => __('Multiple selection', 'sd_ongkir'),
-                    'subdistrict_text' => __('Subdistrict', 'sd_ongkir')
+                    'subdistrict_text' => __('Subdistrict', 'sd_ongkir'),
+                    'please_select_text' => __('Please Select', 'sd_ongkir')
                 )
             );
             wp_enqueue_script('sdongkir-frontend-script');

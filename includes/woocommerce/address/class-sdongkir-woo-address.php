@@ -17,7 +17,7 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
         {
             add_filter('woocommerce_states', array($this, 'indonesia_states'));
             add_filter('woocommerce_default_address_fields', array($this, 'subdistrict_field'));
-            add_action('woocommerce_checkout_fields', array($this, 'subdistrict_field_required_update'));
+            add_action('woocommerce_checkout_fields', array($this, 'indonesia_address_field'));
             add_action('woocommerce_admin_order_data_after_shipping_address', 'display_subdistrict');
         }
 
@@ -63,16 +63,54 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             return $fields;
         }
 
-        public function subdistrict_field_required_update($fields)
+        /**
+         * Setup Indonesia address fields
+         *
+         * @param Array $fields
+         * @return Array
+         */
+        public function indonesia_address_field($fields)
         {
+            // Billing address
             $billingCountry = WC()->customer->get_billing_country();
-            if ($billingCountry != 'ID') {
+            if ($billingCountry == 'ID') {
+                $city_args = wp_parse_args(array(
+                    'type' => 'select',
+                    'options' => array(
+                        '' => __('Please Select', 'sd_ongkir'),
+                    ),
+                ), $fields['billing']['billing_city']);
+            
+                $fields['billing']['billing_city'] = $city_args;
+                $fields['billing']['billing_subdistrict']['required'] = true;
+            } else {
+                $city_args = wp_parse_args(array(
+                    'type' => 'text',
+                ), $fields['billing']['billing_city']);
+            
+                $fields['billing']['billing_city'] = $city_args;
                 $fields['billing']['billing_subdistrict']['required'] = false;
             }
 
+            // Shipping address
             $shippingCountry = WC()->customer->get_shipping_country();
-            if ($shippingCountry != 'ID') {
-                $fields['shipping']['shipping_subdistrict']['required'] = false;
+            if ($shippingCountry == 'ID') {
+                $city_args = wp_parse_args(array(
+                    'type' => 'select',
+                    'options' => array(
+                        '' => __('Please Select', 'sd_ongkir'),
+                    ),
+                ), $fields['shipping']['shipping_city']);
+            
+                $fields['shipping']['shipping_city'] = $city_args;
+                $fields['shipping']['shipping_subdistrict']['required'] = true;
+            } else {
+                $city_args = wp_parse_args(array(
+                    'type' => 'text',
+                ), $fields['shipping']['shipping_city']);
+            
+                $fields['shipping']['shipping_city'] = $city_args;
+                $fields['shipping']['shipping_subdistrict']['required'] = true;
             }
 
             return $fields;

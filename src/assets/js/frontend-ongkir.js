@@ -28,8 +28,6 @@ $(document).ready(function () {
 
     // Select2
     $(".sdokr-select2").select2();
-    $("#billing_subdistrict").select2();
-    $("#shipping_subdistrict").select2();
 
     $(".sdokr-location-select2").select2({
         minimumInputLength: 3,
