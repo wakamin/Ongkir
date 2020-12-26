@@ -33,6 +33,9 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
 
             add_action('wp_ajax_ongkir_get_cities_by_province_id', array($this, 'get_cities_by_province_id'));
             add_action('wp_ajax_nopriv_ongkir_get_cities_by_province_id', array($this, 'get_cities_by_province_id'));
+
+            add_action('wp_ajax_ongkir_get_subdistricts_by_city_id', array($this, 'get_subdistricts_by_city_id'));
+            add_action('wp_ajax_nopriv_ongkir_get_subdistricts_by_city_id', array($this, 'get_subdistricts_by_city_id'));
         }
 
         /**
@@ -133,6 +136,22 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
             }
 
             return $this->ajax_success(__('Cities', 'sd_ongkir'), sdongkir_cities_by_province_id($_POST['province_id']));
+        }
+
+        /**
+         * Get subdistricts by city ID
+         *
+         * @return Json Response
+         */
+        public function get_subdistricts_by_city_id()
+        {
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['city_id'])) {
+                return $this->ajax_error(__('City is required', 'sd_ongkir'));
+            }
+
+            return $this->ajax_success(__('Subdistricts', 'sd_ongkir'), sdongkir_subdistricts_by_city_id($_POST['city_id']));
         }
     }
     

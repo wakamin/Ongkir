@@ -240,6 +240,22 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get subdistricts by city ID
+         *
+         * @param Int $cityId
+         * @return Array
+         */
+        public static function get_subdistricts_by_city_id($cityId) {
+            global $wpdb;
+            $tableName = self::tables()['subdistrict'];
+            $subdistricts = $wpdb->get_results(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE city_id = %d", $cityId)
+            );
+
+            return $subdistricts;
+        }
+
+        /**
          * Get subdistrict by id
          *
          * @param Int $id

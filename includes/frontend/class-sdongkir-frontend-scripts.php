@@ -32,7 +32,9 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
             wp_register_script('sdongkir-frontend-script', SDONGKIR_PLUGIN_URL . 'assets/js/frontend-ongkir.js', array('jquery'), '1.0.0', false);
             // Check if WooCommerce is active
             if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-                wp_enqueue_script('sdongkir-checkout', SDONGKIR_PLUGIN_URL . 'assets/js/checkout.js', array('jquery'), '1.0.0', false);
+                if (is_checkout() || is_cart()) {
+                    wp_enqueue_script('sdongkir-checkout', SDONGKIR_PLUGIN_URL . 'assets/js/checkout.js', array('jquery'), '1.0.0', false);
+                }
             }
 
             wp_localize_script(

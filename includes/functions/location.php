@@ -54,6 +54,19 @@ if (!function_exists('sdongkir_city_by_id')) {
     }
 }
 
+if (!function_exists('sdongkir_subdistricts_by_city_id')) {
+    /**
+     * Get subdistricts by city ID
+     *
+     * @param Int $cityId
+     * @return Array
+     */
+    function sdongkir_subdistricts_by_city_id($cityId)
+    {
+        return SDONGKIR_Db::get_subdistricts_by_city_id($cityId);
+    }
+}
+
 if (!function_exists('sdongkir_subdistrict_by_id')) {
     /**
      * Ge subdistrict by id
