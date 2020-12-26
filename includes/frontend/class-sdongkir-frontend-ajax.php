@@ -36,6 +36,9 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
 
             add_action('wp_ajax_ongkir_get_subdistricts_by_city_id', array($this, 'get_subdistricts_by_city_id'));
             add_action('wp_ajax_nopriv_ongkir_get_subdistricts_by_city_id', array($this, 'get_subdistricts_by_city_id'));
+
+            add_action('wp_ajax_ongkir_set_session_subdistrict', array($this, 'set_session_subdistrict'));
+            add_action('wp_ajax_nopriv_ongkir_set_session_subdistrict', array($this, 'set_session_subdistrict'));
         }
 
         /**
@@ -152,6 +155,35 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
             }
 
             return $this->ajax_success(__('Subdistricts', 'sd_ongkir'), sdongkir_subdistricts_by_city_id($_POST['city_id']));
+        }
+
+        /**
+         * Set session subdistrict
+         *
+         * @return Json response
+         */
+        public function set_session_subdistrict()
+        {
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['subdistrict_id'])) {
+                return $this->ajax_error(__('Subdistrict is required', 'sd_ongkir'));
+            }
+
+            if (!isset($_POST['type'])) {
+                return $this->ajax_error(__('Type is required', 'sd_ongkir'));
+            }
+
+            if (!session_id()) {
+                session_start();
+            }
+            if ($_POST['type'] == 'billing') {
+                $_SESSION['billing_subdistrict'] = $_POST['subdistrict_id'];
+            } else {
+                $_SESSION['shipping_subdistrict'] = $_POST['subdistrict_id'];
+            }
+
+            return $this->ajax_success(__('Operation success', 'sd_ongkir'), []);
         }
     }
     

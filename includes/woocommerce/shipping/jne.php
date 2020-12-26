@@ -15,11 +15,6 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     $this->id = 'jne';
                     $this->method_title = __('JNE', 'sd_ongkir');
                     $this->method_description = __('JNE shipping method', 'sd_ongkir');
-                    // Contreis availability
-                    $this->availability = 'including';
-                    $this->countries = array(
-                        'ID',
-                    );
                     $this->enabled = isset($this->settings['enabled']) ? $this->settings['enabled'] : 'yes';
                     $this->title = isset($this->settings['title']) ? $this->settings['title'] : __('JNE Shipping', 'sd_ongkir');
                     $this->init();
@@ -57,6 +52,10 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                 {
                     $weight = 0;
                     $cost = 0;
+                    if (!session_id()) {
+                        session_start();
+                    }
+                    sd_log($_SESSION['billing_subdistrict']);
                     $country = $package["destination"]["country"];
                     foreach ($package['contents'] as $item_id => $values) {
                         $_product = $values['data'];
