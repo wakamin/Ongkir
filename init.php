@@ -72,6 +72,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/widgets/class-sdongkir-widget.php'
  * Check if WooCommerce is active
  **/
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+    // Shipping origin setting
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/setting/class-sdongkir-shipping-settings.php';
+
     // JNE Shipping
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/jne.php';
 
