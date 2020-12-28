@@ -32,7 +32,7 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             $provinces = sdongkir_provinces();
             $indonesianStates = [];
             foreach ($provinces as $province) {
-                $indonesianStates[$province->province_id] = $province->name;
+                $indonesianStates['prov-'.$province->province_id] = $province->name;
             }
 
             $states['ID'] = $indonesianStates;
