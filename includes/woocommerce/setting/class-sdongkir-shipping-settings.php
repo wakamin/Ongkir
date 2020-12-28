@@ -17,6 +17,59 @@ if (!class_exists('SDONGKIR_Shipping_Settings')) {
         {
             add_filter('woocommerce_get_sections_shipping', array($this, 'shipping_origin_setting_section'));
             add_filter('woocommerce_get_settings_shipping', array($this, 'shipping_origin_setting'), 10, 2);
+
+            add_filter('woocommerce_get_settings_general', array($this, 'general_setting'));
+        }
+
+        public function general_setting($settings)
+        {
+            $key = 0;
+
+            foreach ($settings as $values) {
+                $new_settings[$key] = $values;
+                $key++;
+
+                // Add province option
+                if ($values['id'] == 'woocommerce_store_address_2') {
+                    $address2KeyPosition = $key;
+                    $new_settings[$key] = array(
+                        'name'     => __('Province', 'sd_ongkir'),
+                        'desc_tip' => __('Shipping origin province', 'sd_ongkir'),
+                        'id'       => 'sdongkir_shipping_origin_province_id',
+                        'type'     => 'select',
+                        'options' => ['' => __('Please select', 'sd_ongkir')]
+                    );
+                    $key++;
+                }
+        
+                // Add subdistrict option
+                if ($values['id'] == 'woocommerce_store_city') {
+                    $new_settings[$key] = array(
+                        'name'     => __('Subdistrict', 'sd_ongkir'),
+                        'desc_tip' => __('Shipping origin subdistrict', 'sd_ongkir'),
+                        'id'       => 'sdongkir_shipping_origin_subdistrict_id',
+                        'type'     => 'select',
+                        'options' => ['' => __('Please select', 'sd_ongkir')]
+                    );
+                    $key++;
+                }
+
+                // Get country key position
+                if ($values['id'] == 'woocommerce_default_country') {
+                    $countryKeyPosition = $key;
+                    $countrySetting[] = $values;
+                }
+            }
+
+            // Put the country setting after address line 2
+            unset($new_settings[$countryKeyPosition - 1]);
+            $finalSettings = array_merge(
+                array_slice($new_settings, 0, $address2KeyPosition),
+                $countrySetting,
+                array_slice($new_settings, $address2KeyPosition)
+            );
+
+            return $finalSettings;
         }
 
         /**
