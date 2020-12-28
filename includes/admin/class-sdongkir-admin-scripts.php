@@ -26,6 +26,7 @@ if (!class_exists('SDONGKIR_Admin_Scripts')) {
         {
             return [
                 'settings_page_ongkir',
+                'woocommerce_page_wc-settings'
             ];
         }
 
@@ -37,21 +38,20 @@ if (!class_exists('SDONGKIR_Admin_Scripts')) {
          */
         public function scripts($hook)
         {
-            // wp_die($hook);
-
             if (!in_array($hook, $this->_allowed_pages())) {
                 return;
             }
 
-            wp_enqueue_style('ongkir', SDONGKIR_PLUGIN_URL . 'assets/css/admin-ongkir.css');
+            wp_enqueue_style('sdongkir', SDONGKIR_PLUGIN_URL . 'assets/css/admin-ongkir.css');
             
-            wp_register_script('ongkir-script', SDONGKIR_PLUGIN_URL . 'assets/js/admin-ongkir.js', array('jquery', 'jquery-ui-progressbar'), '1.0.0', false);
+            wp_register_script('sdongkir-script', SDONGKIR_PLUGIN_URL . 'assets/js/admin-ongkir.js', array('jquery', 'jquery-ui-progressbar'), '1.0.0', false);
+            
             wp_localize_script(
-                'ongkir-script',
-                'ongkir_lcz',
+                'sdongkir-script',
+                'sdongkir_lcz',
                 array(
                     'ajaxurl' => admin_url('admin-ajax.php'),
-                    'nonce' => wp_create_nonce('ongkir-script-nonce'),
+                    'nonce' => wp_create_nonce('sdongkir-script-nonce'),
                     'loading_gif' => sdongkir_loading_image_url(),
                     'loading_text' => __('Loading...', 'sd_ongkir'),
                     'get_province_text' => __('Getting provinces data', 'sd_ongkir'),
@@ -59,9 +59,10 @@ if (!class_exists('SDONGKIR_Admin_Scripts')) {
                     'get_subdistrict_text' => __('Getting subdistricts data', 'sd_ongkir'),
                     'get_intl_origin_text' => __('Getting international origin data', 'sd_ongkir'),
                     'get_intl_destination_text' => __('Getting international destination data', 'sd_ongkir'),
+                    'please_select_text' => __('Please select', 'sd_ongkir')
                 )
             );
-            wp_enqueue_script('ongkir-script');
+            wp_enqueue_script('sdongkir-script');
         }
     }
 

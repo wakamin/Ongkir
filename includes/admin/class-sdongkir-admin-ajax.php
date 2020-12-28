@@ -37,7 +37,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
          */
         public function get_province()
         {
-            check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
             $request = new SDONGKIR_Request_Location();
             $provinces = $request->get_provinces();
@@ -86,7 +86,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
          */
         public function get_city()
         {
-            check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
             $request = new SDONGKIR_Request_Location();
             $cities = $request->get_cities();
@@ -125,7 +125,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
          */
         public function get_subdistrict()
         {
-            check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
             if (!isset($_POST['last_city_id'])) {
                 return $this->ajax_error(__('Bad params', 'sd_ongkir'));
@@ -202,7 +202,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
          */
         public function get_intl_origin()
         {
-            check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
             if ($this->accountType == 'starter') {
                 return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));
@@ -245,7 +245,7 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
          */
         public function get_intl_destination()
         {
-            check_ajax_referer('ongkir-script-nonce', 'nonce_ajax');
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
 
             if ($this->accountType == 'starter') {
                 return $this->ajax_success(__('Must use Basic or Pro account.', 'gending_kedis'));

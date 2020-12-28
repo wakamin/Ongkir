@@ -39,14 +39,14 @@ $(document).ready(function () {
                 });
         },
         get_province: function () {
-            sdokr_setting_els.loading_text.html(ongkir_lcz.get_province_text);
+            sdokr_setting_els.loading_text.html(sdongkir_lcz.get_province_text);
             return new Promise(function (resolve, reject) {
                 $.ajax({
-                    url: ongkir_lcz.ajaxurl,
+                    url: sdongkir_lcz.ajaxurl,
                     type: "POST",
                     data: {
                         action: "ongkir_get_province",
-                        nonce_ajax: ongkir_lcz.nonce,
+                        nonce_ajax: sdongkir_lcz.nonce,
                     },
                     success: function (res) {
                         // console.log(res);
@@ -62,14 +62,14 @@ $(document).ready(function () {
             });
         },
         get_city: function () {
-            sdokr_setting_els.loading_text.html(ongkir_lcz.get_city_text);
+            sdokr_setting_els.loading_text.html(sdongkir_lcz.get_city_text);
             return new Promise(function (resolve, reject) {
                 $.ajax({
-                    url: ongkir_lcz.ajaxurl,
+                    url: sdongkir_lcz.ajaxurl,
                     type: "POST",
                     data: {
                         action: "ongkir_get_city",
-                        nonce_ajax: ongkir_lcz.nonce,
+                        nonce_ajax: sdongkir_lcz.nonce,
                     },
                     success: function (res) {
                         // console.log(res);
@@ -87,11 +87,11 @@ $(document).ready(function () {
         get_subdistrict: function (last_city_id = 0) {
             return new Promise(function (resolve, reject) {
                 $.ajax({
-                    url: ongkir_lcz.ajaxurl,
+                    url: sdongkir_lcz.ajaxurl,
                     type: "POST",
                     data: {
                         action: "ongkir_get_subdistrict",
-                        nonce_ajax: ongkir_lcz.nonce,
+                        nonce_ajax: sdongkir_lcz.nonce,
                         last_city_id: last_city_id,
                     },
                     success: function (res) {
@@ -137,15 +137,15 @@ $(document).ready(function () {
         },
         get_intl_origin: function () {
             sdokr_setting_els.loading_text.html(
-                ongkir_lcz.get_intl_origin_text,
+                sdongkir_lcz.get_intl_origin_text,
             );
             return new Promise(function (resolve, reject) {
                 $.ajax({
-                    url: ongkir_lcz.ajaxurl,
+                    url: sdongkir_lcz.ajaxurl,
                     type: "POST",
                     data: {
                         action: "ongkir_get_intl_origin",
-                        nonce_ajax: ongkir_lcz.nonce,
+                        nonce_ajax: sdongkir_lcz.nonce,
                     },
                     success: function (res) {
                         // console.log(res);
@@ -162,15 +162,15 @@ $(document).ready(function () {
         },
         get_intl_destination: function () {
             sdokr_setting_els.loading_text.html(
-                ongkir_lcz.get_intl_destination_text,
+                sdongkir_lcz.get_intl_destination_text,
             );
             return new Promise(function (resolve, reject) {
                 $.ajax({
-                    url: ongkir_lcz.ajaxurl,
+                    url: sdongkir_lcz.ajaxurl,
                     type: "POST",
                     data: {
                         action: "ongkir_get_intl_destination",
-                        nonce_ajax: ongkir_lcz.nonce,
+                        nonce_ajax: sdongkir_lcz.nonce,
                     },
                     success: function (res) {
                         // console.log(res);

@@ -24,22 +24,27 @@ if (!class_exists('SDONGKIR_Shipping_Settings')) {
         public function general_setting($settings)
         {
             $storeCountry = get_option('woocommerce_default_country');
-            sd_log($storeCountry);
             if (strstr($storeCountry, ':')) {
                 $storeCountry = explode(':', $storeCountry);
                 $country      = current($storeCountry);
-                $state        = end($storeCountry);
+                $provinceId = str_replace('prov-', '', end($storeCountry));
             } else {
                 $country = $storeCountry;
-                $state   = '*';
+                $provinceId   = '*';
             }
 
             $key = 0;
             foreach ($settings as $values) {
                 // Modify city option as select dropdown
                 if ($values['id'] == 'woocommerce_store_city' && $country == 'ID') {
+                    $cityOptions = ['' => __('Please select', 'sd_ongkir')];
+                    $rawCities = sdongkir_cities_by_province_id($provinceId);
+                    foreach ($rawCities as $city) {
+                        $cityOptions[$city->city_id] = "$city->type $city->name";
+                    }
+
                     $values['type'] = 'select';
-                    $values['options'] = ['' => __('Please select', 'sd_ongkir')];
+                    $values['options'] = $cityOptions;
                 }
 
                 $new_settings[$key] = $values;

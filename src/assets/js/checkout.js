@@ -195,12 +195,12 @@ $(document).ready(function () {
                     els.billing_subdistrict.empty();
                     els.billing_subdistrict.val() == "";
 
+                    $("#billing_city").append(
+                        $("<option></option>")
+                            .attr("value", "")
+                            .text(sdongkir_lcz.please_select_text),
+                    );
                     cities.forEach((city) => {
-                        $("#billing_city").append(
-                            $("<option></option>")
-                                .attr("value", "")
-                                .text(sdongkir_lcz.please_select_text),
-                        );
                         $("#billing_city").append(
                             $("<option></option>")
                                 .attr("value", city.city_id)
@@ -247,12 +247,12 @@ $(document).ready(function () {
                     els.shipping_subdistrict.empty();
                     els.shipping_subdistrict.val() == "";
 
+                    $("#shipping_city").append(
+                        $("<option></option>")
+                            .attr("value", "")
+                            .text(sdongkir_lcz.please_select_text),
+                    );
                     cities.forEach((city) => {
-                        $("#shipping_city").append(
-                            $("<option></option>")
-                                .attr("value", "")
-                                .text(sdongkir_lcz.please_select_text),
-                        );
                         $("#shipping_city").append(
                             $("<option></option>")
                                 .attr("value", city.city_id)
@@ -297,12 +297,12 @@ $(document).ready(function () {
                     $("#billing_subdistrict").empty();
                     $("#billing_subdistrict").val() == "";
 
+                    $("#billing_subdistrict").append(
+                        $("<option></option>")
+                            .attr("value", "")
+                            .text(sdongkir_lcz.please_select_text),
+                    );
                     subdistricts.forEach((subdistrict) => {
-                        $("#billing_subdistrict").append(
-                            $("<option></option>")
-                                .attr("value", "")
-                                .text(sdongkir_lcz.please_select_text),
-                        );
                         $("#billing_subdistrict").append(
                             $("<option></option>")
                                 .attr("value", subdistrict.subdistrict_id)
@@ -345,12 +345,12 @@ $(document).ready(function () {
                     $("#shipping_subdistrict").empty();
                     $("#shipping_subdistrict").val() == "";
 
+                    $("#shipping_subdistrict").append(
+                        $("<option></option>")
+                            .attr("value", "")
+                            .text(sdongkir_lcz.please_select_text),
+                    );
                     subdistricts.forEach((subdistrict) => {
-                        $("#shipping_subdistrict").append(
-                            $("<option></option>")
-                                .attr("value", "")
-                                .text(sdongkir_lcz.please_select_text),
-                        );
                         $("#shipping_subdistrict").append(
                             $("<option></option>")
                                 .attr("value", subdistrict.subdistrict_id)
