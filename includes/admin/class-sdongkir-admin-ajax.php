@@ -28,6 +28,8 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
             add_action('wp_ajax_ongkir_get_subdistrict', array($this, 'get_subdistrict'));
             add_action('wp_ajax_ongkir_get_intl_origin', array($this, 'get_intl_origin'));
             add_action('wp_ajax_ongkir_get_intl_destination', array($this, 'get_intl_destination'));
+            add_action('wp_ajax_ongkir_update_store_country', array($this, 'update_store_country'));
+            add_action('wp_ajax_ongkir_update_store_city', array($this, 'update_store_city'));
         }
 
         /**
@@ -275,6 +277,42 @@ if (!class_exists('SDONGKIR_Admin_Ajax')) {
             }
 
             return $this->ajax_success(__('Success storing international destination into database', 'sd_ongkir'));
+        }
+
+        /**
+         * Update the store country
+         *
+         * @return Json response
+         */
+        public function update_store_country()
+        {
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['country'])) {
+                return $this->ajax_error(__('Country is required', 'sd_ongkir'), 422);
+            }
+
+            update_option('woocommerce_default_country', $_POST['country']);
+
+            return $this->ajax_success(__('Success', 'sd_ongkir'), []);
+        }
+
+        /**
+         * Update store city
+         *
+         * @return Json response
+         */
+        public function update_store_city()
+        {
+            check_ajax_referer('sdongkir-script-nonce', 'nonce_ajax');
+
+            if (!isset($_POST['city'])) {
+                return $this->ajax_error(__('City is required', 'sd_ongkir'), 422);
+            }
+
+            update_option('woocommerce_store_city', $_POST['city']);
+
+            return $this->ajax_success(__('Success', 'sd_ongkir'), []);
         }
     }
     

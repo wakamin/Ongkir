@@ -28,6 +28,18 @@ if (!function_exists('sdongkir_province_by_id')) {
     }
 }
 
+if (!function_exists('sdongkir_all_cities')) {
+    /**
+     * Get all cities
+     *
+     * @return Array
+     */
+    function sdongkir_all_cities()
+    {
+        return SDONGKIR_Db::get_all_cities();
+    }
+}
+
 if (!function_exists('sdongkir_cities_by_province_id')) {
     /**
      * Get cities by province id
@@ -51,6 +63,18 @@ if (!function_exists('sdongkir_city_by_id')) {
     function sdongkir_city_by_id($id)
     {
         return SDONGKIR_Db::get_city_by_id($id);
+    }
+}
+
+if (!function_exists('sdongkir_all_subdistricts')) {
+    /**
+     * Get all subdistricts
+     *
+     * @return Array
+     */
+    function sdongkir_all_subdistricts()
+    {
+        return SDONGKIR_Db::get_all_subdistricts();
     }
 }
 

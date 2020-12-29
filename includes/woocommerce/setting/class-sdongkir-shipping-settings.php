@@ -24,6 +24,7 @@ if (!class_exists('SDONGKIR_Shipping_Settings')) {
         public function general_setting($settings)
         {
             $storeCountry = get_option('woocommerce_default_country');
+            $storeCity = get_option('woocommerce_store_city');
             if (strstr($storeCountry, ':')) {
                 $storeCountry = explode(':', $storeCountry);
                 $country      = current($storeCountry);
@@ -56,13 +57,19 @@ if (!class_exists('SDONGKIR_Shipping_Settings')) {
                 }
         
                 // Add subdistrict option
-                if ($values['id'] == 'woocommerce_store_city' && $country == 'ID') {
+                if ($values['id'] == 'woocommerce_store_city') {
+                    $subdistrictOptions = ['' => __('Please select', 'sd_ongkir')];
+                    $rawSubdistricts = sdongkir_subdistricts_by_city_id($storeCity);
+                    foreach ($rawSubdistricts as $subdistrict) {
+                        $subdistrictOptions[$subdistrict->subdistrict_id] = $subdistrict->name;
+                    }
+
                     $new_settings[$key] = array(
                         'name'     => __('Subdistrict', 'sd_ongkir'),
                         'desc_tip' => __('Shipping origin subdistrict', 'sd_ongkir'),
                         'id'       => 'sdongkir_shipping_origin_subdistrict_id',
                         'type'     => 'select',
-                        'options' => ['' => __('Please select', 'sd_ongkir')]
+                        'options' => $subdistrictOptions
                     );
                     $key++;
                 }
@@ -73,8 +80,6 @@ if (!class_exists('SDONGKIR_Shipping_Settings')) {
                     $countrySetting[] = $values;
                 }
             }
-
-            // sd_log($countrySetting);
 
             // Put the country setting after address line 2
             unset($new_settings[$countryKeyPosition - 1]);

@@ -206,6 +206,20 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get all cities
+         *
+         * @return Array
+         */
+        public static function get_all_cities()
+        {
+            global $wpdb;
+            $tableName = self::tables()['city'];
+            $cities = $wpdb->get_results("SELECT * FROM $tableName");
+
+            return $cities;
+        }
+
+        /**
          * Get cities by province id
          *
          * @param Int $provinceId
@@ -240,12 +254,27 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get all subdistricts
+         *
+         * @return Array
+         */
+        public static function get_all_subdistricts()
+        {
+            global $wpdb;
+            $tableName = self::tables()['subdistrict'];
+            $subdistricts = $wpdb->get_results("SELECT * FROM $tableName");
+
+            return $subdistricts;
+        }
+
+        /**
          * Get subdistricts by city ID
          *
          * @param Int $cityId
          * @return Array
          */
-        public static function get_subdistricts_by_city_id($cityId) {
+        public static function get_subdistricts_by_city_id($cityId)
+        {
             global $wpdb;
             $tableName = self::tables()['subdistrict'];
             $subdistricts = $wpdb->get_results(
