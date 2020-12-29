@@ -83,4 +83,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
     // Checkout fields
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/checkout/class-sdongkir-checkout-fields.php';
+
+    // WooCommerce related functions
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/woocommerce.php';
 }
