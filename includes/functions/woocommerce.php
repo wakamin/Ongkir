@@ -31,8 +31,8 @@ if (!function_exists('sdongkir_store_subdistrict_name')) {
         $countryConfig = get_option('woocommerce_default_country');
         $subdistrictConfig = get_option('woocommerce_store_subdistrict');
         
-        if ($countryConfig != 'ID') {
-            return $subdistrictConfig;
+        if ($countryConfig != 'ID' || sdongkir_account_type() != 'pro') {
+            return '';
         }
         
         $subdistrict = sdongkir_subdistrict_by_id($subdistrictConfig);

@@ -57,7 +57,7 @@ if (!class_exists('SDONGKIR_Shipping_Settings')) {
                 }
         
                 // Add subdistrict option
-                if ($values['id'] == 'woocommerce_store_city') {
+                if ($values['id'] == 'woocommerce_store_city' && sdongkir_account_type() == 'pro') {
                     $subdistrictOptions = ['' => __('Please select', 'sd_ongkir')];
                     $rawSubdistricts = sdongkir_subdistricts_by_city_id($storeCity);
                     foreach ($rawSubdistricts as $subdistrict) {

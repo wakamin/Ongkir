@@ -8,10 +8,13 @@ $(document).ready(function () {
             .parent("td")
             .parent("tr"),
     };
+    const subdistrict_exists = els.subdistrict.length > 0 ? true : false;
 
     // Hide the subdistrict if store country is not Indonesia
     if (sdokr_country_province().country != "ID") {
-        els.subdistrict_tr.hide();
+        if (subdistrict_exists) {
+            els.subdistrict_tr.hide();
+        }
     }
 
     // On change country
@@ -40,7 +43,9 @@ $(document).ready(function () {
 
                 sdokr_shipping_city_options(ctryProv.province);
                 // Show the subdistrict
-                els.subdistrict_tr.show();
+                if (subdistrict_exists) {
+                    els.subdistrict_tr.show();
+                }
             } else {
                 if (!cityEl.parent("td").hasClass("forminp-text")) {
                     const inputText = `<td class="forminp forminp-text">
@@ -51,7 +56,9 @@ $(document).ready(function () {
                 }
 
                 // Hide the subdistrict
-                els.subdistrict_tr.hide();
+                if (subdistrict_exists) {
+                    els.subdistrict_tr.hide();
+                }
             }
         });
     });
@@ -72,7 +79,9 @@ $(document).ready(function () {
                 return;
             }
 
-            sdokr_shipping_subdistrict_options(city);
+            if (subdistrict_exists) {
+                sdokr_shipping_subdistrict_options(city);
+            }
         });
     });
 
@@ -98,9 +107,12 @@ $(document).ready(function () {
     function sdokr_update_store_country(country) {
         return new Promise(function (resolve, reject) {
             $("#woocommerce_store_city").attr("disabled", true);
-            els.subdistrict.attr("disabled", true);
             $("#woocommerce_store_city").empty();
-            els.subdistrict.empty();
+
+            if (subdistrict_exists) {
+                els.subdistrict.attr("disabled", true);
+                els.subdistrict.empty();
+            }
 
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
@@ -122,8 +134,10 @@ $(document).ready(function () {
     // Update store city
     function sdokr_update_store_city(city) {
         return new Promise(function (resolve, reject) {
-            els.subdistrict.attr("disabled", true);
-            els.subdistrict.empty();
+            if (subdistrict_exists) {
+                els.subdistrict.attr("disabled", true);
+                els.subdistrict.empty();
+            }
 
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
@@ -134,7 +148,9 @@ $(document).ready(function () {
                     city: city,
                 },
                 success: function (res) {
-                    els.subdistrict.attr("disabled", false);
+                    if (subdistrict_exists) {
+                        els.subdistrict.attr("disabled", false);
+                    }
                     resolve();
                 },
             });
@@ -149,9 +165,11 @@ $(document).ready(function () {
             }
 
             $("#woocommerce_store_city").attr("disabled", true);
-            els.subdistrict.attr("disabled", true);
             $("#woocommerce_store_city").empty();
-            els.subdistrict.empty();
+            if (subdistrict_exists) {
+                els.subdistrict.attr("disabled", true);
+                els.subdistrict.empty();
+            }
 
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
@@ -183,20 +201,24 @@ $(document).ready(function () {
                         );
                     });
 
-                    els.subdistrict.append(
-                        $("<option></option>")
-                            .attr("value", "")
-                            .text(sdongkir_lcz.please_select_text),
-                    );
+                    if (subdistrict_exists) {
+                        els.subdistrict.append(
+                            $("<option></option>")
+                                .attr("value", "")
+                                .text(sdongkir_lcz.please_select_text),
+                        );
+                        els.subdistrict.attr("disabled", false);
+                    }
 
                     $("#woocommerce_store_city").attr("disabled", false);
-                    els.subdistrict.attr("disabled", false);
 
                     resolve();
                 },
                 error: function (err) {
                     $("#woocommerce_store_city").attr("disabled", false);
-                    els.subdistrict.attr("disabled", false);
+                    if (subdistrict_exists) {
+                        els.subdistrict.attr("disabled", false);
+                    }
                     reject("Something went wrong");
                 },
             });
