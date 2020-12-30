@@ -78,6 +78,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/widgets/class-sdongkir-widget.php'
  * Check if WooCommerce is active
  **/
 if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+    // WooCommerce template location
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/class-sdongkir-woo-template.php';
+
     // Shipping origin setting
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/setting/class-sdongkir-woo-settings.php';
 
