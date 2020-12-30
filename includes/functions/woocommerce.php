@@ -1,5 +1,27 @@
 <?php
 
+if (!function_exists('sdongkir_shipping_origin')) {
+    /**
+     * Get shipping origin
+     *
+     * @return Array
+     */
+    function sdongkir_shipping_origin()
+    {
+        $type = 'city';
+        $originId = get_option('woocommerce_store_city');
+        if (sdongkir_account_type() == 'pro') {
+            $type = 'subdistrict';
+            $originId = get_option('sdongkir_shipping_origin_subdistrict_id');
+        }
+
+        return [
+            'type' => $type,
+            'origin_id' => $originId
+        ];
+    }
+}
+
 if (!function_exists('sdongkir_store_city_name')) {
     /**
      * Get store city name
@@ -29,7 +51,7 @@ if (!function_exists('sdongkir_store_subdistrict_name')) {
     function sdongkir_store_subdistrict_name()
     {
         $countryConfig = get_option('woocommerce_default_country');
-        $subdistrictConfig = get_option('woocommerce_store_subdistrict');
+        $subdistrictConfig = get_option('sdongkir_shipping_origin_subdistrict_id');
         
         if ($countryConfig != 'ID' || sdongkir_account_type() != 'pro') {
             return '';

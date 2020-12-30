@@ -27,7 +27,7 @@ $(document).ready(function () {
     sdokr_billing_address_fields();
     sdokr_shipping_address_fields();
 
-    // Initialize billing city options
+    // Initialize billing city and subdistrict options
     if (els.billing_country.val() == "ID") {
         sdokr_get_billing_city_options().then(function () {
             sdokr_set_session_subdistrict("billing", "");
@@ -37,7 +37,7 @@ $(document).ready(function () {
         });
     }
 
-    // Initialize shipping city options
+    // Initialize shipping city and subdistrict options
     if (els.shipping_country.val() == "ID") {
         sdokr_get_shipping_city_options().then(function () {
             sdokr_set_session_subdistrict("shipping", "");
@@ -179,13 +179,16 @@ $(document).ready(function () {
             $("#billing_city").attr("disabled", true);
             els.billing_subdistrict.attr("disabled", true);
 
+            const state = els.billing_state.val().split("-");
+            const province_id = state[1];
+
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
                     action: "ongkir_get_cities_by_province_id",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    province_id: els.billing_state.val(),
+                    province_id: province_id,
                 },
                 success: function (res) {
                     const cities = res.data.data;

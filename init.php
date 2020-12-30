@@ -44,6 +44,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/options.php';
 // Location functions
 include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/location.php';
 
+// Shipping services functions
+include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/shipping-services.php';
+
 // Ajax abstract class
 include_once SDONGKIR_PLUGIN_PATH . 'includes/abstracts/class-sdongkir-ajax.php';
 
