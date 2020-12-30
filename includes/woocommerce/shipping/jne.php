@@ -56,9 +56,6 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     if ($destination['country'] != 'ID' || $destination['city'] == '') {
                         return;
                     }
-                    if (!session_id()) {
-                        session_start();
-                    }
 
                     // if ($accountType == 'pro' && (!isset($_SESSION) || !$_SESSION)) {
                     //     return;

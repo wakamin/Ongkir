@@ -174,9 +174,6 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
                 return $this->ajax_error(__('Type is required', 'sd_ongkir'));
             }
 
-            if (!session_id()) {
-                session_start();
-            }
             if ($_POST['type'] == 'billing') {
                 $_SESSION['billing_subdistrict'] = $_POST['subdistrict_id'];
             } else {

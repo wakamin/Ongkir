@@ -59,6 +59,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/admin/class-sdongkir-admin-ajax.ph
 // Admin scripts
 include_once SDONGKIR_PLUGIN_PATH . 'includes/admin/class-sdongkir-admin-scripts.php';
 
+// Session
+include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-session.php';
+
 // Shortcode
 include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-shortcode.php';
 
