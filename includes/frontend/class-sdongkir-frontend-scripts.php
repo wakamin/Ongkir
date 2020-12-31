@@ -32,8 +32,11 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
             wp_register_script('sdongkir-frontend-script', SDONGKIR_PLUGIN_URL . 'assets/js/frontend-ongkir.js', array('jquery'), '1.0.0', false);
             // Check if WooCommerce is active
             if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-                if (is_checkout() || is_cart()) {
+                if (is_checkout()) {
                     wp_enqueue_script('sdongkir-checkout', SDONGKIR_PLUGIN_URL . 'assets/js/checkout.js', array('jquery'), '1.0.0', false);
+                }
+                if (is_cart()) {
+                    wp_enqueue_script('sdongkir-cart', SDONGKIR_PLUGIN_URL . 'assets/js/cart.js', array('jquery'), '1.0.0', false);
                 }
             }
 
@@ -51,6 +54,7 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
                     'close_label' => __('Close', 'sd_ongkir'),
                     'single_selection' => __('Single selection', 'sd_ongkir'),
                     'multiple_selection' => __('Multiple selection', 'sd_ongkir'),
+                    'city_text' => __('City', 'sd_ongkir'),
                     'subdistrict_text' => __('Subdistrict', 'sd_ongkir'),
                     'please_select_text' => __('Please Select', 'sd_ongkir')
                 )
