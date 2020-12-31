@@ -63,11 +63,15 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     //     return;
                     // }
 
-                    if ($accountType == 'pro' && !isset($_SESSION['billing_subdistrict'])) {
-                        return;
-                    }
+                    // if ($accountType == 'pro' && !isset($_SESSION['billing_subdistrict'])) {
+                    //     return;
+                    // }
 
-                    if ($accountType == 'pro' && $_SESSION['billing_subdistrict'] == '') {
+                    // if ($accountType == 'pro' && $_SESSION['billing_subdistrict'] == '') {
+                    //     return;
+                    // }
+
+                    if ($accountType == 'pro' && $destination['subdistrict'] == '') {
                         return;
                     }
 
@@ -82,7 +86,7 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     $weight = $weight == 0 ? 1 : wc_get_weight($weight, 'g');
 
                     $origin = sdongkir_shipping_origin();
-                    $shippingDest = $accountType == 'pro' ? $_SESSION['billing_subdistrict'] : $destination['city'];
+                    $shippingDest = $accountType == 'pro' ? $destination['subdistrict'] : $destination['city'];
 
                     $costService = new SDONGKIR_Request_Cost();
                     $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, [$this->id]);

@@ -19,6 +19,8 @@ $(document).ready(function () {
         shipping_subdistrict_field: $("#shipping_subdistrict_field"),
     };
 
+    // TODO: Bug fix in checkout shipping field
+
     // Initialize select2
     els.billing_subdistrict.select2();
     els.shipping_subdistrict.select2();

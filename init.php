@@ -59,9 +59,6 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/admin/class-sdongkir-admin-ajax.ph
 // Admin scripts
 include_once SDONGKIR_PLUGIN_PATH . 'includes/admin/class-sdongkir-admin-scripts.php';
 
-// Session
-include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-session.php';
-
 // Shortcode
 include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-shortcode.php';
 
@@ -83,6 +80,9 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
     // Shipping origin setting
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/setting/class-sdongkir-woo-settings.php';
+
+    // Cart
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/cart/class-sdongkir-cart-package.php';
 
     // JNE Shipping
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/jne.php';

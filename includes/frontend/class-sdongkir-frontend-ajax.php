@@ -170,15 +170,27 @@ if (!class_exists('SDONGKIR_Frontend_Ajax')) {
                 return $this->ajax_error(__('Subdistrict is required', 'sd_ongkir'));
             }
 
-            if (!isset($_POST['type'])) {
-                return $this->ajax_error(__('Type is required', 'sd_ongkir'));
+            $type = isset($_POST['type']) ? $_POST['type'] : 'billing';
+
+            $field_key = 'subdistrict';
+            // Get data from custom session variable
+            $values = (array) WC()->session->get($field_key);
+
+            // Initializing when empty
+            if (! empty($values)) {
+                $values = array(
+                    'billing' => WC()->customer->get_meta('billing_'.$field_key),
+                    'shipping' => WC()->customer->get_meta('shipping_'.$field_key)
+                );
             }
 
-            if ($_POST['type'] == 'billing') {
-                $_SESSION['billing_subdistrict'] = $_POST['subdistrict_id'];
-            } else {
-                $_SESSION['shipping_subdistrict'] = $_POST['subdistrict_id'];
-            }
+            // Sanitizing data sent
+            $subdistrict = sanitize_text_field($_POST['subdistrict_id']);
+
+            // Set / udpate custom WC_Session variable
+            $values[$type] = $subdistrict;
+
+            WC()->session->set($field_key, wc_clean($values));
 
             return $this->ajax_success(__('Operation success', 'sd_ongkir'), []);
         }

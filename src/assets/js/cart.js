@@ -51,6 +51,11 @@ $(document).ready(function () {
         }
     });
 
+     // On change subdistrict
+     $(document).on("change", '#calc_shipping_subdistrict', function () {
+        sdokr_set_session_subdistrict($(this).val());
+    });
+
     // Get city options
     function sdokr_get_city_options(province_id) {
         return new Promise(function (resolve, reject) {
@@ -150,5 +155,23 @@ $(document).ready(function () {
                 },
             });
         });
+    }
+
+     // Set session subdistrict
+     function sdokr_set_session_subdistrict(subdistrict_id) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: sdongkir_lcz.ajaxurl,
+                type: "POST",
+                data: {
+                    action: "ongkir_set_session_subdistrict",
+                    nonce_ajax: sdongkir_lcz.nonce,
+                    subdistrict_id: subdistrict_id,
+                },
+                success: function (res) {
+                    resolve(res);
+                },
+            });
+        })
     }
 });
