@@ -22,7 +22,6 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             add_filter('woocommerce_get_order_address', array($this, 'get_order_address'), 10, 3);
 
             add_action('woocommerce_checkout_fields', array($this, 'indonesia_address_field'));
-            add_action('woocommerce_admin_order_data_after_shipping_address', 'display_subdistrict');
         }
 
         /**
@@ -167,19 +166,6 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
                 $array['subdistrict'] = get_post_meta($order['id'], '_'.$type.'_subdistrict', true);
             }
             return $array;
-        }
-
-        /**
-         * Display subdistrict in admin order data
-         *
-         * @param Object $order
-         * @return Html
-         */
-        public function display_subdistrict($order)
-        {
-            ?>
-            <p><strong><?php esc_html_e('Subdistrict', 'sd_ongkir') ?>:</strong><?php echo esc_attr(get_post_meta($order->get_id(), '_subdistrict', true)); ?></p>
-            <?php
         }
     }
 
