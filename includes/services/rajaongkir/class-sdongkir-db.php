@@ -206,6 +206,23 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get province by name
+         *
+         * @param String $provinceName
+         * @return Object
+         */
+        public static function get_province_by_name($provinceName)
+        {
+            global $wpdb;
+            $tableName = self::tables()['province'];
+            $province = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE name = %s", $provinceName)
+            );
+
+            return $province;
+        }
+
+        /**
          * Get all cities
          *
          * @return Array
@@ -254,6 +271,28 @@ if (!class_exists('SDONGKIR_Db')) {
         }
 
         /**
+         * Get city by full name
+         *
+         * @param String $fullName
+         * @return Object
+         */
+        public static function get_city_by_full_name($fullName)
+        {
+            $nameArr = explode(' ', $fullName);
+            $type = $nameArr[0];
+            unset($nameArr[0]);
+            $name = implode(' ', $nameArr);
+
+            global $wpdb;
+            $tableName = self::tables()['city'];
+            $city = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE type = %s AND name = %s", $type, $name)
+            );
+
+            return $city;
+        }
+
+        /**
          * Get all subdistricts
          *
          * @return Array
@@ -296,6 +335,23 @@ if (!class_exists('SDONGKIR_Db')) {
             $tableName = self::tables()['subdistrict'];
             $subdistrict = $wpdb->get_row(
                 $wpdb->prepare("SELECT * FROM $tableName WHERE id = %d", $id)
+            );
+
+            return $subdistrict;
+        }
+
+        /**
+         * Get subdistrict by name
+         *
+         * @param String $name
+         * @return Object
+         */
+        public static function get_subdistrict_by_name($name)
+        {
+            global $wpdb;
+            $tableName = self::tables()['subdistrict'];
+            $subdistrict = $wpdb->get_row(
+                $wpdb->prepare("SELECT * FROM $tableName WHERE name = %s", $name)
             );
 
             return $subdistrict;

@@ -28,6 +28,19 @@ if (!function_exists('sdongkir_province_by_id')) {
     }
 }
 
+if (!function_exists('sdongkir_province_by_name')) {
+    /**
+     * Ge province by name
+     *
+     * @param String $provinceName
+     * @return Object
+     */
+    function sdongkir_province_by_name($provinceName)
+    {
+        return SDONGKIR_Db::get_province_by_name($provinceName);
+    }
+}
+
 if (!function_exists('sdongkir_all_cities')) {
     /**
      * Get all cities
@@ -66,6 +79,19 @@ if (!function_exists('sdongkir_city_by_id')) {
     }
 }
 
+if (!function_exists('sdongkir_city_by_full_name')) {
+    /**
+     * Ge city by full city name including type
+     *
+     * @param String $fullName
+     * @return Object
+     */
+    function sdongkir_city_by_full_name($fullName)
+    {
+        return SDONGKIR_Db::get_city_by_full_name($fullName);
+    }
+}
+
 if (!function_exists('sdongkir_all_subdistricts')) {
     /**
      * Get all subdistricts
@@ -101,5 +127,18 @@ if (!function_exists('sdongkir_subdistrict_by_id')) {
     function sdongkir_subdistrict_by_id($id)
     {
         return SDONGKIR_Db::get_subdistrict_by_id($id);
+    }
+}
+
+if (!function_exists('sdongkir_subdistrict_by_name')) {
+    /**
+     * Ge subdistrict by name
+     *
+     * @param Int $name
+     * @return Object
+     */
+    function sdongkir_subdistrict_by_name($name)
+    {
+        return SDONGKIR_Db::get_subdistrict_by_name($name);
     }
 }

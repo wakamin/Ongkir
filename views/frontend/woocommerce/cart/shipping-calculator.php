@@ -21,7 +21,7 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 
 <form class="woocommerce-shipping-calculator" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
 
-	<?php printf('<a href="#" class="shipping-calculator-button">%s</a>', esc_html(! empty($button_text) ? $button_text : __('Calculate shipping', 'sd_ongkir'))); ?>
+	<a href="#" class="shipping-calculator-button"><?php esc_html_e(! empty($button_text) ? $button_text : __('Calculate shipping', 'sd_ongkir')); ?></a>
 
 	<section class="shipping-calculator-form" style="display:none;">
 		<?php if (apply_filters('woocommerce_shipping_calculator_enable_country', true)) : ?>
@@ -55,12 +55,6 @@ do_action('woocommerce_before_shipping_calculator'); ?>
                     $subdistricts = sdongkir_subdistricts_by_city_id($current_city);
                 }
 
-                // sd_log($current_cc);
-                // sd_log($current_r);
-                // sd_log($current_city);
-                // sd_log($subdistricts);
-                // sd_log($current_subdistrict);
-
                 if (is_array($states) && empty($states)) {
                     ?>
 					<input type="hidden" name="calc_shipping_state" id="calc_shipping_state" placeholder="<?php esc_attr_e('State / County', 'sd_ongkir'); ?>" />
@@ -91,7 +85,7 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 					<select name="calc_shipping_city" class="state_select" id="calc_shipping_city" data-placeholder="<?php esc_attr_e('City', 'sd_ongkir'); ?>">
 						<option value=""><?php esc_html_e('Please Select', 'sd_ongkir'); ?></option>
 						<?php foreach ($cities as $city): ?>
-							<option value="<?php echo esc_attr($city->city_id); ?>" <?php selected($current_city, $city->city_id); ?>><?php echo esc_attr($city->name); ?></option>
+							<option value="<?php echo esc_attr($city->name); ?>" <?php selected($current_city, $city->name); ?>><?php echo esc_attr($city->name); ?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php else: ?>
@@ -105,7 +99,7 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 				<select name="calc_shipping_subdistrict" class="state_select" id="calc_shipping_subdistrict" data-placeholder="<?php esc_attr_e('Subdistrict', 'sd_ongkir'); ?>">
 					<option value=""><?php esc_html_e('Please Select', 'sd_ongkir'); ?></option>
 					<?php foreach ($subdistricts as $subdistrict): ?>
-						<option value="<?php echo esc_attr($subdistrict->subdistrict_id); ?>" <?php selected($current_subdistrict, $subdistrict->subdistrict_id); ?>><?php echo esc_attr($subdistrict->name); ?></option>
+						<option value="<?php echo esc_attr($subdistrict->name); ?>" <?php selected($current_subdistrict, $subdistrict->name); ?>><?php echo esc_attr($subdistrict->name); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>

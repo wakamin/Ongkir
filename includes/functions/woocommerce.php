@@ -61,3 +61,26 @@ if (!function_exists('sdongkir_store_subdistrict_name')) {
         return $subdistrict->name;
     }
 }
+
+if (!function_exists('sdongkir_shipping_destination')) {
+    /**
+     * Get shipping destination id
+     *
+     * @param Array $destination
+     * @return Int or null on failure;
+     */
+    function sdongkir_shipping_destination_id($destination)
+    {
+        $accountType = sdongkir_account_type();
+        $shippingDest = null;
+        if ($accountType == 'pro') {
+            $subdistrict = sdongkir_subdistrict_by_name($destination['subdistrict']);
+            $shippingDest = empty($subdistrict) ? null : $subdistrict->id;
+        } else {
+            $city = sdongkir_city_by_full_name($destination['city']);
+            $shippingDest = empty($city) ? null : $city->id;
+        }
+
+        return $shippingDest;
+    }
+}

@@ -17,6 +17,9 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
         {
             add_filter('woocommerce_states', array($this, 'indonesia_states'));
             add_filter('woocommerce_default_address_fields', array($this, 'subdistrict_field'));
+            add_filter('woocommerce_formatted_address_replacements', array($this, 'formatted_address_replacements'), 10, 2);
+            add_filter('woocommerce_localisation_address_formats', array($this, 'localisation_address_formats'));
+
             add_action('woocommerce_checkout_fields', array($this, 'indonesia_address_field'));
             add_action('woocommerce_admin_order_data_after_shipping_address', 'display_subdistrict');
         }
@@ -32,7 +35,7 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             $provinces = sdongkir_provinces();
             $indonesianStates = [];
             foreach ($provinces as $province) {
-                $indonesianStates['prov-'.$province->province_id] = $province->name;
+                $indonesianStates[$province->name] = $province->name;
             }
 
             $states['ID'] = $indonesianStates;
@@ -61,6 +64,35 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             ];
 
             return $fields;
+        }
+
+        /**
+         * Formatted address replacements
+         *
+         * @param Array $array
+         * @param Array $args
+         * @return Array
+         */
+        public function formatted_address_replacements($array, $args)
+        {
+            if ($array['{country}'] == 'Indonesia') {
+                $array['{subdistrict}'] = $args['subdistrict'];
+            }
+
+            return $array;
+        }
+
+        /**
+         * Localization address formats
+         *
+         * @param Array $array
+         * @return Array
+         */
+        public function localisation_address_formats($array)
+        {
+            $array['ID'] = "{name}\n{company}\n{address_1}\n{address_2}\n{subdistrict}\n{city}\n{state}\n{postcode}\n{country}";
+
+            return $array;
         }
 
         /**

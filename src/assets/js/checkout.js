@@ -181,16 +181,13 @@ $(document).ready(function () {
             $("#billing_city").attr("disabled", true);
             els.billing_subdistrict.attr("disabled", true);
 
-            const state = els.billing_state.val().split("-");
-            const province_id = state[1];
-
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_cities_by_province_id",
+                    action: "ongkir_get_cities_by_province",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    province_id: province_id,
+                    province: els.billing_state.val(),
                 },
                 success: function (res) {
                     const cities = res.data.data;
@@ -208,7 +205,7 @@ $(document).ready(function () {
                     cities.forEach((city) => {
                         $("#billing_city").append(
                             $("<option></option>")
-                                .attr("value", city.city_id)
+                                .attr("value", `${city.type} ${city.name}`)
                                 .text(`${city.type} ${city.name}`),
                         );
                     });
@@ -240,9 +237,9 @@ $(document).ready(function () {
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_cities_by_province_id",
+                    action: "ongkir_get_cities_by_province",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    province_id: els.shipping_state.val(),
+                    province: els.shipping_state.val(),
                 },
                 success: function (res) {
                     const cities = res.data.data;
@@ -260,7 +257,7 @@ $(document).ready(function () {
                     cities.forEach((city) => {
                         $("#shipping_city").append(
                             $("<option></option>")
-                                .attr("value", city.city_id)
+                                .attr("value", `${city.type} ${city.name}`)
                                 .text(`${city.type} ${city.name}`),
                         );
                     });
@@ -292,9 +289,9 @@ $(document).ready(function () {
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_subdistricts_by_city_id",
+                    action: "ongkir_get_subdistricts_by_city",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    city_id: $("#billing_city").val(),
+                    city: $("#billing_city").val(),
                 },
                 success: function (res) {
                     const subdistricts = res.data.data;
@@ -310,7 +307,7 @@ $(document).ready(function () {
                     subdistricts.forEach((subdistrict) => {
                         $("#billing_subdistrict").append(
                             $("<option></option>")
-                                .attr("value", subdistrict.subdistrict_id)
+                                .attr("value", subdistrict.name)
                                 .text(subdistrict.name),
                         );
                     });
@@ -340,9 +337,9 @@ $(document).ready(function () {
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_subdistricts_by_city_id",
+                    action: "ongkir_get_subdistricts_by_city",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    city_id: $("#shipping_city").val(),
+                    city: $("#shipping_city").val(),
                 },
                 success: function (res) {
                     const subdistricts = res.data.data;
@@ -358,7 +355,7 @@ $(document).ready(function () {
                     subdistricts.forEach((subdistrict) => {
                         $("#shipping_subdistrict").append(
                             $("<option></option>")
-                                .attr("value", subdistrict.subdistrict_id)
+                                .attr("value", subdistrict.name)
                                 .text(subdistrict.name),
                         );
                     });

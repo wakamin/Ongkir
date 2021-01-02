@@ -37,10 +37,9 @@ $(document).ready(function () {
 
     // On state change
     $(document).on("change", "#calc_shipping_state", function () {
-        const state = $(this).val().split("-");
-        const province_id = state[1];
-        if (province_id != undefined) {
-            sdokr_get_city_options(province_id);
+        const province = $(this).val();
+        if (province != undefined) {
+            sdokr_get_city_options(province);
         }
     });
 
@@ -51,15 +50,15 @@ $(document).ready(function () {
         }
     });
 
-     // On change subdistrict
-     $(document).on("change", '#calc_shipping_subdistrict', function () {
+    // On change subdistrict
+    $(document).on("change", "#calc_shipping_subdistrict", function () {
         sdokr_set_session_subdistrict($(this).val());
     });
 
     // Get city options
-    function sdokr_get_city_options(province_id) {
+    function sdokr_get_city_options(province) {
         return new Promise(function (resolve, reject) {
-            if (province_id == "") {
+            if (province == "") {
                 resolve();
             }
 
@@ -75,9 +74,9 @@ $(document).ready(function () {
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_cities_by_province_id",
+                    action: "ongkir_get_cities_by_province",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    province_id: province_id,
+                    province: province,
                 },
                 success: function (res) {
                     const cities = res.data.data;
@@ -90,7 +89,7 @@ $(document).ready(function () {
                     cities.forEach((city) => {
                         $("#calc_shipping_city").append(
                             $("<option></option>")
-                                .attr("value", city.city_id)
+                                .attr("value", `${city.type} ${city.name}`)
                                 .text(`${city.type} ${city.name}`),
                         );
                     });
@@ -110,9 +109,9 @@ $(document).ready(function () {
     }
 
     // Get subdistrict options
-    function sdokr_get_subdistrict_options(city_id) {
+    function sdokr_get_subdistrict_options(city) {
         return new Promise(function (resolve, reject) {
-            if (city_id == "") {
+            if (city == "") {
                 resolve();
             }
 
@@ -125,9 +124,9 @@ $(document).ready(function () {
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_subdistricts_by_city_id",
+                    action: "ongkir_get_subdistricts_by_city",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    city_id: city_id,
+                    city: city,
                 },
                 success: function (res) {
                     const subdistricts = res.data.data;
@@ -140,7 +139,7 @@ $(document).ready(function () {
                     subdistricts.forEach((subdistrict) => {
                         $("#calc_shipping_subdistrict").append(
                             $("<option></option>")
-                                .attr("value", subdistrict.subdistrict_id)
+                                .attr("value", subdistrict.name)
                                 .text(subdistrict.name),
                         );
                     });
@@ -157,8 +156,8 @@ $(document).ready(function () {
         });
     }
 
-     // Set session subdistrict
-     function sdokr_set_session_subdistrict(subdistrict_id) {
+    // Set session subdistrict
+    function sdokr_set_session_subdistrict(subdistrict_id) {
         return new Promise(function (resolve, reject) {
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
@@ -172,6 +171,6 @@ $(document).ready(function () {
                     resolve(res);
                 },
             });
-        })
+        });
     }
 });

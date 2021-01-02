@@ -50,9 +50,9 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
 
                 public function calculate_shipping($package = array())
                 {
-                    sd_log('fired');
+                    // sd_log('fired');
                     $destination = $package["destination"];
-                    sd_log($destination);
+                    // sd_log($destination);
                     $accountType = sdongkir_account_type();
 
                     if ($destination['country'] != 'ID' || $destination['city'] == '') {
@@ -75,18 +75,23 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                         return;
                     }
 
+                    // Calculate weight
                     $weight = 0;
-                    $cost = 0;
                     foreach ($package['contents'] as $item_id => $values) {
                         $_product = $values['data'];
                         $productWeight = $_product->get_weight() == '' ? 0 : $_product->get_weight();
                         $weight = ($weight + $productWeight) * $values['quantity'];
                     }
-
                     $weight = $weight == 0 ? 1 : wc_get_weight($weight, 'g');
 
+                    // Shipping origin
                     $origin = sdongkir_shipping_origin();
-                    $shippingDest = $accountType == 'pro' ? $destination['subdistrict'] : $destination['city'];
+
+                    // get the destination destination id
+                    $shippingDest = sdongkir_shipping_destination_id($destination);
+                    if ($shippingDest === null) {
+                        return;
+                    }
 
                     $costService = new SDONGKIR_Request_Cost();
                     $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, [$this->id]);
