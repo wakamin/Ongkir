@@ -19,6 +19,7 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             add_filter('woocommerce_default_address_fields', array($this, 'subdistrict_field'));
             add_filter('woocommerce_formatted_address_replacements', array($this, 'formatted_address_replacements'), 10, 2);
             add_filter('woocommerce_localisation_address_formats', array($this, 'localisation_address_formats'));
+            add_filter('woocommerce_get_order_address', array($this, 'get_order_address'), 10, 3);
 
             add_action('woocommerce_checkout_fields', array($this, 'indonesia_address_field'));
             add_action('woocommerce_admin_order_data_after_shipping_address', 'display_subdistrict');
@@ -75,8 +76,11 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
          */
         public function formatted_address_replacements($array, $args)
         {
+            // sd_log($args);
             if ($array['{country}'] == 'Indonesia') {
-                $array['{subdistrict}'] = $args['subdistrict'];
+                if (isset($args['subdistrict'])) {
+                    $array['{subdistrict}'] = $args['subdistrict'];
+                }
             }
 
             return $array;
@@ -146,6 +150,23 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
             }
 
             return $fields;
+        }
+
+        /**
+         * Get order address
+         *
+         * @param Array $array
+         * @param String $type
+         * @param Object $instance
+         * @return Array
+         */
+        public function get_order_address($array, $type, $instance)
+        {
+            $order = $instance->get_data();
+            if ($order[$type]['country'] == 'ID') {
+                $array['subdistrict'] = get_post_meta($order['id'], '_'.$type.'_subdistrict', true);
+            }
+            return $array;
         }
 
         /**

@@ -17,6 +17,8 @@ if (!class_exists('SDONGKIR_Checkout_Fields')) {
         {
             add_filter('woocommerce_default_address_fields', array($this, 'reorder_checkout_fields'));
             add_filter('woocommerce_checkout_get_value', array($this, 'update_subdistrict_checkout_fields_values'), 10, 2);
+            
+            add_action('woocommerce_checkout_update_order_meta', array($this, 'update_order_meta'));
         }
 
         /**
@@ -55,6 +57,19 @@ if (!class_exists('SDONGKIR_Checkout_Fields')) {
             }
 
             return $value;
+        }
+
+        /**
+         * Update order meta
+         *
+         * @param Int $order_id
+         * @return void
+         */
+        public function update_order_meta($order_id)
+        {
+            if (!empty($_POST['subdistrict'])) {
+                update_post_meta($order_id, 'subdistrict', sanitize_text_field($_POST['subdistrict']));
+            }
         }
     }
 
