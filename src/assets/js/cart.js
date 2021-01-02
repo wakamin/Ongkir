@@ -1,5 +1,4 @@
 import $ from "jquery";
-import "select2";
 
 $(document).ready(function () {
     const html = {
@@ -26,9 +25,7 @@ $(document).ready(function () {
 
         if ($(this).val() == "ID") {
             $("#calc_shipping_city_field").append(html.city_select);
-            $("#calc_shipping_city").select2();
             $("#calc_shipping_subdistrict_field").removeClass("sdokr-hide");
-            $("#calc_shipping_subdistrict").select2();
         } else {
             $("#calc_shipping_city_field").append(html.city_text);
             $("#calc_shipping_subdistrict_field").addClass("sdokr-hide");
@@ -159,6 +156,7 @@ $(document).ready(function () {
     // Set session subdistrict
     function sdokr_set_session_subdistrict(subdistrict_id) {
         return new Promise(function (resolve, reject) {
+            $('button[name="calc_shipping"]').attr("disabled", true);
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
@@ -168,7 +166,12 @@ $(document).ready(function () {
                     subdistrict_id: subdistrict_id,
                 },
                 success: function (res) {
+                    $('button[name="calc_shipping"]').attr("disabled", false);
                     resolve(res);
+                },
+                error: function (err) {
+                    $('button[name="calc_shipping"]').attr("disabled", false);
+                    reject(err);
                 },
             });
         });

@@ -42,17 +42,27 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 
                 $current_cc = WC()->customer->get_shipping_country();
                 $current_r  = WC()->customer->get_shipping_state();
-                $provinceId = str_replace('prov-', '', $current_r);
                 $current_city = WC()->customer->get_shipping_city();
                 $current_subdistrict = '';
                 if ($accountType == 'pro') {
-                    $current_subdistrict = isset($_SESSION['billing_subdistrict']) ? $_SESSION['billing_subdistrict'] : '';
+                    $subdistrictSession = WC()->session->get('subdistrict');
+                    if (isset($subdistrictSession['billing']) && isset($subdistrictSession['shipping'])) {
+                        $current_subdistrict = $subdistrictSession['shipping'] == '' ? $subdistrictSession['billing'] : $subdistrictSession['shipping'];
+                    }
                 }
                 
-                $states     = WC()->countries->get_states($current_cc);
-                $cities = sdongkir_cities_by_province_id($provinceId);
+                $states = WC()->countries->get_states($current_cc);
+                $province = sdongkir_province_by_name($current_r);
+                $cities = [];
+                if (!empty($province)) {
+                    $cities = sdongkir_cities_by_province_id($province->id);
+                }
                 if ($accountType == 'pro') {
-                    $subdistricts = sdongkir_subdistricts_by_city_id($current_city);
+                    $city = sdongkir_city_by_full_name($current_city);
+                    $subdistricts = [];
+                    if (!empty($city)) {
+                        $subdistricts = sdongkir_subdistricts_by_city_id($city->id);
+                    }
                 }
 
                 if (is_array($states) && empty($states)) {
@@ -85,11 +95,11 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 					<select name="calc_shipping_city" class="state_select" id="calc_shipping_city" data-placeholder="<?php esc_attr_e('City', 'sd_ongkir'); ?>">
 						<option value=""><?php esc_html_e('Please Select', 'sd_ongkir'); ?></option>
 						<?php foreach ($cities as $city): ?>
-							<option value="<?php echo esc_attr($city->name); ?>" <?php selected($current_city, $city->name); ?>><?php echo esc_attr($city->name); ?></option>
+							<option value="<?php echo esc_attr($city->name); ?>" <?php selected($current_city, $city->type.' '.$city->name); ?>><?php echo esc_attr($city->type).' '.esc_attr($city->name); ?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php else: ?>
-					<input type="text" class="input-text" value="<?php echo esc_attr(WC()->customer->get_shipping_city()); ?>" placeholder="<?php esc_attr_e('City', 'sd_ongkir'); ?>" name="calc_shipping_city" id="calc_shipping_city" />
+					<input type="text" class="input-text" value="<?php echo esc_attr($current_city); ?>" placeholder="<?php esc_attr_e('City', 'sd_ongkir'); ?>" name="calc_shipping_city" id="calc_shipping_city" />
 				<?php endif; ?>
 			</p>
 		<?php endif; ?>
