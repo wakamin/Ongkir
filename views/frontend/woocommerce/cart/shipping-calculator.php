@@ -95,7 +95,7 @@ do_action('woocommerce_before_shipping_calculator'); ?>
 					<select name="calc_shipping_city" class="state_select" id="calc_shipping_city" data-placeholder="<?php esc_attr_e('City', 'sd_ongkir'); ?>">
 						<option value=""><?php esc_html_e('Please Select', 'sd_ongkir'); ?></option>
 						<?php foreach ($cities as $city): ?>
-							<option value="<?php echo esc_attr($city->name); ?>" <?php selected($current_city, $city->type.' '.$city->name); ?>><?php echo esc_attr($city->type).' '.esc_attr($city->name); ?></option>
+							<option value="<?php echo esc_attr($city->type).' '.esc_attr($city->name); ?>" <?php selected($current_city, $city->type.' '.$city->name); ?>><?php echo esc_attr($city->type).' '.esc_attr($city->name); ?></option>
 						<?php endforeach; ?>
 					</select>
 				<?php else: ?>
