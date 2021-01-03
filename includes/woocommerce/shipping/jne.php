@@ -34,7 +34,19 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
 
                 public function init_form_fields()
                 {
-                    $this->form_fields = array(
+                    // Generate options for service title
+                    $services = sdongkir_jne_services();
+                    $serviceOptions = [];
+                    foreach ($services as $code => $title) {
+                        $serviceOptions[$this->id.'_'.$code.'_title'] = [
+                            'title' => $code,
+                            'desc_tip' => sprintf(__('%s service title', 'sd_ongkir'), $code),
+                            'type' => 'text',
+                            'default' => $title
+                        ];
+                    }
+
+                    $optionFields = array(
                         'enabled' => array(
                             'title' => __('Enable', 'sd_ongkir'),
                             'type' => 'checkbox',
@@ -45,7 +57,15 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                             'type' => 'multiselect',
                             'options' => sdongkir_jne_services()
                         ),
+                        'service_title_jne' => array(
+                            'title' => __('Service Title', 'sd_ongkir'),
+                            'type'  => 'title',
+                            'desc'  => '',
+                            'id'    => 'sdongkir_service_title_jne',
+                        ),
                     );
+
+                    $this->form_fields = array_merge($optionFields, $serviceOptions);
                 }
 
                 public function calculate_shipping($package = array())
@@ -95,12 +115,11 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
 
                     $costService = new SDONGKIR_Request_Cost();
                     $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, [$this->id]);
-
                     foreach ($shippingCost as $shipping) {
                         foreach ($shipping['costs'] as $cost) {
                             $rate = [
                                 'id' => $this->id.'_'.$cost['service'],
-                                'label' => $cost['service'].' - '.$cost['description'],
+                                'label' => $this->get_option($shipping['code'].'_'.$cost['service'].'_title'),
                                 'cost' => $cost['cost'][0]['value']
                             ];
                             $this->add_rate($rate);

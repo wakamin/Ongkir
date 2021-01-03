@@ -9,14 +9,14 @@ if (!function_exists('sdongkir_jne_services')) {
     function sdongkir_jne_services()
     {
         return [
-            'OKE' => 'OKE - Ongkos Kirim Ekonomis',
-            'REG' => 'REG - Layanan Reguler',
-            'YES' => 'YES - Yakin Esok Sampai',
-            'SPS' => 'SPS - Super Speed',
-            'CTCOKE' => 'CTCOKE - JNE City Courier',
-            'CTC' => 'CTC - JNE City Courier',
-            'CTCYES' => 'CTCYES - JNE City Courier YES',
-            'PELIK' => 'PELIK - Amplop Pra Bayar PELIKAN',
+            'OKE' => 'JNE OKE - Ongkos Kirim Ekonomis',
+            'REG' => 'JNE REG - Layanan Reguler',
+            'YES' => 'JNE YES - Yakin Esok Sampai',
+            'SPS' => 'JNE SPS - Super Speed',
+            'CTCOKE' => 'JNE CTCOKE - City Courier',
+            'CTC' => 'JNE CTC - City Courier',
+            'CTCYES' => 'JNE CTCYES - City Courier YES',
+            'PELIK' => 'JNE PELIK - Amplop Pra Bayar PELIKAN',
         ];
     }
 }
