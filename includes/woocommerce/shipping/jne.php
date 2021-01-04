@@ -16,7 +16,6 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     $this->method_title = __('JNE', 'sd_ongkir');
                     $this->method_description = __('JNE shipping method', 'sd_ongkir');
                     $this->enabled = isset($this->settings['enabled']) ? $this->settings['enabled'] : 'yes';
-                    $this->enabled_services = isset($this->settings['enabled_services']) ? $this->settings['enabled_services'] : [];
                     $this->init();
                 }
 
@@ -70,26 +69,12 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
 
                 public function calculate_shipping($package = array())
                 {
-                    // sd_log('fired');
                     $destination = $package["destination"];
-                    // sd_log($destination);
                     $accountType = sdongkir_account_type();
 
                     if ($destination['country'] != 'ID' || $destination['city'] == '') {
                         return;
                     }
-
-                    // if ($accountType == 'pro' && (!isset($_SESSION) || !$_SESSION)) {
-                    //     return;
-                    // }
-
-                    // if ($accountType == 'pro' && !isset($_SESSION['billing_subdistrict'])) {
-                    //     return;
-                    // }
-
-                    // if ($accountType == 'pro' && $_SESSION['billing_subdistrict'] == '') {
-                    //     return;
-                    // }
 
                     if ($accountType == 'pro' && $destination['subdistrict'] == '') {
                         return;
@@ -117,12 +102,14 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, [$this->id]);
                     foreach ($shippingCost as $shipping) {
                         foreach ($shipping['costs'] as $cost) {
-                            $rate = [
-                                'id' => $this->id.'_'.$cost['service'],
-                                'label' => $this->get_option($shipping['code'].'_'.$cost['service'].'_title'),
-                                'cost' => $cost['cost'][0]['value']
-                            ];
-                            $this->add_rate($rate);
+                            if (in_array($cost['service'], $this->get_option('enabled_services'))) {
+                                $rate = [
+                                    'id' => $this->id.'_'.$cost['service'],
+                                    'label' => $this->get_option($shipping['code'].'_'.$cost['service'].'_title'),
+                                    'cost' => $cost['cost'][0]['value']
+                                ];
+                                $this->add_rate($rate);
+                            }
                         }
                     }
                 }
