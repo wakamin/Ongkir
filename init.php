@@ -84,9 +84,6 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     // Cart
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/cart/class-sdongkir-cart-package.php';
 
-    // JNE Shipping
-    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/jne.php';
-
     // Woocommerce address
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/address/class-sdongkir-woo-address.php';
 
@@ -95,4 +92,10 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
     // WooCommerce related functions
     include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/woocommerce.php';
+
+    // WoocommerceShipping methods definition
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/class-sdongkir-shipping-definitions.php';
+
+    // JNE Shipping
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/couriers/local/jne.php';
 }

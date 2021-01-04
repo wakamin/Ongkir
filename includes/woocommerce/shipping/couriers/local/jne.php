@@ -127,37 +127,3 @@ if (!function_exists('sdongkir_add_jne_shipping_method')) {
     }
     add_filter('woocommerce_shipping_methods', 'sdongkir_add_jne_shipping_method');
 }
-
-// if (!function_exists('jne_validate_order')) {
-//     function jne_validate_order($posted)
-//     {
-//         $packages = WC()->shipping->get_packages();
-//         $chosen_methods = WC()->session->get('chosen_shipping_methods');
-//         if (is_array($chosen_methods) && in_array('jne', $chosen_methods)) {
-//             foreach ($packages as $i => $package) {
-//                 if ($chosen_methods[$i] != "jne") {
-//                     continue;
-//                 }
-//                 $JNE_Shipping_Method = new SDONGKIR_Jne_Shipping_method();
-//                 // $weightLimit = (int)$JNE_Shipping_Method->settings['weight'];
-//                 $weightLimit = 2;
-//                 $weight = 0;
-//                 foreach ($package['contents'] as $item_id => $values) {
-//                     $_product = $values['data'];
-//                     $productWeight = $_product->get_weight() == '' ? 1 : $_product->get_weight();
-//                     $weight = ($weight + $productWeight) * $values['quantity'];
-//                 }
-//                 $weight = wc_get_weight($weight, 'kg');
-//                 if ($weight > $weightLimit) {
-//                     $message = sprintf(__('OOPS, %d kg increase the maximum weight of %d kg for %s', 'cloudways'), $weight, $weightLimit, $JNE_Shipping_Method->title);
-//                     $messageType = "error";
-//                     if (!wc_has_notice($message, $messageType)) {
-//                         wc_add_notice($message, $messageType);
-//                     }
-//                 }
-//             }
-//         }
-//     }
-//     add_action('woocommerce_review_order_before_cart_contents', 'jne_validate_order', 10);
-//     add_action('woocommerce_after_checkout_validation', 'jne_validate_order', 10);
-// }
