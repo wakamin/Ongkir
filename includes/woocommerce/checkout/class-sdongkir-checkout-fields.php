@@ -70,6 +70,8 @@ if (!class_exists('SDONGKIR_Checkout_Fields')) {
             if (!empty($_POST['subdistrict'])) {
                 update_post_meta($order_id, 'subdistrict', sanitize_text_field($_POST['subdistrict']));
             }
+            // Remove subdistrict session
+            WC()->session->__unset('subdistrict');
         }
     }
 

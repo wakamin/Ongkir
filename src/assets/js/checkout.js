@@ -15,7 +15,7 @@ $(document).ready(function () {
         shipping_subdistrict_field: $("#shipping_subdistrict_field"),
     };
 
-    // TODO: Bug fix in checkout shipping field
+    const isPro = !els.billing_subdistrict_field.hasClass("sdokr-hide");
 
     // Initialize select2
     els.billing_subdistrict.select2();
@@ -115,12 +115,14 @@ $(document).ready(function () {
     function sdokr_billing_address_fields() {
         if (els.billing_country.val() == "ID") {
             // Setup subdistrict
-            els.billing_subdistrict_field
-                .children("label")
-                .html(
-                    `${sdongkir_lcz.subdistrict_text}&nbsp;<abbr class="required" title="required">*</abbr>`,
-                );
-            els.billing_subdistrict_field.fadeIn();
+            if (isPro) {
+                els.billing_subdistrict_field
+                    .children("label")
+                    .html(
+                        `${sdongkir_lcz.subdistrict_text}&nbsp;<abbr class="required" title="required">*</abbr>`,
+                    );
+                els.billing_subdistrict_field.fadeIn();
+            }
 
             // Setup city
             const billing_city_select = `<select name="billing_city" id="billing_city" class="select" autocomplete="address-level2" data-placeholder="${sdongkir_lcz.please_select_text}"></select>`;
@@ -145,12 +147,14 @@ $(document).ready(function () {
     function sdokr_shipping_address_fields() {
         if (els.shipping_country.val() == "ID") {
             // Setup subdistrict
-            els.shipping_subdistrict_field
-                .children("label")
-                .html(
-                    `${sdongkir_lcz.subdistrict_text}&nbsp;<abbr class="required" title="required">*</abbr>`,
-                );
-            els.shipping_subdistrict_field.fadeIn();
+            if (isPro) {
+                els.shipping_subdistrict_field
+                    .children("label")
+                    .html(
+                        `${sdongkir_lcz.subdistrict_text}&nbsp;<abbr class="required" title="required">*</abbr>`,
+                    );
+                els.shipping_subdistrict_field.fadeIn();
+            }
 
             // Setup city
             const shipping_city_select = `<select name="shipping_city" id="shipping_city" class="select" autocomplete="address-level2" data-placeholder="${sdongkir_lcz.please_select_text}"></select>`;
@@ -175,7 +179,7 @@ $(document).ready(function () {
     function sdokr_get_billing_city_options(province) {
         return new Promise(function (resolve, reject) {
             if (province == "") {
-                resolve();
+                return resolve();
             }
 
             $("#billing_city").attr("disabled", true);
@@ -227,7 +231,7 @@ $(document).ready(function () {
     function sdokr_get_shipping_city_options(province) {
         return new Promise(function (resolve, reject) {
             if (province == "") {
-                resolve();
+                return resolve();
             }
 
             $("#shipping_city").attr("disabled", true);
@@ -279,8 +283,8 @@ $(document).ready(function () {
     // Get billing subdistrict options
     function sdokr_get_billing_subdistrict_options(city) {
         return new Promise(function (resolve, reject) {
-            if (city == "") {
-                resolve();
+            if (city == "" || !isPro) {
+                return resolve("");
             }
 
             $("#billing_subdistrict").attr("disabled", true);
@@ -327,8 +331,8 @@ $(document).ready(function () {
     // Get shipping subdistrict options
     function sdokr_get_shipping_subdistrict_options(city) {
         return new Promise(function (resolve, reject) {
-            if (city == "") {
-                resolve();
+            if (city == "" || !isPro) {
+                return resolve();
             }
 
             $("#shipping_subdistrict").attr("disabled", true);
@@ -374,6 +378,10 @@ $(document).ready(function () {
     // Set session subdistrict
     function sdokr_set_session_subdistrict(type, subdistrict_id) {
         return new Promise(function (resolve, reject) {
+            if (!isPro) {
+                return resolve();
+            }
+
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",

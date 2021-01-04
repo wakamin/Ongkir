@@ -10,11 +10,15 @@ if (!defined('ABSPATH')) {
 if (!class_exists('SDONGKIR_Woo_Address')) {
     class SDONGKIR_Woo_Address
     {
+        public $isPro;
+
         /**
          * Class constructor
          */
         public function __construct()
         {
+            $this->isPro = sdongkir_account_type() == 'pro' ? true : false;
+
             add_filter('woocommerce_states', array($this, 'indonesia_states'));
             add_filter('woocommerce_default_address_fields', array($this, 'subdistrict_field'));
             add_filter('woocommerce_formatted_address_replacements', array($this, 'formatted_address_replacements'), 10, 2);
@@ -51,10 +55,15 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
          */
         public function subdistrict_field($fields)
         {
+            $class = ['form-row-wide'];
+            if (!$this->isPro) {
+                $class = ['form-row-wide', 'sdokr-hide'];
+            }
+
             $fields['subdistrict'] = [
                 'label' => __('Subdistrict', 'sd_ongkir'),
                 'required' => true,
-                'class' => ['form-row-wide'],
+                'class' => $class,
                 'priority' => 75,
                 'clear' => true,
                 'type' => 'select',
@@ -75,10 +84,11 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
          */
         public function formatted_address_replacements($array, $args)
         {
-            // sd_log($args);
             if ($array['{country}'] == 'Indonesia') {
-                if (isset($args['subdistrict'])) {
+                if (isset($args['subdistrict']) && $args['subdistrict'] != '') {
                     $array['{subdistrict}'] = $args['subdistrict'];
+                } else {
+                    $array['{subdistrict}'] = '';
                 }
             }
 
@@ -117,7 +127,11 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
                 ), $fields['billing']['billing_city']);
             
                 $fields['billing']['billing_city'] = $city_args;
-                $fields['billing']['billing_subdistrict']['required'] = true;
+                if ($this->isPro) {
+                    $fields['billing']['billing_subdistrict']['required'] = true;
+                } else {
+                    $fields['billing']['billing_subdistrict']['required'] = false;
+                }
             } else {
                 $city_args = wp_parse_args(array(
                     'type' => 'text',
@@ -138,7 +152,11 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
                 ), $fields['shipping']['shipping_city']);
             
                 $fields['shipping']['shipping_city'] = $city_args;
-                $fields['shipping']['shipping_subdistrict']['required'] = true;
+                if ($this->isPro) {
+                    $fields['shipping']['shipping_subdistrict']['required'] = true;
+                } else {
+                    $fields['shipping']['shipping_subdistrict']['required'] = false;
+                }
             } else {
                 $city_args = wp_parse_args(array(
                     'type' => 'text',
@@ -163,7 +181,10 @@ if (!class_exists('SDONGKIR_Woo_Address')) {
         {
             $order = $instance->get_data();
             if ($order[$type]['country'] == 'ID') {
-                $array['subdistrict'] = get_post_meta($order['id'], '_'.$type.'_subdistrict', true);
+                $subdistrict = get_post_meta($order['id'], '_'.$type.'_subdistrict', true);
+                if ($subdistrict != '') {
+                    $array['subdistrict'] = $subdistrict;
+                }
             }
             return $array;
         }
