@@ -4,17 +4,17 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-if (!function_exists('sdongkir_jne_shipping_method')) {
-    function sdongkir_jne_shipping_method()
+if (!function_exists('sdongkir_pos_shipping_method')) {
+    function sdongkir_pos_shipping_method()
     {
-        if (!class_exists('SDONGKIR_Jne_Shipping_method')) {
-            class SDONGKIR_Jne_Shipping_method extends WC_Shipping_Method
+        if (!class_exists('SDONGKIR_Pos_Shipping_method')) {
+            class SDONGKIR_Pos_Shipping_method extends WC_Shipping_Method
             {
                 public function __construct()
                 {
-                    $this->id = 'jne';
-                    $this->method_title = __('JNE', 'sd_ongkir');
-                    $this->method_description = __('JNE shipping method', 'sd_ongkir');
+                    $this->id = 'pos';
+                    $this->method_title = __('Pos Indonesia', 'sd_ongkir');
+                    $this->method_description = __('Pos Indonesia shipping method', 'sd_ongkir');
                     $this->enabled = isset($this->settings['enabled']) ? $this->settings['enabled'] : 'yes';
                     $this->init();
                 }
@@ -34,7 +34,7 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                 public function init_form_fields()
                 {
                     // Generate options for service title
-                    $services = sdongkir_jne_services();
+                    $services = sdongkir_pos_services();
                     $serviceOptions = [];
                     foreach ($services as $code => $title) {
                         $formattedCode = strtolower(str_replace(' ', '_', $code));
@@ -55,13 +55,13 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                         'enabled_services' => array(
                             'title' => __('Enabled Services', 'sd_ongkir'),
                             'type' => 'multiselect',
-                            'options' => sdongkir_jne_services()
+                            'options' => sdongkir_pos_services()
                         ),
-                        'service_title_jne' => array(
+                        'service_title_pos' => array(
                             'title' => __('Service Title', 'sd_ongkir'),
                             'type'  => 'title',
                             'desc'  => '',
-                            'id'    => 'sdongkir_service_title_jne',
+                            'id'    => 'sdongkir_service_title_pos',
                         ),
                     );
 
@@ -86,13 +86,7 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
                     }
 
                     // Calculate weight
-                    $weight = 0;
-                    foreach ($package['contents'] as $item_id => $values) {
-                        $_product = $values['data'];
-                        $productWeight = $_product->get_weight() == '' ? 0 : $_product->get_weight();
-                        $weight = ($weight + $productWeight) * $values['quantity'];
-                    }
-                    $weight = $weight == 0 ? 1 : wc_get_weight($weight, 'g');
+                    $weight = sdongkir_total_weight($package);
 
                     // Shipping origin
                     $origin = sdongkir_shipping_origin();
@@ -122,5 +116,5 @@ if (!function_exists('sdongkir_jne_shipping_method')) {
             }
         }
     }
-    add_action('woocommerce_shipping_init', 'sdongkir_jne_shipping_method');
+    add_action('woocommerce_shipping_init', 'sdongkir_pos_shipping_method');
 }

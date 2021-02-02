@@ -20,3 +20,19 @@ if (!function_exists('sdongkir_jne_services')) {
         ];
     }
 }
+
+if (!function_exists('sdongkir_pos_services')) {
+    /**
+     * Pos shipping services
+     *
+     * @return Array
+     */
+    function sdongkir_pos_services()
+    {
+        return [
+            'Surat Kilat Khusus' => 'Pos - Surat Kilat Khusus',
+            'Express Next Day' => 'Pos - Express Next Day',
+            'Paket Kilat Khusus' => 'Pos - Paket Kilat Khusus',
+        ];
+    }
+}

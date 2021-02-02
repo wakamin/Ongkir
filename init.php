@@ -93,9 +93,12 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
     // WooCommerce related functions
     include_once SDONGKIR_PLUGIN_PATH . 'includes/functions/woocommerce.php';
 
-    // WoocommerceShipping methods definition
+    // Woocommerce Shipping methods definition
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/class-sdongkir-shipping-definitions.php';
 
     // JNE Shipping
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/couriers/local/jne.php';
+
+    // Pos Indonesia Shipping
+    include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/shipping/couriers/local/pos.php';
 }

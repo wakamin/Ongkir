@@ -84,3 +84,24 @@ if (!function_exists('sdongkir_shipping_destination')) {
         return $shippingDest;
     }
 }
+
+if (!function_exists('sdongkir_total_weight')) {
+    /**
+     * Get total ordered product weight
+     *
+     * @param Array $package
+     * @return Int
+     */
+    function sdongkir_total_weight($package)
+    {
+        $weight = 0;
+        foreach ($package['contents'] as $item_id => $values) {
+            $_product = $values['data'];
+            $productWeight = $_product->get_weight() == '' ? 0 : $_product->get_weight();
+            $weight = ($weight + $productWeight) * $values['quantity'];
+        }
+        $weight = $weight == 0 ? 1 : wc_get_weight($weight, 'g');
+
+        return $weight;
+    }
+}
