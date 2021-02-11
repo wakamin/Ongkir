@@ -31,10 +31,10 @@ if (!class_exists('SDONGKIR_Woo_Settings')) {
             if (strstr($storeCountry, ':')) {
                 $storeCountry = explode(':', $storeCountry);
                 $country      = current($storeCountry);
-                $provinceId = str_replace('prov-', '', end($storeCountry));
+                $provinceName = end($storeCountry);
             } else {
                 $country = $storeCountry;
-                $provinceId   = '*';
+                $provinceName   = '*';
             }
 
             $key = 0;
@@ -42,9 +42,12 @@ if (!class_exists('SDONGKIR_Woo_Settings')) {
                 // Modify city option as select dropdown
                 if ($values['id'] == 'woocommerce_store_city' && $country == 'ID') {
                     $cityOptions = ['' => __('Please select', 'sd_ongkir')];
-                    $rawCities = sdongkir_cities_by_province_id($provinceId);
-                    foreach ($rawCities as $city) {
-                        $cityOptions[$city->city_id] = "$city->type $city->name";
+                    $province = sdongkir_province_by_name($provinceName);
+                    if (!is_null($province)) {
+                        $rawCities = sdongkir_cities_by_province_id($province->id);
+                        foreach ($rawCities as $city) {
+                            $cityOptions["$city->type $city->name"] = "$city->type $city->name";
+                        }
                     }
 
                     $values['type'] = 'select';
@@ -62,15 +65,18 @@ if (!class_exists('SDONGKIR_Woo_Settings')) {
                 // Add subdistrict option
                 if ($values['id'] == 'woocommerce_store_city' && sdongkir_account_type() == 'pro') {
                     $subdistrictOptions = ['' => __('Please select', 'sd_ongkir')];
-                    $rawSubdistricts = sdongkir_subdistricts_by_city_id($storeCity);
-                    foreach ($rawSubdistricts as $subdistrict) {
-                        $subdistrictOptions[$subdistrict->subdistrict_id] = $subdistrict->name;
+                    $city = sdongkir_city_by_full_name($storeCity);
+                    if (!is_null($city)) {
+                        $rawSubdistricts = sdongkir_subdistricts_by_city_id($city->id);
+                        foreach ($rawSubdistricts as $subdistrict) {
+                            $subdistrictOptions[$subdistrict->name] = $subdistrict->name;
+                        }
                     }
 
                     $new_settings[$key] = array(
                         'name'     => __('Subdistrict', 'sd_ongkir'),
                         'desc_tip' => __('Shipping origin subdistrict', 'sd_ongkir'),
-                        'id'       => 'sdongkir_shipping_origin_subdistrict_id',
+                        'id'       => 'sdongkir_shipping_origin_subdistrict',
                         'type'     => 'select',
                         'options' => $subdistrictOptions
                     );

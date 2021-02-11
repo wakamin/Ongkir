@@ -3,8 +3,8 @@ import $ from "jquery";
 $(document).ready(function () {
     const els = {
         country: $("select[name='woocommerce_default_country']"),
-        subdistrict: $("#sdongkir_shipping_origin_subdistrict_id"),
-        subdistrict_tr: $("#sdongkir_shipping_origin_subdistrict_id")
+        subdistrict: $("#sdongkir_shipping_origin_subdistrict"),
+        subdistrict_tr: $("#sdongkir_shipping_origin_subdistrict")
             .parent("td")
             .parent("tr"),
     };
@@ -88,18 +88,15 @@ $(document).ready(function () {
     // Get country and province value
     function sdokr_country_province() {
         const countryVal = els.country.val().split(":");
-        let province_id = "";
+        let province = "";
 
         if (countryVal[0] == "ID") {
-            const provinceArr = countryVal[1].split("-");
-            province_id = provinceArr[1];
-        } else {
-            province_id = countryVal.length == 2 ? countryVal[1] : "";
+            province = countryVal[1];
         }
 
         return {
             country: countryVal[0],
-            province: province_id,
+            province: province,
         };
     }
 
@@ -158,9 +155,9 @@ $(document).ready(function () {
     }
 
     // Get shipping city options
-    function sdokr_shipping_city_options(province_id, selected_id = "") {
+    function sdokr_shipping_city_options(province, selected = "") {
         return new Promise(function (resolve, reject) {
-            if (province_id == "") {
+            if (province == "") {
                 resolve();
             }
 
@@ -175,9 +172,9 @@ $(document).ready(function () {
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_cities_by_province_id",
+                    action: "ongkir_get_cities_by_province",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    province_id: province_id,
+                    province: province,
                 },
                 success: function (res) {
                     const cities = res.data.data;
@@ -190,10 +187,10 @@ $(document).ready(function () {
                     cities.forEach((city) => {
                         $("#woocommerce_store_city").append(
                             $("<option></option>")
-                                .attr("value", city.city_id)
+                                .attr("value", `${city.type} ${city.name}`)
                                 .attr(
                                     "selected",
-                                    selected_id == city.city_id
+                                    selected == `${city.type} ${city.name}`
                                         ? "selected"
                                         : false,
                                 )
@@ -226,22 +223,24 @@ $(document).ready(function () {
     }
 
     // Get shipping subdistrict options
-    function sdokr_shipping_subdistrict_options(city_id, selected_id = "") {
+    function sdokr_shipping_subdistrict_options(city, selected = "") {
         return new Promise(function (resolve, reject) {
-            if (city_id == "") {
+            if (city == "") {
                 resolve();
             }
 
-            els.subdistrict.attr("disabled", true);
-            els.subdistrict.empty();
+            if (subdistrict_exists) {
+                els.subdistrict.attr("disabled", true);
+                els.subdistrict.empty();
+            }
 
             $.ajax({
                 url: sdongkir_lcz.ajaxurl,
                 type: "POST",
                 data: {
-                    action: "ongkir_get_subdistricts_by_city_id",
+                    action: "ongkir_get_subdistricts_by_city",
                     nonce_ajax: sdongkir_lcz.nonce,
-                    city_id: city_id,
+                    city: city,
                 },
                 success: function (res) {
                     const subdistricts = res.data.data;
@@ -254,10 +253,10 @@ $(document).ready(function () {
                     subdistricts.forEach((subdistrict) => {
                         els.subdistrict.append(
                             $("<option></option>")
-                                .attr("value", subdistrict.subdistrict_id)
+                                .attr("value", subdistrict.name)
                                 .attr(
                                     "selected",
-                                    selected_id == subdistrict.subdistrict_id
+                                    selected == subdistrict.name
                                         ? "selected"
                                         : false,
                                 )
