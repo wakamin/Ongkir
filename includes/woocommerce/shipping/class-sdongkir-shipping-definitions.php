@@ -22,6 +22,7 @@ if (!class_exists('SDONGKIR_Shipping_Definitions')) {
         {
             $methods['jne'] = 'SDONGKIR_Jne_Shipping_method';
             $methods['pos'] = 'SDONGKIR_Pos_Shipping_method';
+            $methods['ongkir'] = 'SDONGKIR_Shipping_method';
             return $methods;
         }
     }

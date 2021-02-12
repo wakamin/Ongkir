@@ -44,7 +44,7 @@ if (!class_exists('SDONGKIR_Admin_Scripts')) {
 
             wp_enqueue_style('sdongkir', SDONGKIR_PLUGIN_URL . 'assets/css/admin-ongkir.css');
             
-            wp_register_script('sdongkir-script', SDONGKIR_PLUGIN_URL . 'assets/js/admin-ongkir.js', array('jquery', 'jquery-ui-progressbar'), '1.0.0', false);
+            wp_register_script('sdongkir-script', SDONGKIR_PLUGIN_URL . 'assets/js/admin-ongkir.js', array('jquery', 'jquery-ui-progressbar'), '1.0.0', true);
             
             wp_localize_script(
                 'sdongkir-script',

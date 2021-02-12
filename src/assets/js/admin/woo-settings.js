@@ -11,9 +11,11 @@ $(document).ready(function () {
     const subdistrict_exists = els.subdistrict.length > 0 ? true : false;
 
     // Hide the subdistrict if store country is not Indonesia
-    if (sdokr_country_province().country != "ID") {
-        if (subdistrict_exists) {
-            els.subdistrict_tr.hide();
+    if (els.country.length > 0) {
+        if (sdokr_country_province().country != "ID") {
+            if (subdistrict_exists) {
+                els.subdistrict_tr.hide();
+            }
         }
     }
 
