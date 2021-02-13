@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-$(document).ready(function () {
+$(function () {
     const els = {
         country: $("select[name='woocommerce_default_country']"),
         subdistrict: $("#sdongkir_shipping_origin_subdistrict"),

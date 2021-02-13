@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-$(document).ready(function () {
+$(function () {
     "use strict";
 
     // Setting page

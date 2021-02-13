@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-$(document).ready(function () {
+$(function () {
     $(".sdokr-select-all").on("click", function () {
         $($(this).data("target")).prop("checked", true);
     });

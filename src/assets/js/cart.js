@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-$(document).ready(function () {
+$(function () {
     const html = {
         city_text: `<input type="text" class="input-text" value="" placeholder="${sdongkir_lcz.city_text}" name="calc_shipping_city" id="calc_shipping_city" />`,
         city_select: `<select name="calc_shipping_city" class="state_select" id="calc_shipping_city" data-placeholder="${sdongkir_lcz.city_text}">

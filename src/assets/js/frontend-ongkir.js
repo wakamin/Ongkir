@@ -2,7 +2,7 @@ import $ from "jquery";
 import "select2";
 import tingle from "tingle.js";
 
-$(document).ready(function () {
+$(function () {
     "use strict";
 
     // Ongkir form
