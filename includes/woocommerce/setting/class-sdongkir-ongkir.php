@@ -5,9 +5,17 @@ if (!defined('ABSPATH')) {
 }
 
 if (!function_exists('sdongkir_shipping_method')) {
+    /**
+     * Shipping method function for WooCommerce
+     *
+     * @return void
+     */
     function sdongkir_shipping_method()
     {
         if (!class_exists('SDONGKIR_Shipping_method')) {
+            /**
+             * Shipping method class
+             */
             class SDONGKIR_Shipping_method extends WC_Shipping_Method
             {
                 public function __construct()
@@ -131,3 +139,16 @@ if (!function_exists('sdongkir_shipping_method')) {
     }
     add_action('woocommerce_shipping_init', 'sdongkir_shipping_method');
 }
+
+/**
+ * Define shipping method
+ *
+ * @param Array $methods
+ * @return Array
+ */
+function sdongkir_wc_define_shippings($methods)
+{
+    $methods['ongkir'] = 'SDONGKIR_Shipping_method';
+    return $methods;
+}
+add_filter('woocommerce_shipping_methods', 'sdongkir_wc_define_shippings');
