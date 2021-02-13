@@ -1,5 +1,10 @@
 <?php
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit();
+}
+
 if (!function_exists('sdongkir_shipping_origin')) {
     /**
      * Get shipping origin
@@ -12,7 +17,13 @@ if (!function_exists('sdongkir_shipping_origin')) {
         $originId = get_option('woocommerce_store_city');
         if (sdongkir_account_type() == 'pro') {
             $type = 'subdistrict';
-            $originId = get_option('sdongkir_shipping_origin_subdistrict_id');
+            $subdistrictName = get_option('sdongkir_shipping_origin_subdistrict');
+            $subdistrict = sdongkir_subdistrict_by_name($subdistrictName);
+            if (!is_null($subdistrict)) {
+                $originId = $subdistrict->id;
+            } else {
+                return new WP_Error(404, __('Subdistrict not found', 'sd_ongkir'));
+            }
         }
 
         return [
@@ -50,15 +61,14 @@ if (!function_exists('sdongkir_store_subdistrict_name')) {
      */
     function sdongkir_store_subdistrict_name()
     {
-        $countryConfig = get_option('woocommerce_default_country');
-        $subdistrictConfig = get_option('sdongkir_shipping_origin_subdistrict_id');
+        $country = get_option('woocommerce_default_country');
+        $subdistrict = get_option('sdongkir_shipping_origin_subdistrict');
         
-        if ($countryConfig != 'ID' || sdongkir_account_type() != 'pro') {
+        if ($country != 'ID' || sdongkir_account_type() != 'pro') {
             return '';
         }
         
-        $subdistrict = sdongkir_subdistrict_by_id($subdistrictConfig);
-        return $subdistrict->name;
+        return $subdistrict;
     }
 }
 

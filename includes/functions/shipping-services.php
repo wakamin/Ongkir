@@ -1,5 +1,10 @@
 <?php
 
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit();
+}
+
 if (!function_exists('sdongkir_jne_services')) {
     /**
      * JNE shipping services

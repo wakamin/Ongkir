@@ -1,7 +1,7 @@
 import $ from "jquery";
 import "select2";
 
-$(document).ready(function () {
+$(function () {
     // elements
     const els = {
         billing_country: $("#billing_country"),
@@ -283,7 +283,7 @@ $(document).ready(function () {
     // Get billing subdistrict options
     function sdokr_get_billing_subdistrict_options(city) {
         return new Promise(function (resolve, reject) {
-            if (city == "" || !isPro) {
+            if (city === "" || city === null || !isPro) {
                 return resolve("");
             }
 
@@ -331,7 +331,7 @@ $(document).ready(function () {
     // Get shipping subdistrict options
     function sdokr_get_shipping_subdistrict_options(city) {
         return new Promise(function (resolve, reject) {
-            if (city == "" || !isPro) {
+            if (city === "" || city === null || !isPro) {
                 return resolve();
             }
 

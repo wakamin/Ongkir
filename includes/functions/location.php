@@ -134,7 +134,7 @@ if (!function_exists('sdongkir_subdistrict_by_name')) {
     /**
      * Ge subdistrict by name
      *
-     * @param Int $name
+     * @param String $name
      * @return Object
      */
     function sdongkir_subdistrict_by_name($name)
