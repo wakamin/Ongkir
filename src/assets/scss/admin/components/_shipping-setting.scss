@@ -6,6 +6,7 @@
     .sdongkir-card {
         width: 30%;
         margin: 10px;
+        transition: all 0.25s ease;
 
         @media only screen and(max-width: 1200px) {
             width: 45%;
@@ -14,6 +15,11 @@
         @media only screen and(max-width: 768px) {
             width: 100%;
             margin: 10px 0;
+        }
+
+        &.active {
+            border-color: #0073aa;
+            box-shadow: 4px 4px 1px 2px #005177;
         }
     }
 

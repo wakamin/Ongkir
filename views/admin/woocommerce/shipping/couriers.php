@@ -8,10 +8,10 @@
         $services = function_exists($getServicesFunc) ? call_user_func($getServicesFunc) : [];
         $serviceTitleArr = sdongkir_wc_courier_service_title_arr($courierCode);
     ?>
-    <div id="<?php echo $courierCode; ?>-shipping-setting" class="sdongkir-card">
+    <div id="<?php echo $courierCode; ?>-shipping-setting" class="sdongkir-card<?php echo $isEnabled === 'yes' ? ' active' : ''; ?>">
         <div class="sdongkir-card__header">
             <label for="sdokr_wc_<?php echo $courierCode; ?>_enable">
-                <input type="checkbox" name="sdokr_wc_enabled_shipping[]" id="sdokr_wc_<?php echo $courierCode; ?>_enable" value="<?php echo $courierCode; ?>" <?php checked($isEnabled, 'yes') ?>>
+                <input type="checkbox" name="sdokr_wc_enabled_shipping[]" id="sdokr_wc_<?php echo $courierCode; ?>_enable" class="sdokr_wc_shipping_enable_cb" value="<?php echo $courierCode; ?>" <?php checked($isEnabled, 'yes') ?>>
                 <?php echo $courier['name']; ?>
             </label>
             <img src="<?php echo esc_attr($courier['logo']); ?>" alt="<?php echo esc_attr($courier['name']); ?>" class="sdongkir-card__header-image">
