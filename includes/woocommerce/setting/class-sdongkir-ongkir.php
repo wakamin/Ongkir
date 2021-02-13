@@ -45,14 +45,13 @@ if (!function_exists('sdongkir_shipping_method')) {
                     $enabledShipping = isset($_POST['sdokr_wc_enabled_shipping']) ? $_POST['sdokr_wc_enabled_shipping'] : [];
                     update_option('sdokr_wc_enabled_shipping', serialize($enabledShipping));
 
-                    $jneActiveServices = isset($_POST['sdokr_wc_jne_active_services']) ? $_POST['sdokr_wc_jne_active_services'] : [];
-                    update_option('sdokr_wc_jne_active_services', serialize($jneActiveServices));
-                
-                    foreach (sdongkir_jne_services() as $code => $title) {
-                        $formattedCode = strtolower(str_replace(' ', '_', $code));
-                        $customTitle = isset($_POST['sdokr_wc_jne_'.$formattedCode.'_title']) ? $_POST['sdokr_wc_jne_'.$formattedCode.'_title'] : '';
-                        if ($customTitle !== '') {
-                            update_option('sdokr_wc_jne_'.$formattedCode.'_title', sanitize_text_field($customTitle));
+                    foreach (sdongkir_all_couriers() as $courierCode => $courier) {
+                        $activeServices = isset($_POST['sdokr_wc_'.$courierCode.'_active_services']) ? $_POST['sdokr_wc_'.$courierCode.'_active_services'] : [];
+                        update_option('sdokr_wc_'.$courierCode.'_active_services', serialize($activeServices));
+                    
+                        $customTitle = isset($_POST['sdokr_wc_'.$courierCode.'_service_title']) ? $_POST['sdokr_wc_'.$courierCode.'_service_title'] : [];
+                        if (!empty($customTitle)) {
+                            update_option('sdokr_wc_'.$courierCode.'_service_title', serialize($customTitle));
                         }
                     }
                 }
@@ -105,19 +104,25 @@ if (!function_exists('sdongkir_shipping_method')) {
                         return;
                     }
 
+                    $enabledShipping = sdongkir_wc_enabled_shipping();
+                    if (empty($enabledShipping)) {
+                        return;
+                    }
+
+                    $allActiveServices = sdongkir_wc_all_active_services();
                     $costService = new SDONGKIR_Request_Cost();
-                    $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, unserialize(get_option('sdokr_wc_enabled_shipping')));
+                    $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, $enabledShipping);
                     foreach ($shippingCost as $shipping) {
+                        $titleArr = sdongkir_wc_courier_service_title_arr($shipping['code']);
                         foreach ($shipping['costs'] as $cost) {
-                            // if (in_array($cost['service'], $this->get_option('enabled_services'))) {
-                            $formattedService = strtolower(str_replace(' ', '_', $cost['service']));
-                            $rate = [
-                                    'id' => $this->id.'_'.$cost['service'],
-                                    'label' => get_option('sdongkir_wc_'.$shipping['code'].'_'.$formattedService.'_title'),
+                            if (in_array($cost['service'], $allActiveServices)) {
+                                $rate = [
+                                    'id' => $this->id.'_'.sdongkir_format_shipping_service_code($cost['service']),
+                                    'label' => isset($titleArr[$cost['service']]) ? $titleArr[$cost['service']] : $cost['service'],
                                     'cost' => $cost['cost'][0]['value']
                                 ];
-                            $this->add_rate($rate);
-                            // }
+                                $this->add_rate($rate);
+                            }
                         }
                     }
                 }

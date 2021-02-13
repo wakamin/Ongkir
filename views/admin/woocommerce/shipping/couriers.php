@@ -6,6 +6,7 @@
         $activeServices = sdongkir_wc_courier_active_services($courierCode);
         $getServicesFunc = 'sdongkir_'.$courierCode.'_services';
         $services = function_exists($getServicesFunc) ? call_user_func($getServicesFunc) : [];
+        $serviceTitleArr = sdongkir_wc_courier_service_title_arr($courierCode);
     ?>
     <div id="<?php echo $courierCode; ?>-shipping-setting" class="sdongkir-card">
         <div class="sdongkir-card__header">
@@ -31,7 +32,7 @@
                         </div>
                         <div class="sdongkir-courier-spacer">&nbsp;</div>
                         <div class="sdongkir-courier-cb-title">
-                            <input type="text" name="<?php echo 'sdokr_wc_'.$courierCode.'_'.$formattedService.'_title'; ?>" id="<?php echo 'sdokr_wc_'.$courierCode.'_'.$formattedService.'_title'; ?>" value="<?php echo esc_attr(sdongkir_wc_courier_service_title($courierCode, $serviceCode)) ?>" placeholder="<?php echo $courier['name'].' '.$serviceCode.' title' ?>">
+                            <input type="text" name="sdokr_wc_<?php echo $courierCode ?>_service_title[<?php echo $serviceCode ?>]" id="<?php echo 'sdokr_wc_'.$courierCode.'_'.$formattedService.'_title'; ?>" value="<?php echo isset($serviceTitleArr[$serviceCode]) ? esc_attr($serviceTitleArr[$serviceCode]) : '' ?>" placeholder="<?php echo $courier['name'].' '.$serviceCode.' title' ?>">
                         </div>
                     </li>
                 <?php endforeach; ?>

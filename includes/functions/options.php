@@ -91,8 +91,8 @@ if (!function_exists('sdongkir_wc_all_active_services')) {
     function sdongkir_wc_all_active_services()
     {
         $services = [];
-        foreach (sdongkir_all_couriers() as $code => $courier) {
-            $setting = get_option('sdokr_wc_'.$code.'_active_services', '');
+        foreach (sdongkir_all_couriers() as $courierCode => $courier) {
+            $setting = get_option('sdokr_wc_'.$courierCode.'_active_services', '');
             if ($setting != '') {
                 $services[] = unserialize($setting);
             }
@@ -102,25 +102,48 @@ if (!function_exists('sdongkir_wc_all_active_services')) {
     }
 }
 
+if (!function_exists('sdongkir_wc_courier_service_title_arr')) {
+    /**
+     * Get all specific courier service title for WooCommerce shipping
+     *
+     * @string $courierCode
+     * @return Array
+     */
+    function sdongkir_wc_courier_service_title_arr($courierCode)
+    {
+        $titleString = get_option('sdokr_wc_'.$courierCode.'_service_title', '');
+        $titleArr = [];
+
+        if ($titleString === '') {
+            $serviceFunc = 'sdongkir_'.$courierCode.'_services';
+            $titleArr = function_exists($serviceFunc) ? call_user_func($serviceFunc) : [];
+        } else {
+            $titleArr = unserialize($titleString);
+        }
+
+        return $titleArr;
+    }
+}
+
 if (!function_exists('sdongkir_wc_courier_service_title')) {
     /**
      * Get courier service title for WooCommerce shipping
      *
      * @string $courierCode
      * @string $serviceCode
-     * @return Array
+     * @return String
      */
     function sdongkir_wc_courier_service_title($courierCode, $serviceCode)
     {
-        $formattedServiceCode = sdongkir_format_shipping_service_code($serviceCode);
-        $title = get_option('sdokr_wc_'.$courierCode.'_'.$formattedServiceCode.'_title', '');
+        $titleString = get_option('sdokr_wc_'.$courierCode.'_service_title', '');
 
-        if ($title === '') {
+        if ($titleString === '') {
             $serviceFunc = 'sdongkir_'.$courierCode.'_services';
-            $default = call_user_func($serviceFunc);
-            $title = $default[$serviceCode];
+            $titleArr = function_exists($serviceFunc) ? call_user_func($serviceFunc) : [];
+        } else {
+            $titleArr = unserialize($titleString);
         }
 
-        return $title;
+        return isset($titleArr[$serviceCode]) ? $titleArr[$serviceCode] : '';
     }
 }
