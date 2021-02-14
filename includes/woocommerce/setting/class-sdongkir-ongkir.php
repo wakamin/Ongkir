@@ -123,7 +123,8 @@ if (!function_exists('sdongkir_shipping_method')) {
                     foreach ($shippingCost as $shipping) {
                         $titleArr = sdongkir_wc_courier_service_title_arr($shipping['code']);
                         foreach ($shipping['costs'] as $cost) {
-                            if (in_array($cost['service'], $allActiveServices)) {
+                            $allowedByWeight = sdongkir_shipping_allowed_by_weight($shipping['code'], $cost['service'], $weight);
+                            if (in_array($cost['service'], $allActiveServices) && $allowedByWeight) {
                                 $rate = [
                                     'id' => $this->id.'_'.sdongkir_format_shipping_service_code($cost['service']),
                                     'label' => isset($titleArr[$cost['service']]) ? $titleArr[$cost['service']] : $cost['service'],

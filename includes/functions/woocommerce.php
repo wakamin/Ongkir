@@ -97,7 +97,7 @@ if (!function_exists('sdongkir_shipping_destination')) {
 
 if (!function_exists('sdongkir_total_weight')) {
     /**
-     * Get total ordered product weight
+     * Get total ordered product weight in gram
      *
      * @param Array $package
      * @return Int
@@ -113,5 +113,50 @@ if (!function_exists('sdongkir_total_weight')) {
         $weight = $weight == 0 ? 1 : wc_get_weight($weight, 'g');
 
         return $weight;
+    }
+}
+
+if (!function_exists('sdongkir_shipping_allowed_by_weight')) {
+    /**
+     * Check if shipping service allowed by weight
+     *
+     * @param String $courierCode
+     * @param String $serviceCode
+     * @param Int $weight
+     * @return Boolean
+     */
+    function sdongkir_shipping_allowed_by_weight($courierCode, $serviceCode, $weight)
+    {
+        $couriers = [
+            'ncs',
+            'sap',
+            'sicepat',
+            'sicepat',
+        ];
+
+        if (!in_array($courierCode, $couriers)) {
+            return true;
+        }
+
+        $formattedService = sdongkir_format_shipping_service_code($serviceCode);
+        $identifier = $courierCode.'_'.$formattedService;
+
+        $kg5 = ['ncs_sds', 'ncs_darat_murah', 'ncs_nfd_ons', 'ncs_nfd_sds'];
+        $kg10 = ['sicepat_gokil'];
+        $kg50 = ['ncs_darat', 'sap_cargo_darat'];
+
+        if (in_array($identifier, $kg5) && $weight < 5000) {
+            return false;
+        }
+
+        if (in_array($identifier, $kg10) && $weight < 10000) {
+            return false;
+        }
+
+        if (in_array($identifier, $kg50) && $weight < 50000) {
+            return false;
+        }
+
+        return true;
     }
 }
