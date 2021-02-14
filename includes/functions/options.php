@@ -94,11 +94,16 @@ if (!function_exists('sdongkir_wc_all_active_services')) {
         foreach (sdongkir_all_couriers() as $courierCode => $courier) {
             $setting = get_option('sdokr_wc_'.$courierCode.'_active_services', '');
             if ($setting != '') {
-                $services[] = unserialize($setting);
+                $settingArr = unserialize($setting);
+                if (in_array($courierCode, sdongkir_wc_enabled_shipping())) {
+                    foreach ($settingArr as $service) {
+                        $services[] = $courierCode.' '.$service;
+                    }
+                }
             }
         }
 
-        return array_reduce($services, 'array_merge', array());
+        return $services;
     }
 }
 

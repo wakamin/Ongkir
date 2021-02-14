@@ -121,12 +121,13 @@ if (!function_exists('sdongkir_shipping_method')) {
                     $costService = new SDONGKIR_Request_Cost();
                     $shippingCost = $costService->get_shipping_cost($origin['origin_id'], $shippingDest, $weight, $enabledShipping);
                     foreach ($shippingCost as $shipping) {
-                        $titleArr = sdongkir_wc_courier_service_title_arr($shipping['code']);
+                        $courierCode = $shipping['code'] === 'J&T' ? 'jnt' : $shipping['code'];
+                        $titleArr = sdongkir_wc_courier_service_title_arr($courierCode);
                         foreach ($shipping['costs'] as $cost) {
-                            $allowedByWeight = sdongkir_shipping_allowed_by_weight($shipping['code'], $cost['service'], $weight);
-                            if (in_array($cost['service'], $allActiveServices) && $allowedByWeight) {
+                            $allowedByWeight = sdongkir_shipping_allowed_by_weight($courierCode, $cost['service'], $weight);
+                            if (in_array($courierCode.' '.$cost['service'], $allActiveServices) && $allowedByWeight) {
                                 $rate = [
-                                    'id' => $this->id.'_'.sdongkir_format_shipping_service_code($cost['service']),
+                                    'id' => $this->id.'_'.$courierCode.'_'.sdongkir_format_shipping_service_code($cost['service']),
                                     'label' => isset($titleArr[$cost['service']]) ? $titleArr[$cost['service']] : $cost['service'],
                                     'cost' => $cost['cost'][0]['value']
                                 ];
