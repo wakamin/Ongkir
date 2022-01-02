@@ -1,0 +1,428 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-01-02 17:10+0700\n"
+"PO-Revision-Date: 2022-01-02 17:12+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id_ID\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: languages\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:81
+msgid "Success storing provinces into database"
+msgstr "Berhasil menyimpan provinsi ke dalam database"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:120
+msgid "Success storing cities into database"
+msgstr "Berhasil menyimpan kota ke dalam database"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:133
+msgid "Bad params"
+msgstr "Parameter buruk"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:137
+msgid "Must use Pro account."
+msgstr "Harus menggunakan akun Pro."
+
+#: includes/admin/class-sdongkir-admin-ajax.php:189
+msgid "Success storing all subdistrics into database"
+msgstr "Berhasil menyimpan semua kecamatan ke dalam database"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:191
+#, php-format
+msgid "Success storing subdistrics of %s into database"
+msgstr "Berhasil menyimpan kecamatan dari %s ke dalam database"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:210
+#: includes/admin/class-sdongkir-admin-ajax.php:253
+msgid "Must use Basic or Pro account."
+msgstr "Harus menggunakan akun Basic atau Pro."
+
+#: includes/admin/class-sdongkir-admin-ajax.php:240
+msgid "Success storing international origin into database"
+msgstr "Berhasil menyimpan asal internasional kedalam database"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:279
+msgid "Success storing international destination into database"
+msgstr "Berhasil menyimpan tujuan internasional kedalam database"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:292
+msgid "Country is required"
+msgstr "Negara diperlukan"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:297
+#: includes/admin/class-sdongkir-admin-ajax.php:315
+msgid "Success"
+msgstr "Berhasil"
+
+#: includes/admin/class-sdongkir-admin-ajax.php:310
+#: includes/frontend/class-sdongkir-frontend-ajax.php:160
+msgid "City is required"
+msgstr "Kota diperlukan"
+
+#: includes/admin/class-sdongkir-admin-scripts.php:56
+#: views/admin/setting-page/main_config.php:79
+#: views/admin/setting-page/main_config.php:81
+msgid "Loading..."
+msgstr "Memuat..."
+
+#: includes/admin/class-sdongkir-admin-scripts.php:57
+msgid "Getting provinces data"
+msgstr "Mengambil data provinsi"
+
+#: includes/admin/class-sdongkir-admin-scripts.php:58
+msgid "Getting cities data"
+msgstr "Mengambil data kota"
+
+#: includes/admin/class-sdongkir-admin-scripts.php:59
+msgid "Getting subdistricts data"
+msgstr "Mengambil data kecamatan"
+
+#: includes/admin/class-sdongkir-admin-scripts.php:60
+msgid "Getting international origin data"
+msgstr "Mengambil data asal internasional"
+
+#: includes/admin/class-sdongkir-admin-scripts.php:61
+msgid "Getting international destination data"
+msgstr "Mengambil data tujuan internasional"
+
+#: includes/admin/class-sdongkir-admin-scripts.php:62
+#: includes/woocommerce/setting/class-sdongkir-woo-settings.php:44
+#: includes/woocommerce/setting/class-sdongkir-woo-settings.php:67
+msgid "Please select"
+msgstr "Silahkan pilih"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:69
+msgid "Success searching location"
+msgstr "Berhasil mencari lokasi"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:82
+msgid "Please select shipping origin!"
+msgstr "Silahkan pilih asal pengiriman!"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:86
+msgid "Please select shipping destination!"
+msgstr "Silahkan pilih tujuan pengiriman!"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:90
+msgid "Please input weight!"
+msgstr "Silahkan masukkan berat!"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:94
+msgid "Please select couriers!"
+msgstr "Silahkan pilih kurir!"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:101
+msgid "Shipping cost"
+msgstr "Ongkos kirim"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:114
+msgid "Please input the tracking number!"
+msgstr "Silahkan masukkan nomor pelacakan!"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:118
+msgid "Please select courier!"
+msgstr "Silahkan pilih kurir!"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:125
+#: views/frontend/ongkir.php:10 views/frontend/ongkir.php:11
+msgid "Shipping Tracking"
+msgstr "Lacak Pengiriman"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:138
+msgid "Province is required"
+msgstr "Provinsi diperlukan"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:144
+msgid "Province not found"
+msgstr "Provinsi tidak ditemukan"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:147
+msgid "Cities"
+msgstr "Kota"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:165
+msgid "City not found."
+msgstr "Kota tidak ditemukan."
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:168
+msgid "Subdistricts"
+msgstr "Kecamatan"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:181
+msgid "Subdistrict is required"
+msgstr "Kecamatan diperlukan"
+
+#: includes/frontend/class-sdongkir-frontend-ajax.php:206
+msgid "Operation success"
+msgstr "Operasi berhasil"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:50
+msgid "Submit"
+msgstr "Kirim"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:51
+msgid "Processing..."
+msgstr "Memproses..."
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:52
+#: views/frontend/ongkir.php:70
+msgid "Get Shipping Costs"
+msgstr "Dapatkan ongkos kirim"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:53
+#: views/frontend/ongkir.php:90
+msgid "Track Shipment"
+msgstr "Lacak Pengiriman"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:54
+msgid "Close"
+msgstr "Tutup"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:55
+msgid "Single selection"
+msgstr "Pilihan tunggal"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:56
+#: views/frontend/ongkir.php:41
+msgid "Multiple selection"
+msgstr "Banyak pilihan"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:57
+#: views/admin/setting-page/main_config.php:50
+#: views/frontend/woocommerce/cart/shipping-calculator.php:95
+#: views/frontend/woocommerce/cart/shipping-calculator.php:102
+msgid "City"
+msgstr "Kota"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:58
+#: includes/woocommerce/address/class-sdongkir-woo-address.php:64
+#: includes/woocommerce/setting/class-sdongkir-woo-settings.php:77
+#: views/admin/setting-page/main_config.php:52
+#: views/frontend/woocommerce/cart/shipping-calculator.php:109
+msgid "Subdistrict"
+msgstr "Kecamatan"
+
+#: includes/frontend/class-sdongkir-frontend-scripts.php:59
+#: includes/woocommerce/address/class-sdongkir-woo-address.php:71
+#: includes/woocommerce/address/class-sdongkir-woo-address.php:125
+#: includes/woocommerce/address/class-sdongkir-woo-address.php:150
+#: views/frontend/woocommerce/cart/shipping-calculator.php:96
+#: views/frontend/woocommerce/cart/shipping-calculator.php:110
+msgid "Please Select"
+msgstr "Silahkan pilih"
+
+#: includes/functions/woocommerce.php:25
+msgid "Subdistrict not found"
+msgstr "Kecamatan tidak ditemukan"
+
+#: includes/services/rajaongkir/class-sdongkir-remote.php:71
+#, php-format
+msgid "RajaOngkir remote call error #: %s"
+msgstr "RajaOngkir remote call error #: %s"
+
+#: includes/widgets/class-sdongkir-widget.php:21
+msgid "Shipping cost and tracking widget."
+msgstr "Widget ongkos kirim dan pelacakan."
+
+#: includes/widgets/class-sdongkir-widget.php:46
+msgid "Title"
+msgstr "Judul"
+
+#: includes/widgets/class-sdongkir-widget.php:50
+msgid "Style"
+msgstr "Style"
+
+#: includes/widgets/class-sdongkir-widget.php:52
+msgid "Small"
+msgstr "Kecil"
+
+#: includes/widgets/class-sdongkir-widget.php:53
+msgid "Wide"
+msgstr "Lebar"
+
+#: includes/woocommerce/setting/class-sdongkir-ongkir.php:24
+msgid "Ongkir"
+msgstr "Ongkir"
+
+#: includes/woocommerce/setting/class-sdongkir-ongkir.php:25
+msgid "Ongkir shipping method"
+msgstr "Metode pengiriman Ongkir"
+
+#: includes/woocommerce/setting/class-sdongkir-woo-settings.php:78
+msgid "Shipping origin subdistrict"
+msgstr "Kecamatan asal pengiriman"
+
+#: views/admin/setting-page.php:14
+msgid "Ongkir Configuration"
+msgstr "Konfigurasi Ongkir"
+
+#: views/admin/setting-page.php:18
+msgid "Main Configuration"
+msgstr "Konfigurasi Utama"
+
+#: views/admin/setting-page.php:19 views/frontend/ongkir.php:4
+#: views/frontend/ongkir.php:5
+msgid "Shipping Cost"
+msgstr "Ongkos Kirim"
+
+#: views/admin/setting-page.php:21 views/frontend/ongkir.php:11
+msgid "Tracking"
+msgstr "Pelacakan"
+
+#: views/admin/setting-page/main_config.php:20
+msgid "RajaOngkir Api Key"
+msgstr "API Key RajaOngkir"
+
+#: views/admin/setting-page/main_config.php:25
+#, php-format
+msgid "Get your RajaOngkir api key <a href=\"%s\" target=\"_blank\">here</a>."
+msgstr "Dapatkan API key RajaOngkir <a href=\"%s\" target=\"_blank\">disini</a>."
+
+#: views/admin/setting-page/main_config.php:31
+msgid "Account Type"
+msgstr "Tipe Akun"
+
+#: views/admin/setting-page/main_config.php:45
+msgid "Stored Location Count"
+msgstr "Jumlah Lokasi Tersimpan"
+
+#: views/admin/setting-page/main_config.php:49
+msgid "Province"
+msgstr "Provinsi"
+
+#: views/admin/setting-page/main_config.php:55
+msgid "International Origin"
+msgstr "Asal Internasional"
+
+#: views/admin/setting-page/main_config.php:56
+msgid "International Destination"
+msgstr "Tujuan Internasional"
+
+#: views/admin/setting-page/main_config.php:63
+#: views/admin/setting-page/main_config.php:67
+msgid "Get Location Data"
+msgstr "Ambil Data Lokasi"
+
+#: views/admin/setting-page/main_config.php:70
+msgid "All done!"
+msgstr "Sudah semua!"
+
+#: views/admin/setting-page/main_config.php:82
+msgid "Don't close or refresh window until finish!"
+msgstr "Jangan tutup atau memuat ulang halaman sampai selesai!"
+
+#: views/admin/setting-page/shipping_cost.php:18
+#: views/admin/setting-page/shipping_cost.php:26
+#: views/admin/setting-page/tracking.php:19
+#: views/admin/setting-page/tracking.php:27
+msgid "Available Couriers"
+msgstr "Kurir Tersedia"
+
+#: views/frontend/ongkir.php:5 views/frontend/shipping-cost-result.php:28
+msgid "Cost"
+msgstr "Ongkos"
+
+#: views/frontend/ongkir.php:20 views/frontend/shipping-cost-result.php:18
+msgid "Origin"
+msgstr "Asal"
+
+#: views/frontend/ongkir.php:22 views/frontend/ongkir.php:28
+#: views/frontend/ongkir.php:47 views/frontend/ongkir.php:83
+msgid "Select"
+msgstr "Pilih"
+
+#: views/frontend/ongkir.php:26 views/frontend/shipping-cost-result.php:19
+msgid "Destination"
+msgstr "Tujuan"
+
+#: views/frontend/ongkir.php:32 views/frontend/ongkir.php:34
+#: views/frontend/shipping-cost-result.php:20
+msgid "Weight"
+msgstr "Berat"
+
+#: views/frontend/ongkir.php:39 views/frontend/ongkir.php:81
+msgid "Courier"
+msgstr "Kurir"
+
+#: views/frontend/ongkir.php:42
+msgid "Select all"
+msgstr "Pilih semua"
+
+#: views/frontend/ongkir.php:43
+msgid "Unselect all"
+msgstr "Tidak dipilih semua"
+
+#: views/frontend/ongkir.php:77 views/frontend/ongkir.php:78
+#: views/frontend/shipping-track-result.php:18
+msgid "Tracking Number"
+msgstr "Nomor Pelacakan"
+
+#: views/frontend/shipping-cost-result.php:26
+msgid "Shipping"
+msgstr "Pengiriman"
+
+#: views/frontend/shipping-cost-result.php:27
+#: views/frontend/shipping-track-result.php:21
+msgid "Service"
+msgstr "Layanan"
+
+#: views/frontend/shipping-cost-result.php:44
+#, php-format
+msgid "%s day(s)"
+msgstr "%s hari"
+
+#: views/frontend/shipping-cost-result.php:54
+msgid "Not found :("
+msgstr "Tidak ditemukan :("
+
+#: views/frontend/shipping-track-result.php:24
+msgid "Status"
+msgstr "Status"
+
+#: views/frontend/shipping-track-result.php:28
+msgid "Receiver"
+msgstr "Penerima"
+
+#: views/frontend/shipping-track-result.php:45
+msgid "From"
+msgstr "Dari"
+
+#: views/frontend/shipping-track-result.php:50
+msgid "To"
+msgstr "Kepada"
+
+#: views/frontend/woocommerce/cart/shipping-calculator.php:24
+msgid "Calculate shipping"
+msgstr "Hitung pengiriman"
+
+#: views/frontend/woocommerce/cart/shipping-calculator.php:30
+msgid "Select a country / region&hellip;"
+msgstr "Pilih negara / kabupaten kota&hellip;"
+
+#: views/frontend/woocommerce/cart/shipping-calculator.php:70
+#: views/frontend/woocommerce/cart/shipping-calculator.php:75
+#: views/frontend/woocommerce/cart/shipping-calculator.php:85
+msgid "State / County"
+msgstr "Negara"
+
+#: views/frontend/woocommerce/cart/shipping-calculator.php:76
+msgid "Select an option&hellip;"
+msgstr "Pilih opsi&hellip;"
+
+#: views/frontend/woocommerce/cart/shipping-calculator.php:120
+msgid "Postcode / ZIP"
+msgstr "Kode pos"
+
+#: views/frontend/woocommerce/cart/shipping-calculator.php:124
+msgid "Update"
+msgstr "Perbarui"
