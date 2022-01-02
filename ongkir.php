@@ -2,17 +2,17 @@
 
 /**
  * Plugin Name: Ongkir
- * Plugin URI: https://www.samudradigital.com
+ * Plugin URI: https://docs.samudradigital.com/category/wordpress/ongkir-wordpress-plugin
  * Description: Indonesia shipping cost and delivery tracking Wordpress plugin powered by RajaOngkir API.
  * Version: 1.0.0
  * Author: Kasmin
- * Author URI: https://kasminco.com/
+ * Author URI: https://kasmin.id
  * License: GPL-2.0+
  * License URI: http://www.gnu.local/license/gpl-2.0.txt
  * Text Domain: sd_ongkir
  *
- * WC requires at least: 2.2
- * WC tested up to: 2.3
+ * WC requires at least: 3.0.0
+ * WC tested up to: 6.0.0
  */
 
 // Exit if accessed directly
