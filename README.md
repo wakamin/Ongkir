@@ -1,9 +1,11 @@
 # Ongkir
 
-Indonesia shipping Wordpress plugin
+Indonesia shipping Wordpress plugin powered by [RajaOngkir](https://rajaongkir.com/).
 
-## Still in development
+-   Shipping cost form
+-   Tracking form
+-   Support WooCommerce
 
-## Shipping Cost & Tracking Form
+## Documentation
 
-Add [sdongkir] shortcode to display shipping cost and tracking form.
+Read documentation [here](https://docs.samudradigital.com/category/wordpress/ongkir-wordpress-plugin).
