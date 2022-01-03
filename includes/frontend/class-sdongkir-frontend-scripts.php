@@ -30,8 +30,8 @@ if (!class_exists('SDONGKIR_Frontend_Scripts')) {
             wp_enqueue_style('sdongkir-frontend', SDONGKIR_PLUGIN_URL . 'assets/css/frontend-ongkir.css');
             
             wp_register_script('sdongkir-frontend-script', SDONGKIR_PLUGIN_URL . 'assets/js/frontend-ongkir.js', array('jquery'), '1.0.0', false);
-            // Check if WooCommerce is active
-            if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+            // Check if WooCommerce is active and only for pro account
+            if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins'))) && sdongkir_account_type() == 'pro') {
                 if (is_checkout()) {
                     wp_enqueue_script('sdongkir-checkout', SDONGKIR_PLUGIN_URL . 'assets/js/checkout.js', array('jquery'), '1.0.0', false);
                 }

@@ -72,9 +72,9 @@ include_once SDONGKIR_PLUGIN_PATH . 'includes/frontend/class-sdongkir-frontend-a
 include_once SDONGKIR_PLUGIN_PATH . 'includes/widgets/class-sdongkir-widget.php';
 
 /**
- * Check if WooCommerce is active
+ * Check if WooCommerce is active and only for RajaOngkir Pro account
  **/
-if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins'))) && sdongkir_account_type() == 'pro') {
     // WooCommerce template location
     include_once SDONGKIR_PLUGIN_PATH . 'includes/woocommerce/class-sdongkir-woo-template.php';
 
