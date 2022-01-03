@@ -57,6 +57,7 @@ const paths = {
             "!package-lock.json",
             "!LICENSE",
             "!README.md",
+            "!.gitattributes",
         ],
         dest: "packaged",
     },
