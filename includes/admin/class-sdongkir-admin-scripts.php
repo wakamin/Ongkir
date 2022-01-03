@@ -59,7 +59,8 @@ if (!class_exists('SDONGKIR_Admin_Scripts')) {
                     'get_subdistrict_text' => __('Getting subdistricts data', 'sd_ongkir'),
                     'get_intl_origin_text' => __('Getting international origin data', 'sd_ongkir'),
                     'get_intl_destination_text' => __('Getting international destination data', 'sd_ongkir'),
-                    'please_select_text' => __('Please select', 'sd_ongkir')
+                    'please_select_text' => __('Please select', 'sd_ongkir'),
+                    'account_type' => sdongkir_account_type()
                 )
             );
             wp_enqueue_script('sdongkir-script');

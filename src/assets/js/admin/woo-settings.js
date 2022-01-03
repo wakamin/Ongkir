@@ -1,6 +1,10 @@
 import $ from "jquery";
 
 $(function () {
+    if (sdongkir_lcz.account_type != "pro") {
+        return;
+    }
+
     const els = {
         country: $("select[name='woocommerce_default_country']"),
         subdistrict: $("#sdongkir_shipping_origin_subdistrict"),
