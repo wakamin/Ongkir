@@ -38,10 +38,12 @@
                 <div class="sdokr-form-field">
                     <label><?php esc_html_e('Courier', 'sd_ongkir') ?></label><br>
 
-                    <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-selection-type sdokr-mb-3"><?php esc_html_e('Multiple selection', 'sd_ongkir') ?></button>
-                    <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-select-all sdokr-mb-3 sdokr-hide" data-target=".sdokr-couriers-cb"><?php esc_html_e('Select all', 'sd_ongkir') ?></button>
-                    <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-unselect-all sdokr-mb-3 sdokr-hide" data-target=".sdokr-couriers-cb"><?php esc_html_e('Unselect all', 'sd_ongkir') ?></button>
-
+                    <?php if (sdongkir_account_type() != 'starter'): ?>
+                        <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-selection-type sdokr-mb-3"><?php esc_html_e('Multiple selection', 'sd_ongkir') ?></button>
+                        <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-select-all sdokr-mb-3 sdokr-hide" data-target=".sdokr-couriers-cb"><?php esc_html_e('Select all', 'sd_ongkir') ?></button>
+                        <button type="button" class="sdokr-btn sdokr-btn-outline sdokr-btn-outline--secondary sdokr-unselect-all sdokr-mb-3 sdokr-hide" data-target=".sdokr-couriers-cb"><?php esc_html_e('Unselect all', 'sd_ongkir') ?></button>
+                    <?php endif; ?>
+                    
                     <div class="sdokr-single-courier-selection">
                         <select name="sdokr-courier" class="sdokr-cost-courier sdokr-form-control sdokr-select2">
                             <option value="">-- <?php esc_html_e('Select', 'sd_ongkir') ?> --</option>
